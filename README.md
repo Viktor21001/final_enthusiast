@@ -1,3 +1,8 @@
+# Доска Miro где все рассписано - только для коллабораторов в гитхабе. 
+1. Нужно сделать нормальную и адекватную БД.
+
+- https://miro.com/welcomeonboard/aGNzYWlFc1B6dkJSR2cwdEd3Nmp0TDZUNVB5dHBaZjJDMjN0RjJWQjU1VUZvM3dkV1RMdlp5empxU2dqQjd1eXwzNDU4NzY0NTY5NjMwNDI0NjE0fDI=?share_link_id=112827842909
+
 # final_enthusiast
 
 - В настоящее время множество зарубежных инвесторов и компаний ушли из России и есть необходимость в создании платформы для взращивания новых идей и стартапов, в чем это приложение и будет помогать.
