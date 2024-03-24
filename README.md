@@ -6,6 +6,9 @@
 
 - https://miro.com/welcomeonboard/aGNzYWlFc1B6dkJSR2cwdEd3Nmp0TDZUNVB5dHBaZjJDMjN0RjJWQjU1VUZvM3dkV1RMdlp5empxU2dqQjd1eXwzNDU4NzY0NTY5NjMwNDI0NjE0fDI=?share_link_id=112827842909
 
+# Figma
+- https://www.figma.com/file/FQNmY4avFatXJFToKj6qEs/Final-Project?type=design&node-id=0%3A1&mode=dev&t=D33T6xHT8sUYVTOJ-1
+
 # final_enthusiast
 
 - В настоящее время множество зарубежных инвесторов и компаний ушли из России и есть необходимость в создании платформы для взращивания новых идей и стартапов, в чем это приложение и будет помогать.
