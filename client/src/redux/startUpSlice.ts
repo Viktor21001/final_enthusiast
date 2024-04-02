@@ -10,7 +10,7 @@ import {
 
 export type SliceState = {
   startUps: StartUpsType;
-  funding?:number;
+  funding?: number;
   isLoading: boolean;
 };
 
@@ -36,7 +36,9 @@ const startUpSlice = createSlice({
       state.startUps.push(payload);
     });
     builder.addCase(fetchDeleteStartUp.fulfilled, (state, { payload }) => {
-      state.startUps = state.startUps.filter((startUp) => startUp.id !== payload);
+      state.startUps = state.startUps.filter(
+        (startUp) => startUp.id !== payload
+      );
     });
     builder.addCase(fetchEditstartUp.fulfilled, (state, { payload }) => {
       state.startUps = state.startUps.map((el) => {
@@ -48,8 +50,8 @@ const startUpSlice = createSlice({
       });
     });
     builder.addCase(fetchAddFunding.fulfilled, (state, { payload }) => {
-          state.funding = payload;
-      });
+      state.funding = payload;
+    });
   },
 });
 
