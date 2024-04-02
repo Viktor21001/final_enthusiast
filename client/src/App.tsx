@@ -1,19 +1,19 @@
 
-// import './App.css'
+// // import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import SideNavbar from './components/SideNavbar/SideNavbar'
 
-function App() {
+// function App() {
   
 
-  return (
-    <div>
-      <Navbar />
-      <SideNavbar />
-    </div>
-  )
+//   return (
+//     <div>
+//       <Navbar />
+//       <SideNavbar />
+//     </div>
+//   )
 
-import "./App.css";
+// import "./App.css";
 import Ideas from "./components/Ideas/Ideas";
 import StartUps from "./components/StartUps/StartUps";
 import { store } from "./redux/store";
@@ -26,6 +26,7 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Navbar />
+          <SideNavbar />
           <Routes>
             <Route path="/startups" element={<StartUps />} />
             <Route path="/ideas" element={<Ideas />} />
