@@ -4,25 +4,35 @@ const { Op } = require('sequelize');
 const { User } = require('../../db/models');
 
 userRouter.post('/registration', async (req, res) => {
-  const { login, email, password } = req.body;
+  const { login, email, password, isInvestor } = req.body;
   try {
     const user = await User.findOne({
       where: {
-        [Op.or]: [
-          { login },
-          { email },
-        ],
+        [Op.or]: [{ login }, { email }, { isInvestor }],
       },
     });
     if (user) {
-      res.json({ msgErr: 'Пользователь с указанным именем или почтой уже существует' });
+      res.json({
+        msgErr: 'Пользователь с указанным именем или почтой уже существует',
+      });
     } else {
       const hashPassword = await bcrypt.hash(password, 12);
-      const newUser = await User.create({ login, email, password: hashPassword });
+      const newUser = await User.create({
+        login,
+        email,
+        password: hashPassword,
+      });
       req.session.login = newUser.login;
       req.session.userId = newUser.id;
       req.session.save(() => {
-        res.json({ msgDone: 'Пользователь зарегистрирован', login: newUser.login, userId: newUser.id, email: newUser.email, createdAt: newUser.createdAt });
+        res.json({
+          msgDone: 'Пользователь зарегистрирован',
+          login: newUser.login,
+          userId: newUser.id,
+          email: newUser.email,
+          isInvestor: newUser.isInvestor,
+          createdAt: newUser.createdAt,
+        });
       });
     }
   } catch (error) {
@@ -42,7 +52,14 @@ userRouter.post('/login', async (req, res) => {
         req.session.login = user.login;
         req.session.userId = user.id;
         req.session.save(() => {
-          res.json({ logMsg: 'Пользователь вернулся', login: user.login, userId: user.id, email: user.email, createdAt: user.createdAt });
+          res.json({
+            logMsg: 'Пользователь вернулся',
+            login: user.login,
+            userId: user.id,
+            email: user.email,
+            isInvestor: user.isInvestor,
+            createdAt: user.createdAt,
+          });
         });
       } else {
         res.json({ logErr: 'Введен не верный пароль' });
