@@ -26,8 +26,8 @@ ideaRouter.get('/:id', async (req, res) => {
 
 ideaRouter.post('/new', async (req, res) => {
   try {
-    const game = await Idea.create({ name: req.body.name });
-    res.json(game);
+    const idea = await Idea.create(req.body);
+    res.json(idea);
   } catch (error) {
     console.log(error);
   }
