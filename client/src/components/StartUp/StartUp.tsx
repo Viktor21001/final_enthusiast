@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { StartUp, fetchDeleteStartUp, fetchEditstartUp } from "../../redux/startUpActions";
 
 type StartUpComponentPropsType = {
-  startUp: StartUp;
+    startUp: StartUp;
 };
 
 export default function StartUp1({ startUp }: StartUpComponentPropsType): JSX.Element {
