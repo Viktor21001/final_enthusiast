@@ -4,9 +4,9 @@ import axios, { AxiosResponse } from "axios";
 
 export type StartUp = {
   id: number;
-  title: string;
-  description: string;
-  categories: string[];
+  startUpTitle: string;
+  startUpDescription: string;
+  startUpCategory: string[];
   progress: number;
   currentAmount: number;
   targetAmount: number;
@@ -90,6 +90,21 @@ export const fetchEditstartUp = createAsyncThunk(
 
 export const fetchAddFunding = createAsyncThunk(
   "funding/add",
+  async ({ amount, id }: { amount: number; id: number }) => {
+    try {
+      const response = await axios.post<AxiosResponse<StartUpsType>>(
+        `${import.meta.env.VITE_URL}/startups/funding/${id}`,
+        amount
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const fetchFavorites = createAsyncThunk(
+  "favorites/add",
   async ({ amount, id }: { amount: number; id: number }) => {
     try {
       const response = await axios.post<AxiosResponse<StartUpsType>>(
