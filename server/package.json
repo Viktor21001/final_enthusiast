@@ -11,7 +11,8 @@
     "mig": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate",
     "seed": "npx sequelize db:seed:all",
     "remig": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all",
-    "dropDB": "npx sequelize db:drop"
+    "dropDB": "npx sequelize db:drop",
+    "dbRebuild": "sequelize db:drop && sequelize db:create && sequelize db:migrate && sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
