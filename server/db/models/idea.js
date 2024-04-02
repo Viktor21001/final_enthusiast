@@ -16,10 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.IdeaMedia, {
         foreignKey: 'ideaId',
       });
-      this.hasOne(models.IdeaWallet, {
-        foreignKey: 'ideaId',
-      });
-
     }
   }
   Idea.init({

@@ -25,7 +25,7 @@ export type InputsType = {
   members: StartUpMember[];
   title: string;
   description: string;
-  categories: string[];
+  category: string[];
   progress: number;
   currentAmount?: number;
   targetAmount: number;

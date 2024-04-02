@@ -43,6 +43,12 @@ startupRouter.delete('/:id', async (req, res) => {
   }
 });
 
+startupRouter.patch('/:id', async (req, res) => {
+  const startUp = await StartUp.findByPk(req.params.id);
+  await startUp.update(req.body);
+  res.json(startUp);
+});
+
 startupRouter.post('/funding/:id', async (req, res) => {
   const { id } = req.params;
   const { amount } = req.body; // Тут нужно на клинете передать сумму!!!
