@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.UserProfile, {
         foreignKey: 'userId',
       });
+      this.hasMany(models.Favorite, { foreignKey: 'userId' });
     }
   }
   User.init({
@@ -25,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     fullName: DataTypes.STRING,
     gender: DataTypes.BOOLEAN,
     birthDate: DataTypes.DATE,
-    isInvestor: DataTypes.BOOLEAN
+    isInvestor: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'User',

@@ -26,8 +26,8 @@ ideaRouter.get('/:id', async (req, res) => {
 
 ideaRouter.post('/new', async (req, res) => {
   try {
-    const idea = await Idea.create(req.body);
-    res.json(idea);
+    const game = await Idea.create({ name: req.body.name });
+    res.json(game);
   } catch (error) {
     console.log(error);
   }
@@ -67,29 +67,6 @@ ideaRouter.post('/dislike/:id', async (req, res) => {
     }
     await dislikeIdea.increment('dislikes', { by: 1 });
     res.json({ status: 'disliked' });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-ideaRouter.post('/wallet/:id', async (req, res) => {
-  const { id } = req.params;
-  const { amount } = req.body; // Тут нужно на клинете передать сумму!!!
-
-  try {
-    const idea = await Idea.findByPk(id);
-    if (!idea) {
-      return res.status(404).json({ error: 'Idea not found' });
-    }
-
-    if (amount.isNun || amount <= 0) {
-      return res.status(400).json({ error: 'Invalid amount' });
-    }
-
-    await idea.increment('wallet', { by: amount });
-
-    res.json({ status: 'done', wallet_balance: idea.wallet });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Internal server error' });

@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class StartUp extends Model {
     /**
@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.Funding, {
         foreignKey: 'startUpId',
       });
+      this.hasMany(models.Favorite, { foreignKey: 'startUpId' });
     }
   }
   StartUp.init({
@@ -26,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     startUpTitle: DataTypes.STRING,
     startUpDescription: DataTypes.TEXT,
     startUpCategory: DataTypes.TEXT,
-    progress: DataTypes.STRING
+    progress: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'StartUp',
