@@ -24,8 +24,12 @@ startupRouter.get('/:id', async (req, res) => {
 });
 
 startupRouter.post('/new', async (req, res) => {
+  const { userId } = req.session;
+
+  const startUpData = req.body;
+  startUpData.userId = userId;
   try {
-    const startUp = await StartUp.create(req.body);
+    const startUp = await StartUp.create(startUpData);
     res.json(startUp);
   } catch (error) {
     console.log(error);

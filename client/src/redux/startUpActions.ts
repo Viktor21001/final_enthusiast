@@ -1,18 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
+import apiService from "../service/apiService";
 // import { InputsType, StartUpsType } from "../types";
 
 export type StartUp = {
   id: number;
   startUpTitle: string;
   startUpDescription: string;
-  startUpCategory: string[];
+  startUpCategory: string;
   progress: number;
   currentAmount: number;
   targetAmount: number;
   createdAt: Date;
   updatedAt: Date;
-  members: StartUpMember[];
+  members?: StartUpMember[];
   funding?: number;
   msg?: string;
 };
@@ -23,10 +24,10 @@ export type StartUpMember = {
 };
 
 export type InputsType = {
-  members: StartUpMember[];
-  title: string;
-  description: string;
-  category: string[];
+  members?: StartUpMember[];
+  startUpTitle: string;
+  startUpDescription: string;
+  startUpCategory: string;
   progress: number;
   currentAmount?: number;
   targetAmount: number;
@@ -37,7 +38,7 @@ export type StartUpsType = Array<StartUp>;
 
 export const fetchStartUps = createAsyncThunk("startUps/all", async () => {
   try {
-    const response = await axios.get<StartUpsType>(
+    const response = await apiService.get<StartUpsType>(
       `${import.meta.env.VITE_URL}/startups`
     );
     console.log(response);
@@ -51,7 +52,7 @@ export const fetchAddStartUp = createAsyncThunk(
   "startUps/add",
   async (inputs: InputsType) => {
     try {
-      const response = await axios.post<
+      const response = await apiService.post<
         InputsType,
         AxiosResponse<StartUpsType>
       >(`${import.meta.env.VITE_URL}/startups/new`, inputs);
@@ -65,7 +66,7 @@ export const fetchAddStartUp = createAsyncThunk(
 export const fetchDeleteStartUp = createAsyncThunk(
   "startUps/delete",
   async (id: number) => {
-    const response = await axios.delete(
+    const response = await apiService.delete(
       `${import.meta.env.VITE_URL}/startups/${id}`
     );
     if (response.status === 200) {

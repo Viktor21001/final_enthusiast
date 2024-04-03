@@ -21,6 +21,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { UserProvider } from './UserContext';
 import NewIdea from './components/newIdea/NewIdea';
+import NewStartUp from './components/NewStartUp/NewStartUp';
 
 function App() {
   return (
@@ -36,6 +37,8 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
             <Route path="/newidea" element={<NewIdea />} />
+            <Route path="/newstartup" element={<NewStartUp />} />
+
             {/* <Route path="/startUp/:id" element={<OneStartUp />} />
             <Route path="/idea/:id" element={<OneIdea />} /> */}
 
