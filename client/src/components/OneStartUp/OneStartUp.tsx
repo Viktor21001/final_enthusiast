@@ -1,11 +1,12 @@
-import React, { ChangeEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchAddMember, memberInputsType } from "../../redux/memberActions";
+import { Member, fetchAddMember, fetchMembers, memberInputsType } from "../../redux/memberActions";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 export default function OneStartUp(): React.JSX.Element {
   const { id } = useParams();
   const startUps = useAppSelector((store) => store.startUpSlice.startUps);
+  const members = useAppSelector((state) => state.memberSlice.members);
 
   const startup = startUps.find((el) => el.id === Number(id));
   
@@ -15,6 +16,11 @@ export default function OneStartUp(): React.JSX.Element {
   });
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const idAsNumber = Number(id)
+    dispatch(fetchMembers(idAsNumber));
+  }, [dispatch]);
 
   const memberChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setMemberInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -38,7 +44,13 @@ export default function OneStartUp(): React.JSX.Element {
           <h1>StartUp</h1>
           <h2>{startup?.startUpTitle}</h2>
           <h3>{startup?.startUpDescription}</h3>
-          <h3>Add Team Member</h3>
+          <h4>Team Members</h4>
+          <ul>
+            {members.map((member: Member) => (
+              <li key={member.id}>{member['User.login']} - {member.role}</li>
+            ))}
+          </ul>
+          <h4>Add Team Member</h4>
       <input
         onChange={memberChangeHandler}
         type="text"

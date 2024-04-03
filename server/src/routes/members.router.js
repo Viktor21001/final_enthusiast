@@ -19,6 +19,7 @@ memberRouter.get('/:startUpId', async (req, res) => {
       },
       raw: true,
     });
+    console.log(members);
     res.json(members);
   } catch (error) {
     console.log(error);
@@ -52,8 +53,14 @@ memberRouter.post('/new/:startUpId', async (req, res) => {
     const { login, role } = req.body;
     const { startUpId } = req.params;
 
+    const user = await User.findOne({ where: { login } });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
     const member = await startUpMember.create({
-      login,
+      userId: user.id,
       startUpId,
       role,
     });

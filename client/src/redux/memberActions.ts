@@ -21,12 +21,12 @@ export type memberInputsType = {
 
 export type MembersType = Array<Member>;
 
-export const fetchMembers = createAsyncThunk("members/all", async () => {
+export const fetchMembers = createAsyncThunk("members/all", async (id:number) => {
   try {
     const response = await apiService.get<MembersType>(
-      `${import.meta.env.VITE_URL}/members`
+      `${import.meta.env.VITE_URL}/members/${id}`
     );
-    console.log(response);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -35,10 +35,10 @@ export const fetchMembers = createAsyncThunk("members/all", async () => {
 
 export const fetchAddMember = createAsyncThunk(
   "member/add",
-  async ({ inputs, id }: { inputs: InputsType; id: number }) => {
+  async ({ inputs, id }: { inputs: memberInputsType; id: number }) => {
     try {
       const response = await apiService.post<
-        InputsType,
+        memberInputsType,
         AxiosResponse<MembersType>
       >(`${import.meta.env.VITE_URL}/members/new/${id}`, inputs);
       return response.data;
