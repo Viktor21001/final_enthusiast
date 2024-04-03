@@ -26,9 +26,9 @@ export type IdeasType = Array<Idea>;
 export const fetchIdeas = createAsyncThunk("ideas/all", async () => {
   try {
     const response = await axios.get<IdeasType>(
-      `${import.meta.env.VITE_URL}/startups`
+      `${import.meta.env.VITE_URL}/ideas`
     );
-    console.log(response);
+    // console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);

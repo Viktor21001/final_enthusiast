@@ -31,7 +31,7 @@ function App() {
           <Navbar />
           <SideNavbar />
           <Routes>
-            <Route path="/startups" element={<StartUps />} />
+            <Route path="/" element={<StartUps />} />
             <Route path="/ideas" element={<Ideas />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
