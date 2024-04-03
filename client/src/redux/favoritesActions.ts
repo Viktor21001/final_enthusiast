@@ -18,6 +18,7 @@ export const fetchFavorites = createAsyncThunk("favorites/all", async () => {
 
 export const fetchAddFavorites = createAsyncThunk(
     "favorites/add",
+    
     async (id: number) => {
       try {
         const response = await apiService.post<StartUpsType>(
