@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { InputsType, fetchAddIdea } from "../../redux/ideaActions";
 import { useAppDispatch } from "../../redux/hooks";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 export default function NewIdea(): JSX.Element {
   const [inputs, setInputs] = useState<InputsType>({
@@ -9,6 +10,8 @@ export default function NewIdea(): JSX.Element {
     category: "",
   });
   const dispatch = useAppDispatch();
+  const navigate: NavigateFunction = useNavigate();
+
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -17,6 +20,7 @@ export default function NewIdea(): JSX.Element {
   const addIdea = async (): Promise<void> => {
     void dispatch(fetchAddIdea(inputs));
     setInputs({ title: "", description: "", category: "" });
+    navigate('/ideas');
   };
 
   return (

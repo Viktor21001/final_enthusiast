@@ -5,6 +5,7 @@ import {
   fetchAddStartUp,
   fetchDeleteStartUp,
   fetchEditstartUp,
+  fetchStartUpById,
   fetchStartUps,
 } from "./startUpActions";
 
@@ -30,6 +31,10 @@ const startUpSlice = createSlice({
     });
     builder.addCase(fetchStartUps.fulfilled, (state, { payload }) => {
       state.startUps = payload;
+      state.isLoading = false;
+    });
+    builder.addCase(fetchStartUpById.fulfilled, (state, { payload }) => {
+      state.startUps = [payload];
       state.isLoading = false;
     });
     builder.addCase(fetchAddStartUp.fulfilled, (state, { payload }) => {

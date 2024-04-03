@@ -7,7 +7,6 @@ ideaRouter.get('/', async (req, res) => {
     const ideas = await Idea.findAll({
       raw: true,
     });
-    console.log(ideas);
     res.json(ideas);
   } catch (error) {
     console.log(error);
@@ -27,7 +26,7 @@ ideaRouter.get('/:id', async (req, res) => {
 ideaRouter.post('/new', async (req, res) => {
   try {
     const { userId } = req.session;
-    console.log(req.session, 'это яяяяяяя');
+    // console.log(req.session, 'это яяяяяяя');
 
     const ideaData = req.body;
     ideaData.userId = userId;
