@@ -8,6 +8,7 @@ type StartUpComponentPropsType = {
 
 export default function  Idea1({ idea }: StartUpComponentPropsType): JSX.Element {
   const dispatch = useAppDispatch();
+// console.log(idea);
 
   const likeHandler = () => {
     void dispatch(fetchLikes(idea.id))
@@ -23,8 +24,8 @@ export default function  Idea1({ idea }: StartUpComponentPropsType): JSX.Element
 
   return (
     <div className="startUp">
-    <h3>{idea.title}</h3>
-    <h2>{idea.description}</h2>
+    <h3>{idea?.title}</h3>
+    <h2>{idea?.description}</h2>
     <div>
       <button onClick={deleteHandler} type="button">
         delete
