@@ -7,9 +7,11 @@ favoritesRouter.get('/', async (req, res) => {
     const startUps = await Favorite.findAll({
       raw: true,
       where: { userId: req.session.userId },
-      include: [{
-        model: StartUp,
-      }],
+      include: [
+        {
+          model: StartUp,
+        },
+      ],
       order: [['createdAt', 'DESC']],
     });
     // console.log(startUps);
