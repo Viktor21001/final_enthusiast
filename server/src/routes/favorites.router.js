@@ -12,7 +12,7 @@ favoritesRouter.get('/', async (req, res) => {
       }],
       order: [['createdAt', 'DESC']],
     });
-    console.log(startUps);
+    // console.log(startUps);
     res.json(startUps);
   } catch (error) {
     console.log(error);
@@ -22,6 +22,7 @@ favoritesRouter.get('/', async (req, res) => {
 favoritesRouter.post('/new/:id', async (req, res) => {
   const { id } = req.params;
   const { userId } = req.session;
+  console.log(userId);
   try {
     const favorite = await Favorite.findOne({
       where: { userId, startUpId: id },

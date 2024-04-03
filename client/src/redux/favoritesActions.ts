@@ -20,7 +20,8 @@ export const fetchAddFavorites = createAsyncThunk(
     async (id: number) => {
       try {
         const response = await axios.post<StartUpsType>(
-          `${import.meta.env.VITE_URL}/favorites/new/${id}`
+          `${import.meta.env.VITE_URL}/favorites/new/${id}`,
+          {withCredentials:true}
         );
   
         if (response.data) {
