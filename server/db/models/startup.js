@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class StartUp extends Model {
@@ -19,17 +17,20 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Favorite, { foreignKey: 'startUpId' });
     }
   }
-  StartUp.init({
-    userId: DataTypes.INTEGER,
-    startUpTitle: DataTypes.STRING,
-    startUpDescription: DataTypes.TEXT,
-    startUpCategory: DataTypes.TEXT,
-    progress: DataTypes.STRING,
-    currentAmount: DataTypes.INTEGER,
-    targetAmount: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'StartUp',
-  });
+  StartUp.init(
+    {
+      userId: DataTypes.INTEGER,
+      startUpTitle: DataTypes.STRING,
+      startUpDescription: DataTypes.TEXT,
+      startUpCategory: DataTypes.TEXT,
+      progress: DataTypes.STRING,
+      currentAmount: DataTypes.INTEGER,
+      targetAmount: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: 'StartUp',
+    }
+  );
   return StartUp;
 };
