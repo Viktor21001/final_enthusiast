@@ -12,7 +12,7 @@ export type Member = {
   msg?: string;
 };
 
-export type InputsType = {
+export type memberInputsType = {
     userId?: number;
     startUpId?:number;
     login?:string;

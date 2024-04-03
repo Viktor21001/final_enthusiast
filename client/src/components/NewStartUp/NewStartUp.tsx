@@ -11,6 +11,8 @@ export default function NewStartUp(): JSX.Element {
     currentAmount: 0,
     targetAmount: 0,
   });
+
+
   const dispatch = useAppDispatch();
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {

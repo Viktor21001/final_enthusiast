@@ -22,6 +22,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { UserProvider } from './UserContext';
 import NewIdea from './components/newIdea/NewIdea';
 import NewStartUp from './components/NewStartUp/NewStartUp';
+import OneStartUp from './components/OneStartUp/OneStartUp';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <SideNavbar />
           <Routes>
             <Route path="/" element={<StartUps />} />
+            <Route path="/:id" element={<OneStartUp />} />
             <Route path="/ideas" element={<Ideas />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />

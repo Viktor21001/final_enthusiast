@@ -7,6 +7,7 @@ import {
   fetchEditstartUp,
 } from '../../redux/startUpActions';
 import { fetchAddFavorites } from '../../redux/favoritesActions';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 type StartUpComponentPropsType = {
   startUp: StartUp;
@@ -16,6 +17,9 @@ export default function StartUp1({
   startUp,
 }: StartUpComponentPropsType): JSX.Element {
   const dispatch = useAppDispatch();
+
+  const navigate: NavigateFunction = useNavigate()
+
   //   const [btnEdit, setBtnEdit] = useState(false);
   //   const [edit, setEdit] = useState({ title: startUp.startUpTitle, description: startUp.startUpDescription, category: startUp.startUpCategory, progress: startUp.progress, currentAmount: startUp.currentAmount, targetAmount: startUp.targetAmount, members: startUp.members });
 
@@ -51,6 +55,7 @@ export default function StartUp1({
       <h2>{startUp.startUpDescription}</h2>
       <h2>{startUp.funding}</h2>
       <div>
+      <button type="button" onClick={() => navigate(`/${startUp.id}`)}>Read more</button>
         <button onClick={deleteHandler} type="button">
           delete
         </button>
