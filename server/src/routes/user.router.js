@@ -61,8 +61,13 @@ userRouter.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Неверный пароль' });
     }
 
-    // Авторизация успешна, здесь можете добавить логику создания токена или сессии
-    res.json({ message: 'Авторизация успешна', userId: user.id });
+    req.session.userId = user.id;
+    req.session.save((err) => {
+      if (err) {
+        throw err;
+      }
+      res.json({ message: 'Авторизация успешна', userId: user.id });
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Ошибка сервера при авторизации' });
