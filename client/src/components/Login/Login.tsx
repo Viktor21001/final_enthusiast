@@ -1,50 +1,88 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { fetchLoginUser } from '../../redux/authActions';
+import { useState } from "react";
+import axios from "axios";
+import { useUser } from "../../UserContext";
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
-const Login = () => {
-  const [credentials, setCredentials] = useState({
-    login: '',
-    password: '',
-  });
-  const dispatch = useDispatch();
+export default function Login() {
   const navigate = useNavigate();
+  const { setRegLogin } = useUser();
+
+  const [formData, setFormData] = useState({
+    login: "",
+    email: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCredentials({ ...credentials, [name]: value });
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(fetchLoginUser(credentials))
-      .unwrap()
-      .then(() => navigate('/profile'))
-      .catch((error) => console.error('Login Error:', error));
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_URL}/users/login`,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log(response.data);
+
+      const { user } = response.data;
+      const login = user.login;
+
+      setRegLogin(login);
+      navigate("/");
+    } catch (error) {
+      console.error("Краказябра", error);
+    }
   };
+
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="login"
-        value={credentials.login}
-        onChange={handleChange}
-        placeholder="Login"
-        required
-      />
-      <input
-        type="password"
-        name="password"
-        value={credentials.password}
-        onChange={handleChange}
-        placeholder="Password"
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
-  );
-};
+    <>
+      <div className="center">
+        <h1>Авторизация</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="txt_field">
+            <input
+              name="login"
+              type="text"
+              value={formData.login}
+              onChange={handleChange}
+              required
+            />
+            <label>Логин</label>
+            <span />
+          </div>
 
-export default Login;
+          <div className="txt_field">
+            <input
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <label>Пароль</label>
+            <span />
+          </div>
+
+          <input type="submit" value="Войти" className="reglogButton"/>
+
+          <div className="signup_link">
+            Еще не зарегистрированы? <a href="/reg">Зарегистрироваться</a>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+}

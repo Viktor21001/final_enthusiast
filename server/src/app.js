@@ -12,7 +12,7 @@ const app = express();
 const { PORT, SESSION_SECRET } = process.env;
 
 const sessionConfig = {
-  name: 'cookieName',
+  name: 'cooks',
   store: new FileStore(),
   secret: process.env.SESSION_SECRET ?? 'ent',
   resave: false,
