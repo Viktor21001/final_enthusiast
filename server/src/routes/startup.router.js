@@ -63,14 +63,9 @@ startupRouter.post('/funding/:id', async (req, res) => {
       return res.status(400).json({ error: 'Invalid amount' });
     }
 
-    const funding = await Funding.findOne({ where: { startUpId: id } });
-    if (!funding) {
-      return res.status(404).json({ error: 'Funding not found' });
-    }
+    await startup.increment('currentAmount', { by: amount });
 
-    await funding.increment('currentAmount', { by: amount });
-
-    res.json({ status: 'done', startup_balance: funding.currentAmount });
+    res.json({ status: 'done', startup_balance: startup.currentAmount });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Internal server error' });

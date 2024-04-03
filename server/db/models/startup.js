@@ -16,9 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.startUpMember, {
         foreignKey: 'startUpId',
       });
-      this.hasOne(models.Funding, {
-        foreignKey: 'startUpId',
-      });
       this.hasMany(models.Favorite, { foreignKey: 'startUpId' });
     }
   }
@@ -28,6 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     startUpDescription: DataTypes.TEXT,
     startUpCategory: DataTypes.TEXT,
     progress: DataTypes.STRING,
+    currentAmount: DataTypes.INTEGER,
+    targetAmount: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'StartUp',
