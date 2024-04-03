@@ -10,6 +10,8 @@ router.post('/login', async (req, res) => {
       const checkPass = await bcrypt.compare(password, user.password);
       if (checkPass) {
         req.session.login = user.login;
+        req.session.userId = user.id;
+
         req.session.save(() => {
           res.json({ success: true, message: 'Пароль верный', user });
         });
