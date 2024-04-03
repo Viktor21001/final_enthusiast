@@ -1,96 +1,65 @@
-// Подключение зависимостей и моделей
-const userRouter = require('express').Router();
+const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const { Op } = require('sequelize');
 const { User } = require('../../db/models');
 
-// Регистрация пользователя
-userRouter.post('/registration', async (req, res) => {
-  // Деструктуризация данных пользователя из тела запроса
-  const { login, email, password, isInvestor } = req.body;
-
-  // Попытка найти пользователя по логину или почте
-  try {
-    const user = await User.findOne({
-      where: { [Op.or]: [{ login }, { email }] },
-    });
-
-    // Если пользователь найден, отправить ошибку
-    if (user) {
-      return res.status(409).json({ message: 'Пользователь уже существует' });
-    }
-
-    // Хеширование пароля пользователя
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Создание нового пользователя
-    const newUser = await User.create({
-      login,
-      email,
-      password: hashedPassword,
-      isInvestor,
-    });
-
-    // Отправка ответа об успешной регистрации
-    res
-      .status(201)
-      .json({ message: 'Пользователь зарегистрирован', userId: newUser.id });
-  } catch (error) {
-    // Обработка и отправка ошибки сервера
-    console.error(error);
-    res.status(500).json({ message: 'Ошибка сервера при регистрации' });
-  }
-});
-
-// Авторизация пользователя
-userRouter.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   const { login, password } = req.body;
-
   try {
-    // Поиск пользователя по логину
     const user = await User.findOne({ where: { login } });
-
-    // Если пользователь не найден
-    if (!user) {
-      return res.status(404).json({ message: 'Пользователь не найден' });
-    }
-
-    // Проверка пароля
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(401).json({ message: 'Неверный пароль' });
-    }
-
-    req.session.userId = user.id;
-
-    console.log(req.session.userId);
-    req.session.save((err) => {
-      if (err) {
-        throw err;
+    if (user) {
+      const checkPass = await bcrypt.compare(password, user.password);
+      if (checkPass) {
+        req.session.login = user.login;
+        req.session.save(() => {
+          res.json({ success: true, message: 'Пароль верный', user });
+        });
+      } else {
+        res.status(400).json({ err: 'Неверный пароль' });
       }
-      res.json({ message: 'Авторизация успешна', userId: user.id });
-    });
+    } else {
+      res.status(400).json({ err: 'Такой пользователь не найден!' });
+    }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Ошибка сервера при авторизации' });
+    console.log('Ошибка авторизации!', error);
+    res.status(500).json({ err: 'Ошибка при авторизации' });
   }
 });
 
-// Выход пользователя
-userRouter.post('/logout', (req, res) => {
-  // Здесь предполагается, что вы используете сессии
-  // Удаляем сессию пользователя
-  req.session.destroy((err) => {
-    if (err) {
-      return res.status(500).json({ message: 'Ошибка при выходе из системы' });
+router.post('/registration', async (req, res) => {
+  const { login, email, password } = req.body;
+  console.log(login, email, password);
+  try {
+    const user = await User.findOne({ where: { login } });
+    if (user) {
+      res.status(400).json({ err: `Такой ${email} уже существует!` });
+    } else {
+      const hash = await bcrypt.hash(password, 10);
+      const newUser = await User.create({ login, password: hash, email, isInvestor: false });
+      req.session.login = newUser.login;
+      req.session.userId = newUser.id;
+      req.session.save(() => {
+        res.json({ success: true, message: 'Регистрация прошла успешно', newUser });
+      });
     }
+  } catch (error) {
+    res.send(`Ошибка при регистрации: ${error}`);
+  }
+});
 
-    // Очистка cookie, связанной с сессией
-    res.clearCookie('connect.sid'); // Замените 'connect.sid' на имя вашей cookie сессии, если оно отличается
-
-    res.json({ message: 'Вы успешно вышли из системы' });
+router.get('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.clearCookie('cooks');
+    res.sendStatus(200);
   });
 });
 
-// Экспорт роутера
-module.exports = userRouter;
+router.get('/session', (req, res) => {
+  const { login, userId } = req.session;
+  if (login) {
+    res.json({ login, id: userId });
+  } else {
+    res.json({ id: 0, login: '' });
+  }
+});
+
+module.exports = router;

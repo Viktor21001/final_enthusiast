@@ -1,7 +1,7 @@
 // // import './App.css'
 import Navbar from './components/Navbar/Navbar';
 import SideNavbar from './components/SideNavbar/SideNavbar';
-import Registration from './components/Registration/Registration';
+import Registration from './components/Reg/Reg';
 import Login from './components/Login/Login';
 
 // function App() {
@@ -20,11 +20,13 @@ import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Profile from './components/Profile/Profile';
+import { UserProvider } from './UserContext';
 
 function App() {
   return (
     <>
       <Provider store={store}>
+      <UserProvider>
         <BrowserRouter>
           <Navbar />
           <SideNavbar />
@@ -42,6 +44,7 @@ function App() {
             {/* <Route path="/newstartup" element={<NewStartUp />} /> */}
           </Routes>
         </BrowserRouter>
+       </UserProvider>
       </Provider>
     </>
   );

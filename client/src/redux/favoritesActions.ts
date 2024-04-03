@@ -16,35 +16,31 @@ export const fetchFavorites = createAsyncThunk("favorites/all", async () => {
 });
 
 export const fetchAddFavorites = createAsyncThunk(
-    "favorites/add",
-    async (id: number) => {
-      try {
-        const response = await axios.post<StartUpsType>(
-          `${import.meta.env.VITE_URL}/favorites/new/${id}`,
-          {withCredentials:true}
-        );
-  
-        if (response.data) {
-          return response.data;
-        } else {
-          return id;
-        }
-      } catch (error) {
-        console.log(error);
-        throw error;
-      }
+  "favorites/add",
+  async (id: number) => {
+    try {
+      const response = await axios.post<StartUpsType>(
+        `${import.meta.env.VITE_URL}/favorites/new/${id}`,
+        { withCredentials: true }
+      );
+      console.log(response.data);
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
-  );
+  }
+);
 
-// export const fetchDeleteStartUp = createAsyncThunk(
-//   "startUps/delete",
-//   async (id: number) => {
-//     const response = await axios.delete(
-//       `${import.meta.env.VITE_URL}/startups/${id}`
-//     );
-//     if (response.status === 200) {
-//       return id;
-//     }
-//   }
-// );
-
+export const fetchDeleteFavorites = createAsyncThunk(
+  "favorites/delete",
+  async (id: number) => {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_URL}/favorites/${id}`
+    );
+    if (response.status === 200) {
+      return id;
+    }
+  }
+);
