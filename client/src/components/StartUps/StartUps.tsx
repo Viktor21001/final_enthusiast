@@ -16,7 +16,7 @@ export default function StartUps(): JSX.Element {
 
   return (
     <div>
-      {startUps.map((startUp: StartUp) => (
+      {startUps?.map((startUp: StartUp) => (
         <StartUp1 key={startUp.id} startUp={startUp} />
       ))}
     </div>
