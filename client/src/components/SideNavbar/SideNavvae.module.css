@@ -1,0 +1,24 @@
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  color: white; /* Adjust as per your theme */
+}
+
+li a {
+  text-decoration: none;
+  color: inherit; /* Inherit the text color from the parent */
+  display: flex;
+  align-items: center;
+}
+
+li a span {
+  margin-left: 10px;
+}
+
+button {
+  /* Style your button */
+}

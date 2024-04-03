@@ -3,6 +3,9 @@ import Navbar from './components/Navbar/Navbar';
 import SideNavbar from './components/SideNavbar/SideNavbar';
 import Registration from './components/Reg/Reg';
 import Login from './components/Login/Login';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './App.css';
 
 // function App() {
 
@@ -28,28 +31,35 @@ function App() {
   return (
     <>
       <Provider store={store}>
-      <UserProvider>
-        <BrowserRouter>
-          <Navbar />
-          <SideNavbar />
-          <Routes>
-            <Route path="/" element={<StartUps />} />
-            <Route path="/:id" element={<OneStartUp />} />
-            <Route path="/ideas" element={<Ideas />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/newidea" element={<NewIdea />} />
-            <Route path="/newstartup" element={<NewStartUp />} />
 
-            {/* <Route path="/startUp/:id" element={<OneStartUp />} />
-            <Route path="/idea/:id" element={<OneIdea />} /> */}
+        <UserProvider>
+          <BrowserRouter>
+            <Navbar />
+            <div className="app-container">
+              <div className="side-navbar">
+                <SideNavbar />
+              </div>
+              <div className="main-content">
+                <Routes>
+                  <Route path="/" element={<StartUps />} />
+                  <Route path="/:id" element={<OneStartUp />} />
+                  <Route path="/ideas" element={<Ideas />} />
+                  <Route path="/registration" element={<Registration />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/newidea" element={<NewIdea />} />
+                  <Route path="/newstartup" element={<NewStartUp />} />
 
-            {/* <Route path="/login" element={<Login />} /> */}
-            {/* <Route path="/registration" element={<Registration />} /> */}
-            {/* <Route path="/newstartup" element={<NewStartUp />} /> */}
-          </Routes>
-        </BrowserRouter>
-       </UserProvider>
+
+            {/*<Route path="/idea/:id" element={<OneIdea />} /> */}
+
+                  {/* <Route path="/login" element={<Login />} /> */}
+                  {/* <Route path="/registration" element={<Registration />} /> */}
+                  {/* <Route path="/newstartup" element={<NewStartUp />} /> */}
+                </Routes>
+              </div>
+            </div>
+          </BrowserRouter>
+        </UserProvider>
       </Provider>
     </>
   );

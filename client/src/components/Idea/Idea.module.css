@@ -1,0 +1,79 @@
+.ideaCard {
+  border-radius: 20px;
+  background: #ffffff; /* Adjust color based on your theme */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.cardHeader,
+.cardBody {
+  padding: 16px;
+  width: 50%;
+  background-color: #c6c6c6c0;
+  border-radius: 30px;
+  margin: 20px;
+}
+
+.cardFooter {
+}
+
+.userName {
+  font-weight: bold;
+  display: block;
+}
+
+.ideaTitle {
+  font-size: 1.5rem;
+}
+
+.ideaDescription {
+  color: #302f2f;
+}
+
+.startUp {
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  transition: background-color 0.3s;
+  margin: 6px;
+}
+
+.icon-button:hover {
+  background-color: #e0e0e0;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
