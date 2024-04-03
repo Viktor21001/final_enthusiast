@@ -6,7 +6,7 @@ import { StartUpsType } from "./startUpActions";
 export const fetchFavorites = createAsyncThunk("favorites/all", async () => {
   try {
     const response = await axios.get<StartUpsType>(
-      `${import.meta.env.VITE_URL}/startups`
+      `${import.meta.env.VITE_URL}/favorites`
     );
     console.log(response);
     return response.data;
@@ -22,7 +22,7 @@ export const fetchAddFavorites = createAsyncThunk(
         const response = await axios.post<StartUpsType>(
           `${import.meta.env.VITE_URL}/favorites/new/${id}`
         );
-        
+  
         if (response.data) {
           return response.data;
         } else {

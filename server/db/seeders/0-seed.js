@@ -10,7 +10,7 @@ module.exports = {
         {
           login: 'demoUser',
           email: 'demo@example.com',
-          password: hashedPassword, // используйте bcrypt для хеширования пароля
+          password: await bcrypt.hash('123', 10),
           fullName: 'Demo User',
           gender: true,
           birthDate: new Date(1990, 0, 1), // Пример даты рождения
@@ -21,7 +21,7 @@ module.exports = {
         {
           login: 'viktorUser',
           email: 'viktor@example.com',
-          password: hashedPassword,
+          password: await bcrypt.hash('123', 10),
           fullName: 'Demo User',
           gender: true,
           birthDate: new Date(2000, 0, 1),
@@ -32,7 +32,7 @@ module.exports = {
         {
           login: 'daliUser',
           email: 'dali@example.com',
-          password: hashedPassword,
+          password: await bcrypt.hash('123', 10),
           fullName: 'Dali User',
           gender: true,
           birthDate: new Date(2002, 0, 1),
