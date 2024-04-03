@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { InputsType, fetchAddStartUp } from "../../redux/startUpActions";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 export default function NewStartUp(): JSX.Element {
   const [inputs, setInputs] = useState<InputsType>({
@@ -14,6 +15,7 @@ export default function NewStartUp(): JSX.Element {
 
 
   const dispatch = useAppDispatch();
+  const navigate: NavigateFunction = useNavigate();
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -29,6 +31,8 @@ export default function NewStartUp(): JSX.Element {
       currentAmount: 0,
       targetAmount: 0,
     });
+    navigate('/');
+
   };
 
   return (
