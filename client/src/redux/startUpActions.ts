@@ -14,6 +14,7 @@ export type StartUp = {
   updatedAt: Date;
   members: StartUpMember[];
   funding?: number;
+  msg?: string;
 };
 
 export type StartUpMember = {
@@ -103,17 +104,3 @@ export const fetchAddFunding = createAsyncThunk(
   }
 );
 
-export const fetchFavorites = createAsyncThunk(
-  "favorites/add",
-  async ({ amount, id }: { amount: number; id: number }) => {
-    try {
-      const response = await axios.post<AxiosResponse<StartUpsType>>(
-        `${import.meta.env.VITE_URL}/startups/funding/${id}`,
-        amount
-      );
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
