@@ -2,6 +2,7 @@ import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { JSX } from "react/jsx-runtime";
 import { useAppDispatch } from "../../redux/hooks";
 import { StartUp, fetchDeleteStartUp, fetchEditstartUp } from "../../redux/startUpActions";
+import { fetchAddFavorites } from "../../redux/favoritesActions";
 
 type StartUpComponentPropsType = {
     startUp: StartUp;
@@ -32,9 +33,9 @@ export default function StartUp1({ startUp }: StartUpComponentPropsType): JSX.El
 
 
 // КНопка для добавления в избранное и одновременного удаления из избранного
-//   const favoriteHandler = () => {
-//     void dispatch(fetchAddFavorites({inputs: {status: !todo.status}, id:todo.id}))
-//   };
+  const favoriteHandler = () => {
+    void dispatch(fetchAddFavorites(startUp.id))
+  };
 
   const deleteHandler = async () => {
     void dispatch(fetchDeleteStartUp(startUp.id));
@@ -49,7 +50,7 @@ export default function StartUp1({ startUp }: StartUpComponentPropsType): JSX.El
       <button onClick={deleteHandler} type="button">
         delete
       </button>
-      <button onClick={favoritesHandler} type="button">
+      <button onClick={favoriteHandler} type="button">
         Favorites
       </button>
     </div>

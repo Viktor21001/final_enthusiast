@@ -30,8 +30,8 @@ favoritesRouter.post('/new/:id', async (req, res) => {
       favorite.destroy();
       res.json({ msg: 'deleted from favorite' });
     } else {
-      await Favorite.create({ userId, startUpId: id });
-      res.json({ msg: 'added to favorites' });
+      const newFavorite = await Favorite.create({ userId, startUpId: id });
+      res.json(newFavorite);
     }
   } catch (error) {
     console.log(error);
@@ -48,6 +48,5 @@ favoritesRouter.post('/new/:id', async (req, res) => {
 //     console.log(error);
 //   }
 // });
-
 
 module.exports = favoritesRouter;
