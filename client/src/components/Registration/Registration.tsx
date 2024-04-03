@@ -1,30 +1,69 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import type { CascaderProps } from 'antd';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { fetchRegisterUser } from '../../redux/authActions';
 
-const Reg: React.FC = () => {
+const Registration = () => {
   const [formData, setFormData] = useState({
-    username: '',
+    login: '',
     email: '',
     password: '',
     isInvestor: false,
   });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('/api/users', formData);
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+    dispatch(fetchRegisterUser(formData))
+      .unwrap()
+      .then(() => navigate('/login'))
+      .catch((error) => console.error('Registration Error:', error));
   };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="login"
+        value={formData.login}
+        onChange={handleChange}
+        placeholder="Login"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="Email"
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+        placeholder="Password"
+        required
+      />
+      <label>
+        Is Investor:
+        <input
+          type="checkbox"
+          name="isInvestor"
+          checked={formData.isInvestor}
+          onChange={handleChange}
+        />
+      </label>
+      <button type="submit">Register</button>
+    </form>
+  );
 };
 
-export default function Registration() {
-  return <div>Registration</div>;
-}
+export default Registration;
