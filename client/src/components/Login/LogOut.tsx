@@ -24,7 +24,7 @@ const LogoutButton = () => {
   };
 
   return (
-    <button style={{ backgroundColor: 'rgba(28,28,28,0)' }} className="logoutBtn" onClick={handleLogout}>Выйти</button>
+    <button style={{ backgroundColor: 'rgba(28,28,28,0)', color: 'black', display: 'block' }} className="logoutBtn" onClick={handleLogout}>Выйти</button>
   );
 };
 
