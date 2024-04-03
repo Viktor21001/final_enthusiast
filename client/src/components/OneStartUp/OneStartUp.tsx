@@ -2,6 +2,7 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Member, fetchAddMember, fetchMembers, memberInputsType } from "../../redux/memberActions";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { fetchStartUpById } from '../../redux/startUpActions';
 
 export default function OneStartUp(): React.JSX.Element {
   const { id } = useParams();
@@ -18,9 +19,16 @@ export default function OneStartUp(): React.JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    if (id) {
+      const idAsNumber = Number(id);
+      dispatch(fetchStartUpById(idAsNumber));
+    }
+  }, [dispatch, id]);
+
+  useEffect(() => {
     const idAsNumber = Number(id)
     dispatch(fetchMembers(idAsNumber));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const memberChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setMemberInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -70,7 +78,7 @@ export default function OneStartUp(): React.JSX.Element {
       </button>
         </>
       ) : (
-        <h1>Нет стартапа</h1>
+        <h1>Загрузка</h1>
       )}
     </div>
   );

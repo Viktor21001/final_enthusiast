@@ -48,6 +48,18 @@ export const fetchStartUps = createAsyncThunk("startUps/all", async () => {
   }
 });
 
+export const fetchStartUpById = createAsyncThunk("startUp/one", async (id:number) => {
+  try {
+    const response = await apiService.get<StartUpsType>(
+      `${import.meta.env.VITE_URL}/startups/${id}`
+    );
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 export const fetchAddStartUp = createAsyncThunk(
   "startUps/add",
   async (inputs: InputsType) => {
