@@ -1,10 +1,9 @@
-
 // // import './App.css'
-import Navbar from './components/Navbar/Navbar'
-import SideNavbar from './components/SideNavbar/SideNavbar'
+import Navbar from './components/Navbar/Navbar';
+import SideNavbar from './components/SideNavbar/SideNavbar';
+import Registration from './components/Registration/Registration';
 
 // function App() {
-  
 
 //   return (
 //     <div>
@@ -14,11 +13,11 @@ import SideNavbar from './components/SideNavbar/SideNavbar'
 //   )
 
 // import "./App.css";
-import Ideas from "./components/Ideas/Ideas";
-import StartUps from "./components/StartUps/StartUps";
-import { store } from "./redux/store";
-import { Provider } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Ideas from './components/Ideas/Ideas';
+import StartUps from './components/StartUps/StartUps';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
@@ -30,7 +29,7 @@ function App() {
           <Routes>
             <Route path="/startups" element={<StartUps />} />
             <Route path="/ideas" element={<Ideas />} />
-
+            <Route path="/registration" element={<Registration />} />
             {/* <Route path="/startUp/:id" element={<OneStartUp/>} /> */}
             {/* <Route path="/idea/:id" element={<OneIdea/>} /> */}
 
@@ -42,7 +41,6 @@ function App() {
       </Provider>
     </>
   );
-
 }
 
 export default App;

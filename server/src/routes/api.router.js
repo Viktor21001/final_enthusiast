@@ -10,5 +10,5 @@ module.exports = apiRouter
   .use('/users', userRouter)
   .use('/ideas', ideaRouter)
   .use('/startups', startupRouter)
-  .use('/favotites', favoriteRouter)
-  // .use('/themes', themeRouter);
+  .use('/favotites', favoriteRouter);
+// .use('/themes', themeRouter);

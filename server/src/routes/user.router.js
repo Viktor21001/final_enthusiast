@@ -1,80 +1,46 @@
+// Подключение зависимостей и моделей
 const userRouter = require('express').Router();
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize');
 const { User } = require('../../db/models');
 
+// Регистрация пользователя
 userRouter.post('/registration', async (req, res) => {
+  // Деструктуризация данных пользователя из тела запроса
   const { login, email, password, isInvestor } = req.body;
+
+  // Попытка найти пользователя по логину или почте
   try {
     const user = await User.findOne({
-      where: {
-        [Op.or]: [{ login }, { email }, { isInvestor }],
-      },
+      where: { [Op.or]: [{ login }, { email }] },
     });
+
+    // Если пользователь найден, отправить ошибку
     if (user) {
-      res.json({
-        msgErr: 'Пользователь с указанным именем или почтой уже существует',
-      });
-    } else {
-      const hashPassword = await bcrypt.hash(password, 12);
-      const newUser = await User.create({
-        login,
-        email,
-        password: hashPassword,
-      });
-      req.session.login = newUser.login;
-      req.session.userId = newUser.id;
-      req.session.save(() => {
-        res.json({
-          msgDone: 'Пользователь зарегистрирован',
-          login: newUser.login,
-          userId: newUser.id,
-          email: newUser.email,
-          isInvestor: newUser.isInvestor,
-          createdAt: newUser.createdAt,
-        });
-      });
+      return res.status(409).json({ message: 'Пользователь уже существует' });
     }
+
+    // Хеширование пароля пользователя
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Создание нового пользователя
+    const newUser = await User.create({
+      login,
+      email,
+      password: hashedPassword,
+      isInvestor,
+    });
+
+    // Отправка ответа об успешной регистрации
+    res
+      .status(201)
+      .json({ message: 'Пользователь зарегистрирован', userId: newUser.id });
   } catch (error) {
-    res.json(error);
+    // Обработка и отправка ошибки сервера
+    console.error(error);
+    res.status(500).json({ message: 'Ошибка сервера при регистрации' });
   }
 });
 
-userRouter.post('/login', async (req, res) => {
-  try {
-    const { login, password } = req.body;
-    const user = await User.findOne({ where: { login } });
-    if (!user) {
-      res.json({ logErr: 'Пользователь не найден' });
-    } else {
-      const checkPass = await bcrypt.compare(password, user.password);
-      if (checkPass) {
-        req.session.login = user.login;
-        req.session.userId = user.id;
-        req.session.save(() => {
-          res.json({
-            logMsg: 'Пользователь вернулся',
-            login: user.login,
-            userId: user.id,
-            email: user.email,
-            isInvestor: user.isInvestor,
-            createdAt: user.createdAt,
-          });
-        });
-      } else {
-        res.json({ logErr: 'Введен не верный пароль' });
-      }
-    }
-  } catch (error) {
-    res.status(500);
-  }
-});
-
-userRouter.get('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.clearCookie('cookieName');
-    res.json({ log: 'User logout' });
-  });
-});
-
+// Экспорт роутера
 module.exports = userRouter;
