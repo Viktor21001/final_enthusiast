@@ -2,6 +2,7 @@
 
 .navContainer {
   position: absolute;
+  width: 100%;
   top: 0;
   left: 0;
   font-family: 'Comfortaa', sans-serif;
@@ -34,7 +35,6 @@
   content: attr(data-hover);
   color: hwb(45 54% 43%);
   white-space: nowrap;
-
 }
 .navContainer li:hover .link,
 .navContainer .current .link {
