@@ -14,7 +14,7 @@ const { PORT, SESSION_SECRET } = process.env;
 const sessionConfig = {
   name: 'cookieName',
   store: new FileStore(),
-  secret: process.env.SESSION_SECRET ?? 'Mellon',
+  secret: process.env.SESSION_SECRET ?? 'ent',
   resave: false,
   saveUninitialized: false,
   cookie: {

@@ -1,80 +1,96 @@
+// Подключение зависимостей и моделей
 const userRouter = require('express').Router();
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize');
 const { User } = require('../../db/models');
 
+// Регистрация пользователя
 userRouter.post('/registration', async (req, res) => {
-  const { login, email, password } = req.body;
+  // Деструктуризация данных пользователя из тела запроса
+  const { login, email, password, isInvestor } = req.body;
+
+  // Попытка найти пользователя по логину или почте
   try {
     const user = await User.findOne({
-      where: {
-        [Op.or]: [{ login }, { email }],
-      },
+      where: { [Op.or]: [{ login }, { email }] },
     });
+
+    // Если пользователь найден, отправить ошибку
     if (user) {
-      res.json({
-        msgErr: 'Пользователь с указанным именем или почтой уже существует',
-      });
-    } else {
-      const hashPassword = await bcrypt.hash(password, 12);
-      const newUser = await User.create({
-        login,
-        email,
-        password: hashPassword,
-      });
-      req.session.login = newUser.login;
-      req.session.userId = newUser.id;
-      req.session.save(() => {
-        res.json({
-          msgDone: 'Пользователь зарегистрирован',
-          login: newUser.login,
-          userId: newUser.id,
-          email: newUser.email,
-          createdAt: newUser.createdAt,
-        });
-      });
+      return res.status(409).json({ message: 'Пользователь уже существует' });
     }
+
+    // Хеширование пароля пользователя
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Создание нового пользователя
+    const newUser = await User.create({
+      login,
+      email,
+      password: hashedPassword,
+      isInvestor,
+    });
+
+    // Отправка ответа об успешной регистрации
+    res
+      .status(201)
+      .json({ message: 'Пользователь зарегистрирован', userId: newUser.id });
   } catch (error) {
-    res.json(error);
+    // Обработка и отправка ошибки сервера
+    console.error(error);
+    res.status(500).json({ message: 'Ошибка сервера при регистрации' });
   }
 });
 
+// Авторизация пользователя
 userRouter.post('/login', async (req, res) => {
+  const { login, password } = req.body;
+
   try {
-    const { login, password } = req.body;
+    // Поиск пользователя по логину
     const user = await User.findOne({ where: { login } });
+
+    // Если пользователь не найден
     if (!user) {
-      res.json({ logErr: 'Пользователь не найден' });
-    } else {
-      const checkPass = await bcrypt.compare(password, user.password);
-      if (checkPass) {
-        req.session.login = user.login;
-        req.session.userId = user.id;
-        const { userId } = req.session;
-        console.log(userId);
-        req.session.save(() => {
-          res.json({
-            logMsg: 'Пользователь вернулся',
-            login: user.login,
-            userId: user.id,
-            email: user.email,
-            createdAt: user.createdAt,
-          });
-        });
-      } else {
-        res.json({ logErr: 'Введен не верный пароль' });
-      }
+      return res.status(404).json({ message: 'Пользователь не найден' });
     }
+
+    // Проверка пароля
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Неверный пароль' });
+    }
+
+    req.session.userId = user.id;
+
+    console.log(req.session.userId);
+    req.session.save((err) => {
+      if (err) {
+        throw err;
+      }
+      res.json({ message: 'Авторизация успешна', userId: user.id });
+    });
   } catch (error) {
-    res.status(500);
+    console.error(error);
+    res.status(500).json({ message: 'Ошибка сервера при авторизации' });
   }
 });
 
-userRouter.get('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.clearCookie('cookieName');
-    res.json({ log: 'User logout' });
+// Выход пользователя
+userRouter.post('/logout', (req, res) => {
+  // Здесь предполагается, что вы используете сессии
+  // Удаляем сессию пользователя
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: 'Ошибка при выходе из системы' });
+    }
+
+    // Очистка cookie, связанной с сессией
+    res.clearCookie('connect.sid'); // Замените 'connect.sid' на имя вашей cookie сессии, если оно отличается
+
+    res.json({ message: 'Вы успешно вышли из системы' });
   });
 });
 
+// Экспорт роутера
 module.exports = userRouter;
