@@ -33,6 +33,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
+      currentAmount: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
+      targetAmount: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
