@@ -34,8 +34,8 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-            {/* <Route path="/startUp/:id" element={<OneStartUp/>} /> */}
-            {/* <Route path="/idea/:id" element={<OneIdea/>} /> */}
+            {/* <Route path="/startUp/:id" element={<OneStartUp />} />
+            <Route path="/idea/:id" element={<OneIdea />} /> */}
 
             {/* <Route path="/login" element={<Login />} /> */}
             {/* <Route path="/registration" element={<Registration />} /> */}
