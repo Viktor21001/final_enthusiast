@@ -1,0 +1,75 @@
+@import url(https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap);
+
+.navContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: 'Comfortaa', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: larger;
+}
+
+.navContainer li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0 1.5em;
+  overflow: hidden;
+}
+.navContainer .link {
+  padding: 0.3em 0;
+  color: rgb(255, 255, 255);
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1px;
+  margin: 0;
+  text-decoration: none;
+}
+
+.navContainer .link:after {
+  padding: 0.3em 0;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  content: attr(data-hover);
+  color: rgb(236, 193, 50);
+  white-space: nowrap;
+
+}
+.navContainer li:hover .link,
+.navContainer .current .link {
+  transform: translateY(100%);
+}
+
+.navbarBtn {
+  font-family: 'Comfortaa', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: large;
+}
+
+.logoutBtn {
+  font-family: 'Comfortaa', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-left: 20px;
+  margin-top: 0;
+}
+
+.logout {
+  margin-left: 500px;
+}
+
+.logo1 {
+  will-change: filter;
+  transition: filter 300ms;
+  width: 70px;
+  height: 40px;
+  margin-right: 0px;
+}
+
+.loginContainer {
+  margin: 0;
+  height: 55px;
+}
