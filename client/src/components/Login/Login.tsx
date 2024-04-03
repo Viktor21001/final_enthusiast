@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchLoginUser } from '../../redux/authThunks';
+import { fetchLoginUser } from '../../redux/authActions';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
