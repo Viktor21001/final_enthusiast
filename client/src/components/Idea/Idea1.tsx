@@ -31,23 +31,27 @@ export default function Idea1({
   };
 
   return (
-    <div className={styles.cardBody}>
+    <div className={styles.ideaCard}>
       <h3 className={styles.ideaTitle}>{idea?.title}</h3>
       <p className={styles.ideaDescription}>{idea?.description}</p>
       <div className={styles.cardFooter}>
-        <button onClick={likeHandler} type="button" className="icon-button">
+        <button
+          onClick={likeHandler}
+          type="button"
+          className={styles.iconButton}
+        >
           <FaThumbsUp />
         </button>
-        <button onClick={deleteHandler} className="icon-button">
+        <button onClick={deleteHandler} className={styles.iconButton}>
           <FaEllipsisV />
-          {/* <button onClick={deleteHandler} type="button">
-            delete
-          </button> */}
         </button>
-        <button onClick={dislikeHandler} type="button" className="icon-button">
+        <button
+          onClick={dislikeHandler}
+          type="button"
+          className={styles.iconButton}
+        >
           <FaThumbsDown />
         </button>
-        <div className="dropdown"></div>
       </div>
     </div>
   );
