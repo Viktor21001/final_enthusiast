@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
+import apiService from "../service/apiService";
 // import { InputsType, StartUpsType } from "../types";
 
 export type Idea = {
@@ -7,7 +8,7 @@ export type Idea = {
   id: number;
   title: string;
   description: string;
-  category: string[];
+  category: string;
   likes?: number;
   dislikes?: number;
   createdAt: Date;
@@ -18,7 +19,7 @@ export type Idea = {
 export type InputsType = {
   title: string;
   description: string;
-  category: string[];
+  category: string;
 };
 
 export type IdeasType = Array<Idea>;
@@ -39,7 +40,7 @@ export const fetchAddIdea = createAsyncThunk(
   "ideas/add",
   async (inputs: InputsType) => {
     try {
-      const response = await axios.post<InputsType, AxiosResponse<IdeasType>>(
+      const response = await apiService.post<InputsType, AxiosResponse<IdeasType>>(
         `${import.meta.env.VITE_URL}/ideas/new`,
         inputs
       );

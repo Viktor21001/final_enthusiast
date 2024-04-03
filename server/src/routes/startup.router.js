@@ -7,7 +7,6 @@ startupRouter.get('/', async (req, res) => {
     const startUps = await StartUp.findAll({
       raw: true,
     });
-    console.log(startUps);
     res.json(startUps);
   } catch (error) {
     console.log(error);
