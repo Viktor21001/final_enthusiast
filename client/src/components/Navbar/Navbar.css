@@ -32,7 +32,7 @@
   bottom: 100%;
   left: 0;
   content: attr(data-hover);
-  color: rgb(236, 193, 50);
+  color: hwb(45 54% 43%);
   white-space: nowrap;
 
 }
