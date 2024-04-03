@@ -113,7 +113,7 @@
         <Toolbar disableGutters>
           { login ? (
             <>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -128,7 +128,7 @@
               textDecoration: 'none',
             }}
             >
-            LOGO
+            <img style={{ width: '100px', height: '50px'}} src="/1.png" alt="Logo" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -170,7 +170,7 @@
               </Link>
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap
@@ -186,7 +186,7 @@
               textDecoration: 'none',
             }}
             >
-            LOGO
+            <img style={{ width: '100px', height: '50px'}} src="/1.png" alt="Logo" />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {/* {pages.map((page) => (
@@ -199,7 +199,7 @@
               </Button>
             ))} */}
             <CircleNotificationsOutlinedIcon />
-             <Link style={{ color: 'white', display: 'block' }} className="link" to="/newideas" data-hover="Создать">
+             <Link style={{ margin: '0 10px', color: 'white', display: 'block' }} className="link" to="/newidea" data-hover="Создать">
                Создать 
              </Link>
           </Box>
