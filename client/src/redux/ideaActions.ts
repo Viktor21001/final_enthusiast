@@ -26,7 +26,7 @@ export type IdeasType = Array<Idea>;
 
 export const fetchIdeas = createAsyncThunk("ideas/all", async () => {
   try {
-    const response = await axios.get<IdeasType>(
+    const response = await apiService.get<IdeasType>(
       `${import.meta.env.VITE_URL}/ideas`
     );
     // console.log(response);
@@ -35,6 +35,20 @@ export const fetchIdeas = createAsyncThunk("ideas/all", async () => {
     console.log(error);
   }
 });
+
+export const fetchIdeaById = createAsyncThunk(
+  "ideas/one",
+  async (id: number) => {
+    try {
+      const response = await apiService.get<Idea>(
+        `${import.meta.env.VITE_URL}/ideas/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 export const fetchAddIdea = createAsyncThunk(
   "ideas/add",
@@ -54,7 +68,7 @@ export const fetchAddIdea = createAsyncThunk(
 export const fetchDeleteIdea = createAsyncThunk(
   "ideas/delete",
   async (id: number) => {
-    const response = await axios.delete(
+    const response = await apiService.delete(
       `${import.meta.env.VITE_URL}/ideas/${id}`
     );
     if (response.status === 200) {
@@ -64,10 +78,10 @@ export const fetchDeleteIdea = createAsyncThunk(
 );
 
 export const fetchEditIdea = createAsyncThunk(
-  "iedas/edit",
+  "ideas/edit",
   async ({ inputs, id }: { inputs: InputsType; id: number }) => {
     try {
-      const response = await axios.patch<InputsType, AxiosResponse<IdeasType>>(
+      const response = await apiService.patch<InputsType, AxiosResponse<IdeasType>>(
         `${import.meta.env.VITE_URL}/ideas/${id}`,
         inputs
       );
@@ -80,7 +94,7 @@ export const fetchEditIdea = createAsyncThunk(
 
 export const fetchLikes = createAsyncThunk("likes/add", async (id: number) => {
   try {
-    const response = await axios.post<AxiosResponse<IdeasType>>(
+    const response = await apiService.post<AxiosResponse<IdeasType>>(
       `${import.meta.env.VITE_URL}/ideas/like/${id}`
     );
     return response.data;
@@ -91,7 +105,7 @@ export const fetchLikes = createAsyncThunk("likes/add", async (id: number) => {
 
 export const fetchDislikes = createAsyncThunk("dislikes/add", async (id: number) => {
     try {
-      const response = await axios.post<AxiosResponse<IdeasType>>(
+      const response = await apiService.post<AxiosResponse<IdeasType>>(
         `${import.meta.env.VITE_URL}/ideas/dislike/${id}`
       );
       return response.data;

@@ -9,6 +9,7 @@ import {
 import { FaThumbsUp, FaThumbsDown, FaEllipsisV } from 'react-icons/fa';
 import styles from './Idea.module.css';
 import { useUser } from '../../UserContext';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 type StartUpComponentPropsType = {
   idea: Idea;
@@ -18,6 +19,7 @@ export default function Idea1({
   idea,
 }: StartUpComponentPropsType): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate: NavigateFunction = useNavigate()
 
   const { login } = useUser();
   const likeHandler = () => {
@@ -28,9 +30,9 @@ export default function Idea1({
     void dispatch(fetchDislikes(idea.id));
   };
 
-  const deleteHandler = async () => {
-    void dispatch(fetchDeleteIdea(idea.id));
-  };
+  // const deleteHandler = async () => {
+  //   void dispatch(fetchDeleteIdea(idea.id));
+  // };
 
   return (
     <div className={styles.ideaCard}>
@@ -46,7 +48,7 @@ export default function Idea1({
         >
           <FaThumbsUp />
         </button>
-        <button onClick={deleteHandler} className={styles.iconButton}>
+        <button onClick={() => navigate(`/idea/${idea.id}`)} className={styles.iconButton}>
           <FaEllipsisV />
         </button>
         <button
