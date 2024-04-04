@@ -52,7 +52,7 @@ memberRouter.post('/new/:startUpId', async (req, res) => {
   try {
     const { login, role } = req.body;
     const { startUpId } = req.params;
-
+    console.log(req.body);
     const user = await User.findOne({ where: { login } });
 
     if (!user) {
@@ -62,10 +62,14 @@ memberRouter.post('/new/:startUpId', async (req, res) => {
     const member = await startUpMember.create({
       userId: user.id,
       startUpId,
+      login,
       role,
     });
 
-    res.json(member);
+    res.json({
+      ...member.get({ plain: true }),
+      login: user.login,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Internal server error' });

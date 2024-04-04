@@ -261,7 +261,7 @@ function NavBar() {
                       display: 'block',
                     }}
                     className="link"
-                    to="/profile"
+                    to="/lk"
                     data-hover="Профиль"
                   >
                     Профиль

@@ -1,7 +1,12 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Member, fetchAddMember, fetchMembers, memberInputsType } from "../../redux/memberActions";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  Member,
+  fetchAddMember,
+  fetchMembers,
+  memberInputsType,
+} from '../../redux/memberActions';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchStartUpById } from '../../redux/startUpActions';
 
 export default function OneStartUp(): React.JSX.Element {
@@ -10,41 +15,44 @@ export default function OneStartUp(): React.JSX.Element {
   const members = useAppSelector((state) => state.memberSlice.members);
 
   const startup = startUps.find((el) => el.id === Number(id));
-  
+
   const [memberInputs, setMemberInputs] = useState<memberInputsType>({
-    login: "",
-    role: "",
+    login: '',
+    role: '',
   });
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const idAsNumber = Number(id)
+    const idAsNumber = Number(id);
     dispatch(fetchMembers(idAsNumber));
-  }, [dispatch, id]);
-  
-  useEffect(() => {
     if (id) {
       const idAsNumber = Number(id);
       dispatch(fetchStartUpById(idAsNumber));
     }
   }, [dispatch, id]);
 
+  // useEffect(() => {}, [dispatch, id]);
 
   const memberChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setMemberInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+    setMemberInputs((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   const addMember = async (): Promise<void> => {
-    const idAsNumber = Number(id)
+    const idAsNumber = Number(id);
 
-    dispatch(fetchAddMember({ inputs: memberInputs, id: idAsNumber }));
-    console.log("Adding member:", memberInputs);
+    await dispatch(fetchAddMember({ inputs: memberInputs, id: idAsNumber }));
+    dispatch(fetchMembers(idAsNumber));
+    console.log('Adding member:', memberInputs);
     setMemberInputs({
-      login: "",
-      role: "",
+      login: '',
+      role: '',
     });
   };
+  console.log(members);
 
   return (
     <div>
@@ -56,27 +64,29 @@ export default function OneStartUp(): React.JSX.Element {
           <h4>Team Members</h4>
           <ul>
             {members.map((member: Member) => (
-              <li key={member.id}>{member['User.login']} - {member.role}</li>
+              <li key={member.id}>
+                {member['User.login']} - {member.role}
+              </li>
             ))}
           </ul>
           <h4>Add Team Member</h4>
-      <input
-        onChange={memberChangeHandler}
-        type="text"
-        name="login"
-        value={memberInputs.login}
-        placeholder="User login"
-      />
-      <input
-        onChange={memberChangeHandler}
-        type="text"
-        name="role"
-        value={memberInputs.role}
-        placeholder="Role"
-      />
-      <button onClick={addMember} type="button">
-        Add Member
-      </button>
+          <input
+            onChange={memberChangeHandler}
+            type="text"
+            name="login"
+            value={memberInputs.login}
+            placeholder="User login"
+          />
+          <input
+            onChange={memberChangeHandler}
+            type="text"
+            name="role"
+            value={memberInputs.role}
+            placeholder="Role"
+          />
+          <button onClick={addMember} type="button">
+            Add Member
+          </button>
         </>
       ) : (
         <h1>Загрузка</h1>

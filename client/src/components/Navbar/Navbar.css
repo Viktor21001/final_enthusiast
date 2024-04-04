@@ -1,7 +1,7 @@
-@import url(https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
 
 .navContainer {
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
@@ -9,64 +9,85 @@
   text-align: center;
   text-transform: uppercase;
   font-size: larger;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px 0;
 }
 
 .navContainer li {
   display: inline-block;
-  list-style: outside none none;
+  list-style: none;
   margin: 0 1.5em;
-  overflow: hidden;
 }
+
 .navContainer .link {
-  padding: 0.3em 0;
-  color: rgb(255, 255, 255);
+  color: #fff;
   position: relative;
   display: inline-block;
   letter-spacing: 1px;
-  margin: 0;
   text-decoration: none;
-}
-
-.navContainer .link:after {
   padding: 0.3em 0;
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  content: attr(data-hover);
-  color: hwb(45 54% 43%);
-  white-space: nowrap;
-}
-.navContainer li:hover .link,
-.navContainer .current .link {
-  transform: translateY(100%);
+  transition: color 0.3s;
 }
 
-.navbarBtn {
-  font-family: 'Comfortaa', sans-serif;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: large;
-}
-
-.logoutBtn {
-  font-family: 'Comfortaa', sans-serif;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-left: 20px;
-  margin-top: 0;
+.navContainer .link:hover,
+.navContainer .link:focus {
+  color: #00adee;
 }
 
 .logout {
-  margin-left: 500px;
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .navContainer li {
+    display: block;
+    text-align: left;
+    margin: 0;
+  }
+
+  .navContainer .link {
+    display: block;
+    padding: 10px;
+  }
+
+  .logout {
+    display: block;
+    margin-left: 0;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navContainer {
+    font-size: medium;
+  }
+
+  .navContainer li {
+    padding: 5px 0;
+  }
+
+  .navContainer .link {
+    padding: 8px 15px;
+  }
+
+  .logout {
+    margin-top: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .logout {
+    display: block;
+    margin-left: auto;
+    margin-right: 20px;
+  }
 }
 
 .logo1 {
-  will-change: filter;
   transition: filter 300ms;
   width: 70px;
   height: 40px;
-  margin-right: 0px;
 }
 
 .loginContainer {
