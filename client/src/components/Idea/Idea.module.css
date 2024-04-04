@@ -18,22 +18,26 @@
   flex-direction: column;
   margin: 10px;
   animation: fallAnimation 0.5s ease-out forwards;
+  width: 80%; /* Default width */
+  align-self: center; /* Center the card in the container */
 }
 
 .cardHeader,
 .cardBody {
   padding: 16px;
-  width: 50%;
+  width: 100%; /* Make width 100% instead of 50% for better mobile responsiveness */
   background-color: #c6c6c6c0;
   border-radius: 30px;
   margin: 20px;
 }
 
 .cardFooter {
+  display: flex;
   gap: 10px;
   padding: 10px;
   margin: 10px;
   align-items: center;
+  justify-content: center; /* Center the buttons */
 }
 
 .userName {
@@ -84,4 +88,44 @@
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+/* Media query for laptops and desktops */
+@media (min-width: 1024px) {
+  .ideaCard {
+    width: 50%; /* Larger screens can accommodate a wider card */
+  }
+
+  .cardHeader,
+  .cardBody {
+    margin: 20px auto; /* Center the content blocks */
+    width: 90%; /* Adjust width for larger screens */
+  }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 767px) {
+  .ideaCard {
+    width: 95%; /* Almost full width on small screens */
+    margin: 10px auto; /* Increase margin top and bottom */
+  }
+
+  .cardHeader,
+  .cardBody {
+    margin: 10px; /* Smaller margin on small screens */
+  }
+
+  .ideaTitle {
+    font-size: 1.25rem; /* Smaller font size on small screens */
+  }
+
+  .cardFooter {
+    flex-direction: column; /* Stack buttons on small screens */
+    gap: 5px;
+  }
+
+  .icon-button {
+    width: 35px; /* Smaller buttons on small screens */
+    height: 35px;
+  }
 }
