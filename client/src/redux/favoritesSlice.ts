@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { StartUpsType } from "./startUpActions";
-import { fetchAddFavorites, fetchFavorites } from "./favoritesActions";
+import { fetchAddFavorites, fetchDeleteFavorites, fetchFavorites } from "./favoritesActions";
 
 export type FavoritesSliceState = {
   favorites: StartUpsType;
@@ -30,6 +30,11 @@ const favoritesSlice = createSlice({
         } else {
           state.favorites = state.favorites.filter((item) => item.id !== payload);
         }
+      });
+      builder.addCase(fetchDeleteFavorites.fulfilled, (state, { payload }) => {
+        state.favorites = state.favorites.filter(
+          (favorite) => favorite.id !== payload
+        );
       });
   },
 });

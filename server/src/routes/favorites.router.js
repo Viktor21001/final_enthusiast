@@ -3,10 +3,13 @@ const favoritesRouter = require('express').Router();
 const { Favorite, StartUp } = require('../../db/models');
 
 favoritesRouter.get('/', async (req, res) => {
+  const { userId } = req.session;
+console.log(userId);
   try {
     const startUps = await Favorite.findAll({
-      raw: true,
-      where: { userId: req.session.userId },
+      // raw: true,
+      // raw: true добавляет вложенность по типу StartUd.и т д
+      where: { userId },
       include: [
         {
           model: StartUp,
@@ -14,7 +17,7 @@ favoritesRouter.get('/', async (req, res) => {
       ],
       order: [['createdAt', 'DESC']],
     });
-    // console.log(startUps);
+    console.log(startUps);
     res.json(startUps);
   } catch (error) {
     console.log(error);
@@ -40,15 +43,15 @@ favoritesRouter.post('/new/:id', async (req, res) => {
   }
 });
 
-// пока не понимаю будет ли удаляться Стартап из избранных из личной страницы
-// favoritesRouter.delete('/:id', async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     await Favorite.destroy({ where: { id } });
-//     res.json({ msg: 'deleted' });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+// Удаление из избранных из личной страницы
+favoritesRouter.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Favorite.destroy({ where: { id } });
+    res.json({ msg: 'deleted' });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = favoritesRouter;

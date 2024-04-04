@@ -19,7 +19,7 @@ memberRouter.get('/:startUpId', async (req, res) => {
       },
       raw: true,
     });
-    console.log(members);
+    // console.log(members);
     res.json(members);
   } catch (error) {
     console.log(error);

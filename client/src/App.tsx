@@ -26,6 +26,7 @@ import { UserProvider } from './UserContext';
 import NewIdea from './components/newIdea/NewIdea';
 import NewStartUp from './components/NewStartUp/NewStartUp';
 import OneStartUp from './components/OneStartUp/OneStartUp';
+import Lk from './components/LK/Lk';
 
 function App() {
   return (
@@ -48,6 +49,8 @@ function App() {
                   <Route path="/login" element={<Login />} />
                   <Route path="/newidea" element={<NewIdea />} />
                   <Route path="/newstartup" element={<NewStartUp />} />
+                  <Route path="/lk" element={<Lk />} />
+
 
 
             {/*<Route path="/idea/:id" element={<OneIdea />} /> */}
