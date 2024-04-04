@@ -8,6 +8,7 @@ import {
 } from '../../redux/ideaActions';
 import { FaThumbsUp, FaThumbsDown, FaEllipsisV } from 'react-icons/fa';
 import styles from './Idea.module.css';
+import { useUser } from '../../UserContext';
 
 type StartUpComponentPropsType = {
   idea: Idea;
@@ -18,6 +19,7 @@ export default function Idea1({
 }: StartUpComponentPropsType): JSX.Element {
   const dispatch = useAppDispatch();
 
+  const { login } = useUser();
   const likeHandler = () => {
     void dispatch(fetchLikes(idea.id));
   };
@@ -32,6 +34,8 @@ export default function Idea1({
 
   return (
     <div className={styles.ideaCard}>
+      {login ? (
+        <>
       <h3 className={styles.ideaTitle}>{idea?.title}</h3>
       <p className={styles.ideaDescription}>{idea?.description}</p>
       <div className={styles.cardFooter}>
@@ -53,6 +57,11 @@ export default function Idea1({
           <FaThumbsDown />
         </button>
       </div>
+        </>
+      ) : (
+        <>
+        </>
+      )}
     </div>
   );
 }

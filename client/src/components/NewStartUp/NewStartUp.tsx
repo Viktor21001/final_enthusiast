@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { InputsType, fetchAddStartUp } from "../../redux/startUpActions";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useUser } from "../../UserContext";
 
 export default function NewStartUp(): JSX.Element {
   const [inputs, setInputs] = useState<InputsType>({
@@ -13,6 +14,7 @@ export default function NewStartUp(): JSX.Element {
     targetAmount: 0,
   });
 
+  const { login } = useUser()
 
   const dispatch = useAppDispatch();
   const navigate: NavigateFunction = useNavigate();
@@ -37,6 +39,9 @@ export default function NewStartUp(): JSX.Element {
 
   return (
     <div>
+      { login ? (
+       <>
+       
       <form>
         <input
           onChange={changeHandler}
@@ -88,6 +93,11 @@ export default function NewStartUp(): JSX.Element {
           Add
         </button>
       </form>
+       </> 
+      ) : (
+        <>
+        </>
+      )}
     </div>
   );
 }

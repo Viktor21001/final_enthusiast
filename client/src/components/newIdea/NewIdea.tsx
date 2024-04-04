@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import { InputsType, fetchAddIdea } from "../../redux/ideaActions";
 import { useAppDispatch } from "../../redux/hooks";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useUser } from "../../UserContext";
 
 export default function NewIdea(): JSX.Element {
   const [inputs, setInputs] = useState<InputsType>({
@@ -12,6 +13,7 @@ export default function NewIdea(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate: NavigateFunction = useNavigate();
 
+  const { login } = useUser()
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -25,6 +27,8 @@ export default function NewIdea(): JSX.Element {
 
   return (
     <div>
+      {login ? (
+        <>
       <form>
         <input
           onChange={changeHandler}
@@ -48,6 +52,11 @@ export default function NewIdea(): JSX.Element {
           Add
         </button>
       </form>
+        </>
+      ) : (
+        <>
+        </>
+      )}
     </div>
   );
 }
