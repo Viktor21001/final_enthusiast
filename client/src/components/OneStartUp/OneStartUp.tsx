@@ -19,16 +19,17 @@ export default function OneStartUp(): React.JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    const idAsNumber = Number(id)
+    dispatch(fetchMembers(idAsNumber));
+  }, [dispatch, id]);
+  
+  useEffect(() => {
     if (id) {
       const idAsNumber = Number(id);
       dispatch(fetchStartUpById(idAsNumber));
     }
   }, [dispatch, id]);
 
-  useEffect(() => {
-    const idAsNumber = Number(id)
-    dispatch(fetchMembers(idAsNumber));
-  }, [dispatch, id]);
 
   const memberChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setMemberInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));

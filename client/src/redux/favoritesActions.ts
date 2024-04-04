@@ -6,7 +6,7 @@ import apiService from "../service/apiService";
 
 export const fetchFavorites = createAsyncThunk("favorites/all", async () => {
   try {
-    const response = await axios.get<StartUpsType>(
+    const response = await apiService.get<StartUpsType>(
       `${import.meta.env.VITE_URL}/favorites`
     );
     console.log(response);
@@ -41,7 +41,7 @@ export const fetchAddFavorites = createAsyncThunk(
 export const fetchDeleteFavorites = createAsyncThunk(
   "favorites/delete",
   async (id: number) => {
-    const response = await axios.delete(
+    const response = await apiService.delete(
       `${import.meta.env.VITE_URL}/favorites/${id}`
     );
     if (response.status === 200) {
