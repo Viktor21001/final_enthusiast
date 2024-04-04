@@ -27,6 +27,7 @@ import NewIdea from './components/newIdea/NewIdea';
 import NewStartUp from './components/NewStartUp/NewStartUp';
 import OneStartUp from './components/OneStartUp/OneStartUp';
 import Lk from './components/LK/Lk';
+import OneIdea from './components/OneIdea/OneIdea';
 
 function App() {
   return (
@@ -53,7 +54,7 @@ function App() {
 
 
 
-            {/*<Route path="/idea/:id" element={<OneIdea />} /> */}
+            <Route path="/idea/:id" element={<OneIdea />} />
 
                   {/* <Route path="/login" element={<Login />} /> */}
                   {/* <Route path="/registration" element={<Registration />} /> */}

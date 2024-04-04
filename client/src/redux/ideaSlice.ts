@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IdeasType, fetchAddIdea, fetchDeleteIdea, fetchDislikes, fetchEditIdea, fetchIdeas, fetchLikes } from "./ideaActions";
+import { IdeasType, fetchAddIdea, fetchDeleteIdea, fetchDislikes, fetchEditIdea, fetchIdeaById, fetchIdeas, fetchLikes } from "./ideaActions";
 
 
 export type ideaSliceState = {
@@ -26,6 +26,10 @@ const ideaSlice = createSlice({
     });
     builder.addCase(fetchIdeas.fulfilled, (state, { payload }) => {
       state.ideas = payload;
+      state.isLoading = false;
+    });
+    builder.addCase(fetchIdeaById.fulfilled, (state, { payload }) => {
+      state.ideas = [payload];
       state.isLoading = false;
     });
     builder.addCase(fetchAddIdea.fulfilled, (state, { payload }) => {
