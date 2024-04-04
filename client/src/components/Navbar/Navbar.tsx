@@ -263,6 +263,7 @@ function NavBar() {
                     className="link"
                     to="/lk"
                     data-hover="Профиль"
+                    onClick={handleCloseUserMenu}
                   >
                     Профиль
                   </Link>
