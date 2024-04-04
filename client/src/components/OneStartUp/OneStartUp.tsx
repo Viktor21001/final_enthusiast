@@ -8,6 +8,7 @@ import {
 } from '../../redux/memberActions';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchStartUpById } from '../../redux/startUpActions';
+import { useUser } from '../../UserContext';
 
 export default function OneStartUp(): React.JSX.Element {
   const { id } = useParams();
@@ -15,6 +16,7 @@ export default function OneStartUp(): React.JSX.Element {
   const members = useAppSelector((state) => state.memberSlice.members);
 
   const startup = startUps.find((el) => el.id === Number(id));
+  const { login } = useUser();
 
   const [memberInputs, setMemberInputs] = useState<memberInputsType>({
     login: '',
@@ -56,7 +58,7 @@ export default function OneStartUp(): React.JSX.Element {
 
   return (
     <div>
-      {startup ? (
+      {startup  ? (
         <>
           <h1>StartUp</h1>
           <h2>{startup?.startUpTitle}</h2>

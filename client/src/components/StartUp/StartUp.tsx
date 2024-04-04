@@ -8,6 +8,7 @@ import {
 } from '../../redux/startUpActions';
 import { fetchAddFavorites } from '../../redux/favoritesActions';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { useUser } from '../../UserContext';
 
 type StartUpComponentPropsType = {
   startUp: StartUp;
@@ -17,6 +18,7 @@ export default function StartUp1({
   startUp,
 }: StartUpComponentPropsType): JSX.Element {
   const dispatch = useAppDispatch();
+  const { login } = useUser()
 
   const navigate: NavigateFunction = useNavigate()
 
@@ -55,6 +57,8 @@ export default function StartUp1({
       <h2>{startUp.startUpDescription}</h2>
       <h2>{startUp.funding}</h2>
       <div>
+        {login ? (
+          <>
       <button type="button" onClick={() => navigate(`/${startUp.id}`)}>Read more</button>
         <button onClick={deleteHandler} type="button">
           delete
@@ -62,6 +66,11 @@ export default function StartUp1({
         <button onClick={favoriteHandler} type="button">
           Favorites
         </button>
+          </>
+        ) : (
+          <>
+          </>
+        )}
       </div>
     </div>
   );

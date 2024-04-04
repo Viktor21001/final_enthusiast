@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Profile.css'; // Предполагается, что стили определены в этом CSS файле
+import { useUser } from '../../UserContext';
 
 const Profile = ({ isOpen, onClose }) => {
   const [profile, setProfile] = useState({
@@ -9,6 +10,8 @@ const Profile = ({ isOpen, onClose }) => {
     gender: '',
     birthDate: '', // формат YYYY-MM-DD
   });
+
+  const { login } = useUser();
 
   const handleInterestChange = (interest) => {
     setProfile((prevProfile) => ({
@@ -37,6 +40,8 @@ const Profile = ({ isOpen, onClose }) => {
 
   return (
     <div className="modal">
+      {login ? (
+        <> 
       <div className="modal-content">
         <span className="close" onClick={onClose}>
           &times;
@@ -126,6 +131,11 @@ const Profile = ({ isOpen, onClose }) => {
           <button type="submit">Продолжить</button>
         </form>
       </div>
+        </>
+      ) : (
+        <>
+        </>
+      )}
     </div>
   );
 };
