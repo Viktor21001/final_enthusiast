@@ -1,31 +1,48 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import {
   Member,
   fetchAddMember,
   fetchMembers,
   memberInputsType,
-} from '../../redux/memberActions';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { fetchStartUpById } from '../../redux/startUpActions';
-import { useUser } from '../../UserContext';
+} from "../../redux/memberActions";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { fetchStartUpById, fetchAddFunding } from "../../redux/startUpActions";
+import { useUser } from "../../UserContext";
 
 export default function OneStartUp(): React.JSX.Element {
   const { id } = useParams();
   const startUps = useAppSelector((store) => store.startUpSlice.startUps);
-  console.log(startUps);
-  
+  // console.log(startUps);
+
   const members = useAppSelector((state) => state.memberSlice.members);
 
   const startup = startUps.find((el) => el.id === Number(id));
   const { login } = useUser();
 
   const [memberInputs, setMemberInputs] = useState<memberInputsType>({
-    login: '',
-    role: '',
+    login: "",
+    role: "",
   });
 
+  const [fundingAmount, setFundingAmount] = useState<string>('');
+
   const dispatch = useAppDispatch();
+
+  const handleFundingChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFundingAmount(event.target.value);
+  };
+
+  const handleAddFunding = async () => {
+    const amount = Number(fundingAmount); 
+    if (amount > 0) {
+      await dispatch(
+        fetchAddFunding({ amount: amount, id: Number(id) })
+      );
+      await dispatch(fetchStartUpById(Number(id)));
+      setFundingAmount(''); 
+    }
+  };
 
   useEffect(() => {
     const idAsNumber = Number(id);
@@ -35,8 +52,6 @@ export default function OneStartUp(): React.JSX.Element {
       dispatch(fetchStartUpById(idAsNumber));
     }
   }, [dispatch, id]);
-
-  // useEffect(() => {}, [dispatch, id]);
 
   const memberChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setMemberInputs((prev) => ({
@@ -50,26 +65,37 @@ export default function OneStartUp(): React.JSX.Element {
 
     await dispatch(fetchAddMember({ inputs: memberInputs, id: idAsNumber }));
     dispatch(fetchMembers(idAsNumber));
-    console.log('Adding member:', memberInputs);
+    console.log("Adding member:", memberInputs);
     setMemberInputs({
-      login: '',
-      role: '',
+      login: "",
+      role: "",
     });
   };
-  console.log(members);
+  // console.log(members);
 
   return (
     <div>
-      {startup  ? (
+      {startup ? (
         <>
           <h1>StartUp</h1>
           <h2>{startup?.startUpTitle}</h2>
           <h3>{startup?.startUpDescription}</h3>
+          <h2>Startup progress: {startup.progress} %</h2>
+          <h3>Current amount: {startup.currentAmount}</h3>
+          <h3>Target amount: {startup.targetAmount}</h3>
+          <input
+            onChange={handleFundingChange}
+            type="number"
+            name="amount"
+            value={fundingAmount}
+            placeholder="Enter funding amount"
+          />
+          <button onClick={handleAddFunding}>Add Funding</button>
           <h4>Team Members</h4>
           <ul>
             {members.map((member: Member) => (
               <li key={member.id}>
-                {member['User.login']} - {member.role}
+                {member["User.login"]} - {member.role}
               </li>
             ))}
           </ul>

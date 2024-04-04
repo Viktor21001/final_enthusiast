@@ -55,7 +55,7 @@ startupRouter.patch('/:id', async (req, res) => {
 startupRouter.post('/funding/:id', async (req, res) => {
   const { id } = req.params;
   const { amount } = req.body; // Тут нужно на клинете передать сумму!!!
-
+console.log(amount);
   try {
     const startup = await StartUp.findByPk(id);
     if (!startup) {

@@ -106,10 +106,10 @@ export const fetchAddFunding = createAsyncThunk(
   "funding/add",
   async ({ amount, id }: { amount: number; id: number }) => {
     try {
-      const response = await axios.post<AxiosResponse<StartUpsType>>(
+      const response = await apiService.post<AxiosResponse<StartUpsType>>(
         `${import.meta.env.VITE_URL}/startups/funding/${id}`,
-        amount
-      );
+        { amount: amount }
+      );      
       return response.data;
     } catch (error) {
       console.log(error);

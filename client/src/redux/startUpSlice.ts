@@ -13,12 +13,14 @@ export type SliceState = {
   startUps: StartUpsType;
   funding?: number;
   isLoading: boolean;
+  currentAccount?: number,
 };
 
 const initialState: SliceState = {
   startUps: [],
   funding: 0,
   isLoading: true,
+  currentAccount: 0,
 };
 
 const startUpSlice = createSlice({
@@ -60,4 +62,5 @@ const startUpSlice = createSlice({
   },
 });
 
+export const { updateCurrentAccount } = startUpSlice.actions;
 export default startUpSlice.reducer;
