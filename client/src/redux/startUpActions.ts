@@ -5,6 +5,7 @@ import apiService from '../service/apiService';
 
 export type StartUp = {
   id: number;
+  userId:number;
   startUpTitle: string;
   startUpDescription: string;
   startUpCategory: string;

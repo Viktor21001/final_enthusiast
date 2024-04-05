@@ -19,9 +19,11 @@ export default function StartUps(): JSX.Element {
   }, [dispatch]);
 
   return (
-    <div className={styles.startupsContainer}>
+    <div>
     {startUps?.map((startUp: StartUp) => (
+      <div className={styles.startupsContainer}>
         <StartUp1 key={startUp.id} startUp={startUp} />
+        </div>
       ))}
     </div>
   );
