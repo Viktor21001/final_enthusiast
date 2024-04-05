@@ -60,11 +60,12 @@ ideaRouter.post('/like/:id', async (req, res) => {
     const existingVote = await Vote.findOne({ where: { userId, ideaId: idea.id } });
     if (existingVote) {
       console.log('User already voted for this idea');
-      return res.status(400).json({ error: 'User already voted for this idea' });
+      await existingVote.destroy();
+      await idea.decrement('likes', { by: 1 });
+      return res.status(200).json({ status: 'vote removed' });
     }
 
     await Vote.create({ userId, ideaId: idea.id, type: 'like' });
-
     await idea.increment('likes', { by: 1 });
 
     res.json({ status: 'liked' });
@@ -87,11 +88,12 @@ ideaRouter.post('/dislike/:id', async (req, res) => {
     const existingVote = await Vote.findOne({ where: { userId, ideaId: idea.id } });
     if (existingVote) {
       console.log('User already voted for this idea');
-      return res.status(400).json({ error: 'User already voted for this idea' });
+      await existingVote.destroy();
+      await idea.decrement('dislikes', { by: 1 });
+      return res.status(200).json({ status: 'vote removed' });
     }
 
     await Vote.create({ userId, ideaId: idea.id, type: 'dislike' });
-
     await idea.increment('dislikes', { by: 1 });
 
     res.json({ status: 'disliked' });
