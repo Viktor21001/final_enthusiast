@@ -11,33 +11,36 @@
 
 .ideaCard {
   border-radius: 20px;
-  background: #9c9c9c;
+  background: #798AAE;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   margin: 10px;
   animation: fallAnimation 0.5s ease-out forwards;
-  width: 80%; /* Default width */
+  width: 100%; /* Default width */
   align-self: center; /* Center the card in the container */
+  height: 400px;
+  width: 300px;
 }
 
 .cardHeader,
 .cardBody {
   padding: 16px;
   width: 100%; /* Make width 100% instead of 50% for better mobile responsiveness */
-  background-color: #c6c6c6c0;
+  background: #798AAE;
   border-radius: 30px;
   margin: 20px;
 }
 
 .cardFooter {
+  background: #798AAE;
   display: flex;
   gap: 10px;
-  padding: 10px;
-  margin: 10px;
   align-items: center;
   justify-content: center; /* Center the buttons */
+  padding-bottom: 15px;
 }
 
 .userName {
@@ -47,14 +50,17 @@
 
 .ideaTitle {
   font-size: 1.5rem;
+  background: #798AAE;
+  color: #f0f0f0;
 }
 
 .ideaDescription {
   color: #302f2f;
+  background: #798AAE;
+  color: #f0f0f0;
 }
 
 .icon-button {
-  background-color: #f0f0f0;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -69,63 +75,12 @@
 }
 
 .icon-button:hover {
-  background-color: #e0e0e0;
+  background-color: #2a9b1c;
+}
+.likeButton  svg {
+  color: green; 
+}
+.dislikeButton svg {
+  color: red; 
 }
 
-.dropdown {
-  position: relative;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Media query for laptops and desktops */
-@media (min-width: 1024px) {
-  .ideaCard {
-    width: 50%; /* Larger screens can accommodate a wider card */
-  }
-
-  .cardHeader,
-  .cardBody {
-    margin: 20px auto; /* Center the content blocks */
-    width: 90%; /* Adjust width for larger screens */
-  }
-}
-
-/* Media query for mobile devices */
-@media (max-width: 767px) {
-  .ideaCard {
-    width: 95%; /* Almost full width on small screens */
-    margin: 10px auto; /* Increase margin top and bottom */
-  }
-
-  .cardHeader,
-  .cardBody {
-    margin: 10px; /* Smaller margin on small screens */
-  }
-
-  .ideaTitle {
-    font-size: 1.25rem; /* Smaller font size on small screens */
-  }
-
-  .cardFooter {
-    flex-direction: column; /* Stack buttons on small screens */
-    gap: 5px;
-  }
-
-  .icon-button {
-    width: 35px; /* Smaller buttons on small screens */
-    height: 35px;
-  }
-}

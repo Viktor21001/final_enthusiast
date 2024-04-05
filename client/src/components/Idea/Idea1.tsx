@@ -32,11 +32,11 @@ export default function Idea1({
       void dispatch(fetchDislikes(idea.id));
   };
 
-
   return (
     <div className={styles.ideaCard}>
       {login ? (
         <>
+
 
         <img
               // src={idea?.photo}
@@ -50,7 +50,7 @@ export default function Idea1({
         <button
           onClick={likeHandler}
           type="button"
-          className={styles.iconButton}
+              className={styles.likeButton}
         >
           <FaThumbsUp />
         </button>
@@ -60,7 +60,7 @@ export default function Idea1({
         <button
           onClick={dislikeHandler}
           type="button"
-          className={styles.iconButton}
+              className={styles.dislikeButton}
         >
           <FaThumbsDown />
         </button>

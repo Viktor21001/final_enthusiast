@@ -1,0 +1,62 @@
+*{
+  background-color: #ffffff; 
+
+}
+.startUpContainer {
+  background-color: #ffffff; 
+  border: 1px solid #dddddd; 
+  border-radius: 30px; 
+  padding: 20px; 
+  margin-bottom: 20px; 
+}
+
+.startUpContainer h3 {
+  margin-top: 0; 
+  background-color: #ffffff; 
+
+}
+
+.startUpContainer h2 {
+  margin-bottom: 10px; 
+  background-color: #ffffff; 
+
+}
+
+.startUpContainer button {
+  margin-right: 10px; 
+  margin-bottom: 10px;
+  background-color: #ffffff; 
+}
+
+
+.buttons{
+  background-color: #ffffff; 
+}
+
+/* .likeBnt { 
+  display: inline-block;
+  position: absolute;
+  right: 70px;
+  cursor: pointer;
+  border: 1px solid black;
+  &::before {
+    font-size: 3em;
+    color: #000;
+    content: '♥';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &::after {
+    font-size: 3em;
+    color: #ff3252;
+    content: '♥';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s;
+  }
+} */
+

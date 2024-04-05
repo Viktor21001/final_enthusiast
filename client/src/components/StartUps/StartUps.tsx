@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { StartUp, fetchStartUps } from '../../redux/startUpActions';
 import StartUp1 from '../StartUp/StartUp';
 import { useUser } from '../../UserContext';
+import styles from "./startUps.module.css";
+
 
 export default function StartUps(): JSX.Element {
   const startUps = useAppSelector((store) => store.startUpSlice.startUps);
@@ -18,8 +20,10 @@ export default function StartUps(): JSX.Element {
 
   return (
     <div>
-      {startUps?.map((startUp: StartUp) => (
+    {startUps?.map((startUp: StartUp) => (
+      <div className={styles.startupsContainer}>
         <StartUp1 key={startUp.id} startUp={startUp} />
+        </div>
       ))}
     </div>
   );

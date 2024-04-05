@@ -10,6 +10,8 @@ import { fetchAddFavorites } from '../../redux/favoritesActions';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { useUser } from '../../UserContext';
 
+import styles from './StartUp.module.css'; 
+
 type StartUpComponentPropsType = {
   startUp: StartUp;
 };
@@ -52,20 +54,20 @@ export default function StartUp1({
   };
 
   return (
-    <div className="startUp">
-      <h3>{startUp.startUpTitle}</h3>
-      <h2>{startUp.startUpDescription}</h2>
-      <h2>{startUp.funding}</h2>
+    <div className={styles.startUpContainer}>
+      <h3>Автор: {startUp.userId}</h3>
+      <h2>{startUp.startUpTitle}</h2>
+      <h3>{startUp.startUpDescription}</h3>
       <div>
         {login ? (
           <>
+          <div className={styles.buttons}>
       <button type="button" onClick={() => navigate(`/${startUp.id}`)}>Read more</button>
         <button onClick={deleteHandler} type="button">
           delete
         </button>
-        <button onClick={favoriteHandler} type="button">
-          Favorites
-        </button>
+        <button onClick={favoriteHandler} type="button">Favorite</button>
+        </div>
           </>
         ) : (
           <>
