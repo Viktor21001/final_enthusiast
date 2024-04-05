@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.IdeaMedia, {
         foreignKey: 'ideaId',
       });
+      this.hasMany(models.Vote, {
+        foreignKey: 'ideaId',
+      });
     }
   }
   Idea.init({

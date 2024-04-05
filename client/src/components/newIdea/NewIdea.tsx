@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
-import { InputsType, fetchAddIdea } from "../../redux/ideaActions";
+import { InputsType, fetchAddIdea, fetchIdeas } from "../../redux/ideaActions";
 import { useAppDispatch } from "../../redux/hooks";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useUser } from "../../UserContext";
@@ -50,6 +50,7 @@ export default function NewIdea(): JSX.Element {
 
     dispatch(saveSaleBook(data))
     navigate('/ideas');
+    void dispatch(fetchIdeas());
   };
 
 

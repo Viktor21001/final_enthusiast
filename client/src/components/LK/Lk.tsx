@@ -7,6 +7,7 @@ import {
 import { StartUp } from '../../redux/startUpActions';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { useUser } from '../../UserContext';
+import { UserProfileForm } from '../ProfileForm/ProfileForm';
 
 export default function Lk(): JSX.Element {
   const favorites = useAppSelector((store) => store.favoritesSlice.favorites);
@@ -34,26 +35,26 @@ export default function Lk(): JSX.Element {
     <div>
       {login ? (
         <>
-        <h4>Favorites</h4>
-        {favorites.map((favorite) => (
-          <div key={favorite?.id}>
-            <h2>{favorite.StartUp?.startUpTitle}</h2>
-            <h2>{favorite.StartUp?.startUpDescription}</h2>
-            <button onClick={deleteHandler}>delete from favorite</button>
-            <button
-              type="button"
-              onClick={() => navigate(`/${favorite?.startUpId}`)}
-            >
-              Read more
-            </button>
-  
-            {/* <p>{favorite.StartUp.startUpDescription}</p> */}
-          </div>
-        ))}
+          <h4>Favorites</h4>
+          {favorites.map((favorite) => (
+            <div key={favorite?.id}>
+              <h2>{favorite.StartUp?.startUpTitle}</h2>
+              <h2>{favorite.StartUp?.startUpDescription}</h2>
+              <button onClick={deleteHandler}>delete from favorite</button>
+              <button
+                type="button"
+                onClick={() => navigate(`/${favorite?.startUpId}`)}
+              >
+                Read more
+              </button>
+
+              {/* <p>{favorite.StartUp.startUpDescription}</p> */}
+            </div>
+          ))}
+          <UserProfileForm />
         </>
       ) : (
-        <>
-        </>
+        <></>
       )}
     </div>
   );
