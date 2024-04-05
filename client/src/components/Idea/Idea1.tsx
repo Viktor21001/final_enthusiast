@@ -36,30 +36,36 @@ export default function Idea1({
     <div className={styles.ideaCard}>
       {login ? (
         <>
-          <h3 className={styles.ideaTitle}>{idea?.title}</h3>
-          <p className={styles.ideaDescription}>{idea?.description}</p>
-          <div className={styles.cardFooter}>
-            <button
-              onClick={likeHandler}
-              type="button"
+
+
+        <img
+              // src={idea?.photo}
+              src={`${import.meta.env.VITE_IMG}/${idea?.photo}`}
+              alt="avatar"
+              style={{ width: '150px' }}
+          />
+      <h3 className={styles.ideaTitle}>{idea?.title}</h3>
+      <p className={styles.ideaDescription}>{idea?.description}</p>
+      <div className={styles.cardFooter}>
+        <button
+          onClick={likeHandler}
+          type="button"
               className={styles.likeButton}
-            >
-              <FaThumbsUp />
-            </button>
-            <button
-              onClick={() => navigate(`/idea/${idea.id}`)}
-              className={styles.iconButton}
-            >
-              <FaEllipsisV />
-            </button>
-            <button
-              onClick={dislikeHandler}
-              type="button"
+        >
+          <FaThumbsUp />
+        </button>
+        <button onClick={() => navigate(`/idea/${idea.id}`)} className={styles.iconButton}>
+          <FaEllipsisV />
+        </button>
+        <button
+          onClick={dislikeHandler}
+          type="button"
               className={styles.dislikeButton}
-            >
-              <FaThumbsDown />
-            </button>
-          </div>
+        >
+          <FaThumbsDown />
+        </button>
+      </div>
+
         </>
       ) : (
         <></>
