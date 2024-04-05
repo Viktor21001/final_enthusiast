@@ -19,7 +19,7 @@ import './App.css';
 // import "./App.css";
 import Ideas from './components/Ideas/Ideas';
 import StartUps from './components/StartUps/StartUps';
-import { store } from './redux/store';
+import store from './redux/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { UserProvider } from './UserContext';
@@ -28,6 +28,7 @@ import NewStartUp from './components/NewStartUp/NewStartUp';
 import OneStartUp from './components/OneStartUp/OneStartUp';
 import Lk from './components/LK/Lk';
 import OneIdea from './components/OneIdea/OneIdea';
+import PeopleList from './components/People/PeopleList';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
                   <Route path="/newidea" element={<NewIdea />} />
                   <Route path="/newstartup" element={<NewStartUp />} />
                   <Route path="/lk" element={<Lk />} />
+                  <Route path="/people" element={<PeopleList />} />
 
                   <Route path="/idea/:id" element={<OneIdea />} />
 

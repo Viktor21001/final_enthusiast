@@ -1,44 +1,37 @@
-import { ConfigureStoreOptions, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import startUpSlice, { SliceState } from './startUpSlice';
 import ideaSlice, { ideaSliceState } from './ideaSlice';
 import favoritesSlice, { FavoritesSliceState } from './favoritesSlice';
 import memberSlice, { MemberSliceState } from './memberSlice';
 import userReducer, { UserState } from './userSlice'; // Импорт userReducer
+import peopleReducer, { PeopleState } from './peopleSlice'; // Импорт peopleReducer
 
-// Добавляем тип состояния для userSlice
-interface UserState {
-  login: string | null;
-  isAuthenticated: boolean;
-  profile: {
-    fullName: string;
-    gender: boolean | null;
-    birthDate: string | null;
-    interests: string | null;
-    activity: string | null;
-    avatar: string | null;
-  } | null;
-}
-
-// Обновляем StoreType, добавляя тип состояния для userSlice
+// Интерфейс StoreType теперь включает people слайс.
+// Этот тип обобщает структуру всего состояния Redux.
 type StoreType = {
-  startUpSlice: SliceState;
-  ideaSlice: ideaSliceState;
-  favoritesSlice: FavoritesSliceState;
-  memberSlice: MemberSliceState;
-  user: UserState; // Добавляем тип состояния user
+  startUpSlice: SliceState; // Предполагается, что SliceState уже определен в startUpSlice
+  ideaSlice: ideaSliceState; // Предполагается, что ideaSliceState уже определен в ideaSlice
+  favoritesSlice: FavoritesSliceState; // Предполагается, что FavoritesSliceState уже определен в favoritesSlice
+  memberSlice: MemberSliceState; // Предполагается, что MemberSliceState уже определен в memberSlice
+  user: UserState; // Предполагается, что UserState уже определен в userSlice
+  // Добавляем состояние для people слайса.
+  // Убедитесь, что PeopleState импортируется из файла peopleSlice, если он экспортируется из него
+  people: PeopleState;
 };
 
-const storeOptions: ConfigureStoreOptions<StoreType> = {
+const store = configureStore({
   reducer: {
-    startUpSlice,
-    ideaSlice,
-    favoritesSlice,
-    memberSlice,
-    user: userReducer, // Добавляем userReducer в reducer
+    startUpSlice, // Редьюсер для стартапов
+    ideaSlice, // Редьюсер для идей
+    favoritesSlice, // Редьюсер для избранного
+    memberSlice, // Редьюсер для членов команды
+    user: userReducer, // Редьюсер для пользователя
+    people: peopleReducer, // Добавляем редьюсер для списка людей
   },
-};
-
-export const store = configureStore(storeOptions);
+  // Применяем middleware, если нужно (не показано)
+});
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
+
+export default store;

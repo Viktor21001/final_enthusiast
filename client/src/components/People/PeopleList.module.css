@@ -1,0 +1,44 @@
+.peopleList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.personCard {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Ширина карточки */
+  margin: 10px 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.personImage img {
+  border-radius: 50%; /* Делает изображение круглым */
+  margin-top: -50px; /* Поднимает изображение выше верхней границы карточки */
+  width: 100px; /* Размер изображения */
+  height: 100px;
+  object-fit: cover;
+  border: 4px solid white; /* Белая граница вокруг изображения */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.personDetails {
+  padding: 20px;
+  text-align: center; /* Выравнивание текста по центру */
+}
+
+.personDetails h3 {
+  margin: 10px 0;
+  color: #333; /* Цвет текста */
+  font-size: 1.2em; /* Размер шрифта */
+}
+
+.personDetails p {
+  color: #666; /* Цвет текста */
+  font-size: 1em;
+}

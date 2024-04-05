@@ -11,13 +11,15 @@ multerRouter.post('/', uploadMid.single('photo'), async (req, res) => {
       console.log(req.file);
       const photo = req.file.originalname;
       const { userId } = req.session;
-      const {
-        title, description, category,
-      } = req.body;
+      const { title, description, category } = req.body;
       //   console.log(Array.isArray(trade));
       //   console.log(JSON.parse(trade));
       const ideaSale = await Idea.create({
-        userId, title, description, category, photo,
+        userId,
+        title,
+        description,
+        category,
+        photo,
       });
       res.json(ideaSale);
     }
