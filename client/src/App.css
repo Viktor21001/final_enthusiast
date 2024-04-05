@@ -44,7 +44,7 @@
 .app-container {
   display: flex;
   height: 100%;
-  width: 250vh;
+  width: 100%;
 }
 
 .main-content {
@@ -52,7 +52,7 @@
 }
 
 .side-navbar {
-  flex: 0 0 400px;
+  flex: 0 0 150px;
   margin-left: 50px;
 }
 
