@@ -33,7 +33,6 @@ function App() {
   return (
     <>
       <Provider store={store}>
-
         <UserProvider>
           <BrowserRouter>
             <Navbar />
@@ -52,9 +51,7 @@ function App() {
                   <Route path="/newstartup" element={<NewStartUp />} />
                   <Route path="/lk" element={<Lk />} />
 
-
-
-            <Route path="/idea/:id" element={<OneIdea />} />
+                  <Route path="/idea/:id" element={<OneIdea />} />
 
                   {/* <Route path="/login" element={<Login />} /> */}
                   {/* <Route path="/registration" element={<Registration />} /> */}
