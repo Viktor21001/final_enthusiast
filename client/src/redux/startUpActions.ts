@@ -1,6 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios, { AxiosResponse } from "axios";
-import apiService from "../service/apiService";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios, { AxiosResponse } from 'axios';
+import apiService from '../service/apiService';
 // import { InputsType, StartUpsType } from "../types";
 
 export type StartUp = {
@@ -36,7 +36,7 @@ export type InputsType = {
 
 export type StartUpsType = Array<StartUp>;
 
-export const fetchStartUps = createAsyncThunk("startUps/all", async () => {
+export const fetchStartUps = createAsyncThunk('startUps/all', async () => {
   try {
     const response = await apiService.get<StartUpsType>(
       `${import.meta.env.VITE_URL}/startups`
@@ -48,20 +48,23 @@ export const fetchStartUps = createAsyncThunk("startUps/all", async () => {
   }
 });
 
-export const fetchStartUpById = createAsyncThunk("startUp/one", async (id:number) => {
-  try {
-    const response = await apiService.get<StartUpsType>(
-      `${import.meta.env.VITE_URL}/startups/${id}`
-    );
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    console.log(error);
+export const fetchStartUpById = createAsyncThunk(
+  'startUp/one',
+  async (id: number) => {
+    try {
+      const response = await apiService.get<StartUpsType>(
+        `${import.meta.env.VITE_URL}/startups/${id}`
+      );
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 export const fetchAddStartUp = createAsyncThunk(
-  "startUps/add",
+  'startUps/add',
   async (inputs: InputsType) => {
     try {
       const response = await apiService.post<
@@ -76,7 +79,7 @@ export const fetchAddStartUp = createAsyncThunk(
 );
 
 export const fetchDeleteStartUp = createAsyncThunk(
-  "startUps/delete",
+  'startUps/delete',
   async (id: number) => {
     const response = await apiService.delete(
       `${import.meta.env.VITE_URL}/startups/${id}`
@@ -88,7 +91,7 @@ export const fetchDeleteStartUp = createAsyncThunk(
 );
 
 export const fetchEditstartUp = createAsyncThunk(
-  "startUps/edit",
+  'startUps/edit',
   async ({ inputs, id }: { inputs: InputsType; id: number }) => {
     try {
       const response = await axios.patch<
@@ -103,17 +106,16 @@ export const fetchEditstartUp = createAsyncThunk(
 );
 
 export const fetchAddFunding = createAsyncThunk(
-  "funding/add",
+  'funding/add',
   async ({ amount, id }: { amount: number; id: number }) => {
     try {
       const response = await apiService.post<AxiosResponse<StartUpsType>>(
         `${import.meta.env.VITE_URL}/startups/funding/${id}`,
         { amount: amount }
-      );      
+      );
       return response.data;
     } catch (error) {
       console.log(error);
     }
   }
 );
-
