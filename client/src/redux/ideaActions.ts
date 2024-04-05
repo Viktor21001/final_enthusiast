@@ -92,18 +92,20 @@ export const fetchEditIdea = createAsyncThunk(
   }
 );
 
-export const fetchLikes = createAsyncThunk("likes/add", async (id: number) => {
+export const fetchLikes = createAsyncThunk("like/add", async (id: number) => {
   try {
     const response = await apiService.post<AxiosResponse<IdeasType>>(
       `${import.meta.env.VITE_URL}/ideas/like/${id}`
     );
+    console.log(response);
     return response.data;
+    
   } catch (error) {
     console.log(error);
   }
 });
 
-export const fetchDislikes = createAsyncThunk("dislikes/add", async (id: number) => {
+export const fetchDislikes = createAsyncThunk("dislike/add", async (id: number) => {
     try {
       const response = await apiService.post<AxiosResponse<IdeasType>>(
         `${import.meta.env.VITE_URL}/ideas/dislike/${id}`
