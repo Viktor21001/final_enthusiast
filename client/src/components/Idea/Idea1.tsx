@@ -38,6 +38,12 @@ export default function Idea1({
     <div className={styles.ideaCard}>
       {login ? (
         <>
+        <img
+              // src={idea?.photo}
+              src={`${import.meta.env.VITE_IMG}/${idea?.photo}`}
+              alt="avatar"
+              style={{ width: '150px' }}
+          />
       <h3 className={styles.ideaTitle}>{idea?.title}</h3>
       <p className={styles.ideaDescription}>{idea?.description}</p>
       <div className={styles.cardFooter}>

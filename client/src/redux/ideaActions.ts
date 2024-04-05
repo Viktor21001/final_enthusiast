@@ -4,6 +4,7 @@ import apiService from "../service/apiService";
 // import { InputsType, StartUpsType } from "../types";
 
 export type Idea = {
+  photo: any;
   userId: number;
   id: number;
   title: string;
@@ -20,6 +21,7 @@ export type InputsType = {
   title: string;
   description: string;
   category: string;
+  photo: File | null;
 };
 
 export type IdeasType = Array<Idea>;
