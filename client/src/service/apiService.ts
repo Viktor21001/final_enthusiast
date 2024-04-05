@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const apiService = axios.create({
-     withCredentials: true 
-})
+  withCredentials: true,
+});
 
-export default apiService
+export default apiService;

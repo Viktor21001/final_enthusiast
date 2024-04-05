@@ -1,6 +1,6 @@
 const ideaRouter = require('express').Router();
 
-const { Idea } = require('../../db/models');
+const { Idea, Vote } = require('../../db/models');
 
 ideaRouter.get('/', async (req, res) => {
   try {
@@ -49,12 +49,25 @@ ideaRouter.delete('/:id', async (req, res) => {
 
 ideaRouter.post('/like/:id', async (req, res) => {
   const { id } = req.params;
+  const { userId } = req.session;
+
   try {
-    const likeIdea = await Idea.findByPk(id);
-    if (!likeIdea) {
+    const idea = await Idea.findByPk(id);
+    if (!idea) {
       return res.status(404).json({ error: 'Idea not found' });
     }
-    await likeIdea.increment('likes', { by: 1 });
+
+    const existingVote = await Vote.findOne({ where: { userId, ideaId: idea.id } });
+    if (existingVote) {
+      console.log('User already voted for this idea');
+      await existingVote.destroy();
+      await idea.decrement('likes', { by: 1 });
+      return res.status(200).json({ status: 'vote removed' });
+    }
+
+    await Vote.create({ userId, ideaId: idea.id, type: 'like' });
+    await idea.increment('likes', { by: 1 });
+
     res.json({ status: 'liked' });
   } catch (error) {
     console.log(error);
@@ -64,12 +77,25 @@ ideaRouter.post('/like/:id', async (req, res) => {
 
 ideaRouter.post('/dislike/:id', async (req, res) => {
   const { id } = req.params;
+  const { userId } = req.session;
+
   try {
-    const dislikeIdea = await Idea.findByPk(id);
-    if (!dislikeIdea) {
+    const idea = await Idea.findByPk(id);
+    if (!idea) {
       return res.status(404).json({ error: 'Idea not found' });
     }
-    await dislikeIdea.increment('dislikes', { by: 1 });
+
+    const existingVote = await Vote.findOne({ where: { userId, ideaId: idea.id } });
+    if (existingVote) {
+      console.log('User already voted for this idea');
+      await existingVote.destroy();
+      await idea.decrement('dislikes', { by: 1 });
+      return res.status(200).json({ status: 'vote removed' });
+    }
+
+    await Vote.create({ userId, ideaId: idea.id, type: 'dislike' });
+    await idea.increment('dislikes', { by: 1 });
+
     res.json({ status: 'disliked' });
   } catch (error) {
     console.log(error);
