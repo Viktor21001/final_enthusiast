@@ -112,6 +112,32 @@ router.post('/registration', async (req, res) => {
   }
 });
 
+router.get('/people', async (req, res) => {
+  try {
+    const users = await User.findAll({
+      include: [
+        {
+          model: UserProfile,
+          attributes: ['interests'],
+        },
+      ],
+    });
+
+    const userList = users.map((user) => ({
+      id: user.id,
+      fullName: user.fullName,
+      interests: user.UserProfile?.interests || 'Интересы не указаны',
+    }));
+
+    res.json(userList);
+  } catch (error) {
+    console.error('Ошибка при получении списка пользователей:', error);
+    res
+      .status(500)
+      .json({ error: 'Ошибка сервера при получении списка пользователей' });
+  }
+});
+
 router.get('/logout', (req, res) => {
   req.session.destroy(() => {
     res.clearCookie('cooks');
