@@ -17,6 +17,7 @@ export type StartUp = {
   members?: StartUpMember[];
   funding?: number;
   msg?: string;
+  photos?: Text | null;
 };
 
 export type StartUpMember = {
@@ -33,6 +34,7 @@ export type InputsType = {
   currentAmount?: number;
   targetAmount: number;
   amount?: number;
+  photos?: Text | null;
 };
 
 export type StartUpsType = Array<StartUp>;
