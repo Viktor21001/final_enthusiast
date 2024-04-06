@@ -11,6 +11,10 @@ const Profile = ({ isOpen, onClose }) => {
     birthDate: '', // формат YYYY-MM-DD
   });
 
+  const [avatar, setAvatar] = useState({
+    avatar: null,
+  });
+
   const { login } = useUser();
 
   const handleInterestChange = (interest) => {
@@ -43,6 +47,11 @@ const Profile = ({ isOpen, onClose }) => {
       {login ? (
         <> 
       <div className="modal-content">
+      <img
+              src={`${import.meta.env.VITE_AVATAR}/${avatar?.avatar}`}
+              alt="avatar"
+              style={{ width: '150px' }}
+          />
         <span className="close" onClick={onClose}>
           &times;
         </span>

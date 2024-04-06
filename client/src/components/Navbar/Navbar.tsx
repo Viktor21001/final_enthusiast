@@ -262,7 +262,7 @@ function NavBar() {
                   >
                     <Avatar
                       alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
+                      src={`${import.meta.env.VITE_URL}/users/avatar`}
                       sx={{ backgroundColor: "black" }}
                     />
                   </IconButton>

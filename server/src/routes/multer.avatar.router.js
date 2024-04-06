@@ -3,7 +3,7 @@ const multer = require('multer');
 const uploadMid = require('../../file');
 const { UserProfile } = require('../../db/models');
 
-multerAvatarRouter.post('/', uploadMid.single('photo'), async (req, res) => {
+multerAvatarRouter.post('/', uploadMid.single('avatar'), async (req, res) => {
   console.log(req.body);
   console.log('ЗДЕСЬ ФАЙЛ СЕРВЕР', req.file);
   try {
