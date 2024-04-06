@@ -9,6 +9,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { fetchStartUpById, fetchAddFunding } from "../../redux/startUpActions";
 import { useUser } from "../../UserContext";
+import Page404 from "../page404/Page404";
 
 export default function OneStartUp(): React.JSX.Element {
   const { id } = useParams();
@@ -128,7 +129,7 @@ export default function OneStartUp(): React.JSX.Element {
           ):null}
         </>
       ) : (
-        <h1>Загрузка</h1>
+        <Page404/>
       )}
     </div>
   );
