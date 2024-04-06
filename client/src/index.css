@@ -13,7 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 * {
-  background-color: #F2F2F2;
+  /* background-color: #F2F2F2; */
 }
 a {
   font-weight: 500;
@@ -25,6 +25,7 @@ a:hover {
 }
 
 body {
+    background-color: #F2F2F2;
   /* max-height: 100%;
   max-width: 100%; */
   margin: 0;
