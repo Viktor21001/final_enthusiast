@@ -111,9 +111,9 @@ function NavBar() {
   };
 
   return (
-    <AppBar sx={{ backgroundColor: 'rgb(145, 143, 137)' }} position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+    <AppBar sx={{ backgroundColor: '#FFFFFF' }} position="static">
+<Container maxWidth="xl" sx={{ backgroundColor: '#FFFFFF' }}>
+        <Toolbar disableGutters sx={{ backgroundColor: '#FFFFFF' }}>
           {login ? (
             <>
               {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -129,12 +129,15 @@ function NavBar() {
                   letterSpacing: '.3rem',
                   color: 'inherit',
                   textDecoration: 'none',
+                  
                 }}
               >
                 <img
-                  style={{ width: '100px', height: '50px' }}
+                  // style={{ width: '100px', height: '50px' }}
                   src="/1.png"
                   alt="Logo"
+                  style={{ backgroundColor: '#FFFFFF',width:'200px' }}                
+
                 />
               </Typography>
 
@@ -146,6 +149,7 @@ function NavBar() {
                   aria-haspopup="true"
                   onClick={handleOpenNavMenu}
                   color="inherit"
+                  
                 >
                   <MenuIcon />
                 </IconButton>
@@ -165,6 +169,7 @@ function NavBar() {
                   onClose={handleCloseNavMenu}
                   sx={{
                     display: { xs: 'block', md: 'none' },
+                    backgroundColor: '#FFFFFF'
                   }}
                 >
                   {/* {pages.map((page) => (
@@ -203,7 +208,7 @@ function NavBar() {
                   alt="Logo"
                 />
               </Typography>
-              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' },backgroundColor: '#FFFFFF' }}>
                 {/* {pages.map((page) => (
               <Button
               key={page.name}
@@ -213,9 +218,9 @@ function NavBar() {
               {page.name}
               </Button>
             ))} */}
-                <CircleNotificationsOutlinedIcon />
+                <CircleNotificationsOutlinedIcon sx={{ backgroundColor: '#FFFFFF' }} />
                 <Link
-                  style={{ margin: '0 10px', color: 'white', display: 'block' }}
+                  style={{ margin: '0 10px', color: 'black', display: 'block',backgroundColor: '#FFFFFF' }}
                   className="link"
                   to="/newidea"
                   data-hover="Создать"
@@ -224,12 +229,13 @@ function NavBar() {
                 </Link>
               </Box>
 
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Box sx={{ flexGrow: 0,backgroundColor: '#FFFFFF' }}>
+                <Tooltip title="Open settings" >
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, backgroundColor: 'black'}}>
                     <Avatar
                       alt="Remy Sharp"
                       src="/static/images/avatar/2.jpg"
+                      sx={{ backgroundColor: 'black' }}
                     />
                   </IconButton>
                 </Tooltip>
@@ -308,7 +314,7 @@ function NavBar() {
                 }}
               >
                 <img
-                  style={{ width: '100px', height: '50px' }}
+                  style={{ width: '200px', height: '50px' }}
                   src="/1.png"
                   alt="Logo"
                 />

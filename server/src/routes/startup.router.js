@@ -1,11 +1,15 @@
 const startupRouter = require('express').Router();
 
-const { StartUp, Funding } = require('../../db/models');
+const { StartUp, User } = require('../../db/models');
 
 startupRouter.get('/', async (req, res) => {
   try {
     const startUps = await StartUp.findAll({
       raw: true,
+      include: {
+        model: User,
+        attributes: ['login'], // может лучше будет не логин а ФИО
+      },
     });
     res.json(startUps);
   } catch (error) {

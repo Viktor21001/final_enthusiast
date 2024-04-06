@@ -55,7 +55,7 @@ export default function StartUp1({
 
   return (
     <div className={styles.startUpContainer}>
-      <h3>Автор: {startUp.userId}</h3>
+      <h3>Автор: {startUp["User.login"]}</h3>
       <h2>{startUp.startUpTitle}</h2>
       <h3>{startUp.startUpDescription}</h3>
       <div>
