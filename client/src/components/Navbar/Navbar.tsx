@@ -262,9 +262,8 @@ function NavBar() {
                   >
                     <Avatar
                       alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
-                      sx={{ backgroundColor: "black" }}
-                    />
+                      src="src/assets/avatar.png"
+                      sx={{ backgroundColor: 'transparent' }}                    />
                   </IconButton>
                 </Tooltip>
                 <Menu
