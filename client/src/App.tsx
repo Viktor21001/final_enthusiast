@@ -29,6 +29,7 @@ import OneStartUp from './components/OneStartUp/OneStartUp';
 import Lk from './components/LK/Lk';
 import OneIdea from './components/OneIdea/OneIdea';
 import PeopleList from './components/People/PeopleList';
+import Page404 from './components/page404/Page404';
 
 function App() {
   return (
@@ -52,8 +53,9 @@ function App() {
                   <Route path="/newstartup" element={<NewStartUp />} />
                   <Route path="/lk" element={<Lk />} />
                   <Route path="/people" element={<PeopleList />} />
-
                   <Route path="/idea/:id" element={<OneIdea />} />
+                  <Route path="/page404" element={<Page404/>} />
+                  <Route path="*" element={<Page404/>} />
 
                   {/* <Route path="/login" element={<Login />} /> */}
                   {/* <Route path="/registration" element={<Registration />} /> */}
