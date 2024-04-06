@@ -9,6 +9,8 @@ import {
 import { fetchAddFavorites } from '../../redux/favoritesActions';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { useUser } from '../../UserContext';
+import { CgBookmark } from "react-icons/cg";
+
 
 import styles from './StartUp.module.css'; 
 
@@ -66,7 +68,8 @@ export default function StartUp1({
         <button onClick={deleteHandler} type="button">
           delete
         </button>
-        <button onClick={favoriteHandler} type="button">Favorite</button>
+        <button onClick={favoriteHandler}  type="button"><CgBookmark style={{ backgroundColor: 'white', fontSize: '2em'}}/>
+</button>
         </div>
           </>
         ) : (
