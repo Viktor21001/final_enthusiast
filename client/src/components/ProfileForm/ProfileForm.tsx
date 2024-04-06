@@ -42,6 +42,17 @@ export const UserProfileForm: React.FC = () => {
   
   const avatarChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setProfile((prev) => ({ ...prev, avatar: event.target.files[0] }));
+    const { name, files } = event.target;
+
+
+    if (name === 'avatar') {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        setPreviewImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   }
   // const handleChange = (
   //   e: React.ChangeEvent<
