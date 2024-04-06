@@ -13,12 +13,17 @@ import { useUser } from "../../UserContext";
 export default function OneStartUp(): React.JSX.Element {
   const { id } = useParams();
   const startUps = useAppSelector((store) => store.startUpSlice.startUps);
-  // console.log(startUps);
+
+  console.log(startUps);
 
   const members = useAppSelector((state) => state.memberSlice.members);
 
   const startup = startUps.find((el) => el.id === Number(id));
   const { login } = useUser();
+
+  // console.log(startup);
+  
+  // console.log( login, startup["User.login"]);
 
   const [memberInputs, setMemberInputs] = useState<memberInputsType>({
     login: "",
@@ -99,7 +104,9 @@ export default function OneStartUp(): React.JSX.Element {
               </li>
             ))}
           </ul>
-          <h4>Add Team Member</h4>
+          {login === startup["User.login"] ? (
+            <>
+            <h4>Add Team Member</h4>
           <input
             onChange={memberChangeHandler}
             type="text"
@@ -117,6 +124,8 @@ export default function OneStartUp(): React.JSX.Element {
           <button onClick={addMember} type="button">
             Add Member
           </button>
+          </>
+          ):null}
         </>
       ) : (
         <h1>Загрузка</h1>

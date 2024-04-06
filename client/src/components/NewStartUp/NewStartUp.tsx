@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { useAppDispatch } from "../../redux/hooks";
-import { InputsType, fetchAddStartUp } from "../../redux/startUpActions";
+import { InputsType, fetchAddStartUp, fetchStartUps } from "../../redux/startUpActions";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useUser } from "../../UserContext";
 
@@ -34,6 +34,7 @@ export default function NewStartUp(): JSX.Element {
       targetAmount: 0,
     });
     navigate('/');
+    void dispatch(fetchStartUps());
 
   };
 
