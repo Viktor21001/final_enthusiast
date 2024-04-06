@@ -1,11 +1,15 @@
 const ideaRouter = require('express').Router();
 
-const { Idea, Vote } = require('../../db/models');
+const { Idea, Vote, User } = require('../../db/models');
 
 ideaRouter.get('/', async (req, res) => {
   try {
     const ideas = await Idea.findAll({
       raw: true,
+      include: {
+        model: User,
+        attributes: ['login'], 
+      },
     });
     res.json(ideas);
   } catch (error) {
@@ -16,7 +20,14 @@ ideaRouter.get('/', async (req, res) => {
 ideaRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const idea = await Idea.findOne({ where: { id }, raw: true });
+    const idea = await Idea.findOne({
+      where: { id },
+      raw: true,
+      include: {
+        model: User,
+        attributes: ['login'],
+      },
+    });
     res.json(idea);
   } catch (error) {
     console.log(error);

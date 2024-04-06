@@ -1,18 +1,18 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
-import { JSX } from 'react/jsx-runtime';
-import { useAppDispatch } from '../../redux/hooks';
+import React, { ChangeEvent, Dispatch, SetStateAction, useContext, useState } from "react";
+import { JSX } from "react/jsx-runtime";
+import { useAppDispatch } from "../../redux/hooks";
 import {
   StartUp,
   fetchDeleteStartUp,
   fetchEditstartUp,
-} from '../../redux/startUpActions';
-import { fetchAddFavorites } from '../../redux/favoritesActions';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { useUser } from '../../UserContext';
+} from "../../redux/startUpActions";
+import { fetchAddFavorites } from "../../redux/favoritesActions";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useUser } from "../../UserContext";
 import { CgBookmark } from "react-icons/cg";
 
-
-import styles from './StartUp.module.css'; 
+import styles from "./StartUp.module.css";
+import { ContextUserState } from "../../context";
 
 type StartUpComponentPropsType = {
   startUp: StartUp;
@@ -22,9 +22,9 @@ export default function StartUp1({
   startUp,
 }: StartUpComponentPropsType): JSX.Element {
   const dispatch = useAppDispatch();
-  const { login } = useUser()
+  const { login} = useUser();
 
-  const navigate: NavigateFunction = useNavigate()
+  const navigate: NavigateFunction = useNavigate();
 
   //   const [btnEdit, setBtnEdit] = useState(false);
   //   const [edit, setEdit] = useState({ title: startUp.startUpTitle, description: startUp.startUpDescription, category: startUp.startUpCategory, progress: startUp.progress, currentAmount: startUp.currentAmount, targetAmount: startUp.targetAmount, members: startUp.members });
@@ -63,18 +63,36 @@ export default function StartUp1({
       <div>
         {login ? (
           <>
-          <div className={styles.buttons}>
-      <button type="button" onClick={() => navigate(`/${startUp.id}`)}>Read more</button>
-        <button onClick={deleteHandler} type="button">
-          delete
-        </button>
-        <button onClick={favoriteHandler}  type="button"><CgBookmark style={{ backgroundColor: 'white', fontSize: '2em'}}/>
-</button>
-        </div>
+            {login === startUp["User.login"] ? (
+              <div className={styles.buttons}>
+                <button
+                  type="button"
+                  onClick={() => navigate(`/${startUp.id}`)}
+                >
+                  Read more
+                </button>
+                <button onClick={deleteHandler} type="button">
+                  delete
+                </button>
+              </div>
+            ) : (
+              <div className={styles.buttons}>
+                <button
+                  type="button"
+                  onClick={() => navigate(`/${startUp.id}`)}
+                >
+                  Read more
+                </button>
+                <button onClick={favoriteHandler} type="button">
+                  <CgBookmark
+                    style={{ backgroundColor: "white", fontSize: "2em" }}
+                  />
+                </button>
+              </div>
+            )}
           </>
         ) : (
-          <>
-          </>
+          <></>
         )}
       </div>
     </div>

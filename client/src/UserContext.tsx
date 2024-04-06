@@ -1,4 +1,10 @@
-import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from "react";
 
 interface UserContextProps {
   children: ReactNode;
@@ -20,17 +26,14 @@ export const UserProvider: React.FC<UserContextProps> = ({ children }) => {
   };
 
   useEffect(() => {
-    const storedLogin = localStorage.getItem('regLogin');
+    const storedLogin = localStorage.getItem("regLogin");
     if (storedLogin) {
       setRegLogin(storedLogin);
-    } else {
-      // setIsAuthenticated(false);
     }
   }, []);
 
-
   useEffect(() => {
-    localStorage.setItem('regLogin', regLogin || '');
+    localStorage.setItem("regLogin", regLogin || "");
   }, [regLogin]);
 
   return (
@@ -43,7 +46,7 @@ export const UserProvider: React.FC<UserContextProps> = ({ children }) => {
 export const useUser = () => {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error('Ошибка при использовании UserContextProvider');
+    throw new Error("Ошибка при использовании UserContextProvider");
   }
   return context;
 };

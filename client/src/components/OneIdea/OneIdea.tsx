@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchDeleteIdea, fetchIdeaById } from '../../redux/ideaActions';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { useUser } from "../../UserContext";
 
 
 export default function OneIdea(): React.JSX.Element {
@@ -11,8 +12,12 @@ export default function OneIdea(): React.JSX.Element {
 console.log(ideas);
 
   const idea = ideas.find((el) => el.id === Number(id));
-  console.log(idea);
+  // console.log(idea);
   
+  const { login} = useUser();
+    // console.log( login, idea["User.login"]);
+
+
   const navigate: NavigateFunction = useNavigate()
 
   const dispatch = useAppDispatch();
@@ -41,9 +46,10 @@ console.log(ideas);
         <>
           <h2>{idea?.title}</h2>
           <h3>{idea?.description}</h3>
+          {login === idea["User.login"] ? (
           <button onClick={deleteHandler} type="button">
           delete
-        </button>
+        </button>):null}
         </>
       ) : (
         <h1>Загрузка</h1>
