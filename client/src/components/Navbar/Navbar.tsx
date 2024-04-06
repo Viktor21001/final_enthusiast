@@ -266,8 +266,8 @@ function NavBar() {
                       src={`${import.meta.env.VITE_URL}/users/avatar`}
                       sx={{ backgroundColor: "black" }}
                     />
-                 // src="src/assets/avatar.png"
-                 // sx={{ backgroundColor: 'transparent' }}    />
+                 {/* // src="src/assets/avatar.png"
+                 // sx={{ backgroundColor: 'transparent' }}    /> */}
 
                   </IconButton>
                 </Tooltip>
