@@ -61,6 +61,12 @@ export default function StartUp1({
       <h2>{startUp.startUpTitle}</h2>
       <h3>{startUp.startUpDescription}</h3>
       <div>
+      <img
+              
+              src={`${import.meta.env.VITE_IMG}/${startUp?.photos}`}
+              alt="avatar"
+              style={{ width: '150px' }}
+          />
         {login ? (
           <>
             {login === startUp["User.login"] ? (
