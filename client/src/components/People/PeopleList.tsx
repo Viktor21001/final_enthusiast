@@ -11,12 +11,13 @@ const PeopleList: React.FC = () => {
   const peopleState = useSelector<RootState, PeopleState>(
     (state) => state.people
   );
-
+  
   useEffect(() => {
     dispatch(fetchPeople());
   }, [dispatch]);
-
+  
   // Проверка на наличие данных и что это массив
+  console.log(peopleState, 'peopleState');
   if (!Array.isArray(peopleState.people)) {
     // Здесь можно отобразить индикатор загрузки или сообщение об ошибке
     return <div>Loading...</div>;
@@ -28,7 +29,7 @@ const PeopleList: React.FC = () => {
         <div key={person.id} className={styles.personCard}>
           <div className={styles.personImage}>
             <img
-              src={person.avatar || "src/assets/avatar.png"}
+              src={`${import.meta.env.VITE_IMG}/${person.avatar}` || "src/assets/avatar.png"}
               alt={person.fullName}
             />
           </div>

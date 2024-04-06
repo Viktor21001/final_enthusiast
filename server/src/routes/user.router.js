@@ -115,19 +115,21 @@ router.post('/registration', async (req, res) => {
 router.get('/people', async (req, res) => {
   try {
     const users = await User.findAll({
+      raw: true,
       include: [
         {
           model: UserProfile,
-          attributes: ['interests'],
+          attributes: ['interests', 'avatar'],
         },
       ],
     });
-
     const userList = users.map((user) => ({
       id: user.id,
       fullName: user.fullName,
-      interests: user.UserProfile?.interests || 'Интересы не указаны',
+      interests: user['UserProfile.interests'] || 'Интересы не указаны',
+      avatar: user['UserProfile.avatar'],
     }));
+    console.log(userList);
 
     res.json(userList);
   } catch (error) {
