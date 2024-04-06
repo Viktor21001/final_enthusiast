@@ -9,6 +9,8 @@ import {
 import { fetchAddFavorites } from '../../redux/favoritesActions';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { useUser } from '../../UserContext';
+import { CgBookmark } from "react-icons/cg";
+
 
 import styles from './StartUp.module.css'; 
 
@@ -55,7 +57,7 @@ export default function StartUp1({
 
   return (
     <div className={styles.startUpContainer}>
-      <h3>Автор: {startUp.userId}</h3>
+      <h3>Автор: {startUp["User.login"]}</h3>
       <h2>{startUp.startUpTitle}</h2>
       <h3>{startUp.startUpDescription}</h3>
       <div>
@@ -66,7 +68,8 @@ export default function StartUp1({
         <button onClick={deleteHandler} type="button">
           delete
         </button>
-        <button onClick={favoriteHandler} type="button">Favorite</button>
+        <button onClick={favoriteHandler}  type="button"><CgBookmark style={{ backgroundColor: 'white', fontSize: '2em'}}/>
+</button>
         </div>
           </>
         ) : (

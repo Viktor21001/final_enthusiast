@@ -21,8 +21,8 @@
   animation: fallAnimation 0.5s ease-out forwards;
   width: 100%; /* Default width */
   align-self: center; /* Center the card in the container */
-  height: 400px;
-  width: 300px;
+  height: 500px;
+  width: 400px;
 }
 
 .cardHeader,

@@ -9,6 +9,8 @@ import styles from './startUps.module.css';
 
 export default function StartUps(): JSX.Element {
   const startUps = useAppSelector((store) => store.startUpSlice.startUps);
+  console.log(startUps);
+  
   const { login } = useUser();
 
   const dispatch = useAppDispatch();
