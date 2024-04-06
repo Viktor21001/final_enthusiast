@@ -311,10 +311,11 @@ function NavBar() {
                   letterSpacing: '.3rem',
                   color: 'inherit',
                   textDecoration: 'none',
+                  backgroundColor: '#FFFF'
                 }}
               >
                 <img
-                  style={{ width: '200px', height: '50px' }}
+                  style={{ width: '200px', height: '50px',backgroundColor: '#FFFF',float: 'left' }}
                   src="/1.png"
                   alt="Logo"
                 />
@@ -323,7 +324,7 @@ function NavBar() {
               {/* <div>
               <div> */}
               <Link
-                style={{ margin: '0 10px', color: 'white', display: 'block' }}
+                style={{ margin: '0 10px', display: 'block',backgroundColor: '#FFFF',color:'black' }}
                 className="link"
                 to="/login"
                 data-hover="Войти"
@@ -331,7 +332,7 @@ function NavBar() {
                 Войти
               </Link>
               <Link
-                style={{ margin: '0 10px', color: 'white', display: 'block' }}
+                style={{ margin: '0 10px', backgroundColor: '#FFFF',color:'black' , display: 'block' }}
                 className="link"
                 to="/registration"
                 data-hover="Регистрация"
