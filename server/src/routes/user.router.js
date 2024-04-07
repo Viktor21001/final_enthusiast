@@ -61,23 +61,22 @@ router.post('/login', async (req, res) => {
   const { login, password } = req.body;
   try {
     const user = await User.findOne({ where: { login } });
-    if (user) {
-      const checkPass = await bcrypt.compare(password, user.password);
-      if (checkPass) {
-        req.session.login = user.login;
-        req.session.userId = user.id;
-
-        req.session.save(() => {
-          res.json({ success: true, message: 'Пароль верный', user });
-        });
-      } else {
-        res.status(400).json({ err: 'Неверный пароль' });
-      }
+    if (user && (await bcrypt.compare(password, user.password))) {
+      req.session.login = user.login;
+      req.session.userId = user.id;
+      req.session.save((err) => {
+        if (err) {
+          // Обработка ошибок сохранения сессии
+          console.error('Ошибка сохранения сессии:', err);
+          return res.status(500).json({ err: 'Ошибка при аутентификации' });
+        }
+        res.json({ success: true, message: 'Пароль верный', user });
+      });
     } else {
-      res.status(400).json({ err: 'Такой пользователь не найден!' });
+      res.status(400).json({ err: 'Неверный логин или пароль' });
     }
   } catch (error) {
-    console.log('Ошибка авторизации!', error);
+    console.error('Ошибка авторизации:', error);
     res.status(500).json({ err: 'Ошибка при авторизации' });
   }
 });

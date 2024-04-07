@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class IdeaMedia extends Model {
     /**
@@ -15,12 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  IdeaMedia.init({
-    ideaId: DataTypes.INTEGER,
-    image: DataTypes.TEXT
-  }, {
-    sequelize,
-    modelName: 'IdeaMedia',
-  });
+  IdeaMedia.init(
+    {
+      ideaId: DataTypes.INTEGER,
+      image: DataTypes.TEXT,
+    },
+    {
+      sequelize,
+      modelName: 'IdeaMedia',
+    }
+  );
   return IdeaMedia;
 };
