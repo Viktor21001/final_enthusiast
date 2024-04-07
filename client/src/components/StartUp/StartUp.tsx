@@ -1,104 +1,71 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useContext, useState } from "react";
-import { JSX } from "react/jsx-runtime";
-import { useAppDispatch } from "../../redux/hooks";
-import {
-  StartUp,
-  fetchDeleteStartUp,
-  fetchEditstartUp,
-} from "../../redux/startUpActions";
-import { fetchAddFavorites } from "../../redux/favoritesActions";
-import { NavigateFunction, useNavigate } from "react-router-dom";
-import { useUser } from "../../UserContext";
-import { CgBookmark } from "react-icons/cg";
-
-import styles from "./StartUp.module.css";
-import { ContextUserState } from "../../context";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../redux/hooks';
+import { fetchDeleteStartUp } from '../../redux/startUpActions';
+import { fetchAddFavorites } from '../../redux/favoritesActions';
+import { useUser } from '../../UserContext';
+import { CgBookmark } from 'react-icons/cg';
+import styles from './StartUp.module.css';
 
 type StartUpComponentPropsType = {
-  startUp: StartUp;
+  startUp: {
+    id: number;
+    'User.login': string;
+    startUpTitle: string;
+    startUpDescription: string;
+    photos: string; // Полагаем, что фотографии хранятся в виде JSON строки
+  };
 };
 
-export default function StartUp1({
+export default function StartUpComponent({
   startUp,
-}: StartUpComponentPropsType): JSX.Element {
+}: StartUpComponentPropsType) {
   const dispatch = useAppDispatch();
-  const { login} = useUser();
+  const { login } = useUser();
+  const navigate = useNavigate();
 
-  const navigate: NavigateFunction = useNavigate();
+  const deleteHandler = () => {
+    dispatch(fetchDeleteStartUp(startUp.id));
+  };
 
-  //   const [btnEdit, setBtnEdit] = useState(false);
-  //   const [edit, setEdit] = useState({ title: startUp.startUpTitle, description: startUp.startUpDescription, category: startUp.startUpCategory, progress: startUp.progress, currentAmount: startUp.currentAmount, targetAmount: startUp.targetAmount, members: startUp.members });
-
-  //   const buttonEdit = () => {
-  //     setBtnEdit(!btnEdit);
-  //   };
-  //   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-  //     setEdit((prev) => ({ ...prev, [event.target.name]: event.target.value }));
-  //   };
-
-  //   const editHandler = async (): Promise<void> => {
-  //     try {
-
-  //       void dispatch(fetchEditstartUp({ inputs: edit, id: startUp.id }));
-  //       setBtnEdit(!btnEdit);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  // КНопка для добавления в избранное и одновременного удаления из избранного
   const favoriteHandler = () => {
-    void dispatch(fetchAddFavorites(startUp.id));
+    dispatch(fetchAddFavorites(startUp.id));
   };
 
-  const deleteHandler = async () => {
-    void dispatch(fetchDeleteStartUp(startUp.id));
-  };
+  // Десериализация JSON строки в массив
+  const photosArray = startUp.photos ? JSON.parse(startUp.photos) : [];
 
   return (
     <div className={styles.startUpContainer}>
-      <h3>Автор: {startUp["User.login"]}</h3>
+      <h3>Автор: {startUp['User.login']}</h3>
       <h2>{startUp.startUpTitle}</h2>
       <h3>{startUp.startUpDescription}</h3>
       <div>
-      <img
-              
-              src={`${import.meta.env.VITE_IMG}/${startUp?.photos}`}
-              alt="avatar"
-              style={{ width: '150px' }}
+        {photosArray.map((photo: string, index: number) => (
+          <img
+            key={index}
+            src={`${import.meta.env.VITE_IMG}/${photo}`}
+            alt="Startup"
+            style={{ width: '150px' }}
           />
-        {login ? (
-          <>
-            {login === startUp["User.login"] ? (
-              <div className={styles.buttons}>
-                <button
-                  type="button"
-                  onClick={() => navigate(`/${startUp.id}`)}
-                >
-                  Read more
-                </button>
-                <button onClick={deleteHandler} type="button">
-                  delete
-                </button>
-              </div>
+        ))}
+        {login && (
+          <div className={styles.buttons}>
+            <button type="button" onClick={() => navigate(`/${startUp.id}`)}>
+              Read more
+            </button>
+            {login === startUp['User.login'] ? (
+              <button onClick={deleteHandler} type="button">
+                Delete
+              </button>
             ) : (
-              <div className={styles.buttons}>
-                <button
-                  type="button"
-                  onClick={() => navigate(`/${startUp.id}`)}
-                >
-                  Read more
-                </button>
-                <button onClick={favoriteHandler} type="button">
-                  <CgBookmark
-                    style={{ backgroundColor: "white", fontSize: "2em" }}
-                  />
-                </button>
-              </div>
+              <button onClick={favoriteHandler} type="button">
+                <CgBookmark
+                  style={{ backgroundColor: 'white', fontSize: '2em' }}
+                />
+              </button>
             )}
-          </>
-        ) : (
-          <></>
+          </div>
         )}
       </div>
     </div>
