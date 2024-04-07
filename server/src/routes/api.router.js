@@ -19,4 +19,4 @@ module.exports = apiRouter
   .use('/images', multerRouter)
   .use('/avatar', multerAvatarRouter)
   .use('/photos', multerSpartupRouter)
-  .use('/messages', messageRouter);
+  .use('/messages/send', messageRouter);

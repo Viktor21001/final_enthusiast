@@ -4,7 +4,7 @@ const router = express.Router();
 const { Message, User } = require('../../db/models');
 
 // Маршрут для отправки нового сообщения
-router.post('/send', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { text, receiverId } = req.body;
     const { userId } = req.session; // Идентификатор отправителя из сессии
