@@ -79,17 +79,29 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "../../UserContext";
 import LogoutButton from "../Login/LogOut";
 import CircleNotificationsOutlinedIcon from "@mui/icons-material/CircleNotificationsOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
+import { RootState } from "@reduxjs/toolkit/query";
+import { PeopleState } from "../../redux/peopleSlice";
 
 // const pages = [{ name: 'Создать', link: '/' }, { name: 'Билборд идей', link: '/startups' }];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function NavBar() {
   const { login } = useUser();
+
+  const peopleState = useSelector<RootState, PeopleState>(
+    (state) => state.people
+  );
+   
+  console.log(peopleState, 'peopleState');
+  
+    const member = peopleState.people.find((el) => el.login === login);
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -262,9 +274,9 @@ function NavBar() {
                   >
                     <Avatar
                       alt="Remy Sharp"
-
-                      src={`${import.meta.env.VITE_URL}/users/avatar`}
-                      sx={{ backgroundColor: "black" }}
+                      
+                       src={ `${import.meta.env.VITE_IMG}/${member?.avatar}` || "src/assets/avatar.png"}
+                      // sx={{ backgroundColor: "black" }}
                     />
                  {/* // src="src/assets/avatar.png"
                  // sx={{ backgroundColor: 'transparent' }}    /> */}
