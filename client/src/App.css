@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 0;
   text-align: center;
+  width: 100%;
 }
 
 .logo {
@@ -45,7 +46,7 @@
   display: flex;
   height: 100%;
   width: 100%;
-  gap:150px
+  gap: 150px;
 }
 
 .main-content {

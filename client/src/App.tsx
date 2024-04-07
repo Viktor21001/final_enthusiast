@@ -6,6 +6,7 @@ import Login from './components/Login/Login';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './App.css';
+import socketIO from 'socket.io-client';
 
 // function App() {
 
@@ -29,7 +30,9 @@ import OneStartUp from './components/OneStartUp/OneStartUp';
 import Lk from './components/LK/Lk';
 import OneIdea from './components/OneIdea/OneIdea';
 import PeopleList from './components/People/PeopleList';
+import Chat from './components/chat/Chat';
 
+const socket = socketIO.connect('http://localhost:3000');
 function App() {
   return (
     <>
@@ -51,7 +54,11 @@ function App() {
                   <Route path="/newidea" element={<NewIdea />} />
                   <Route path="/newstartup" element={<NewStartUp />} />
                   <Route path="/lk" element={<Lk />} />
-                  <Route path="/people" element={<PeopleList />} />
+                  <Route
+                    path="/people"
+                    element={<PeopleList socket={socket} />}
+                  />
+                  <Route path="/chats" element={<Chat socket={socket} />} />
 
                   <Route path="/idea/:id" element={<OneIdea />} />
 
