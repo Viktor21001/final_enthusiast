@@ -265,7 +265,19 @@ function NavBar() {
                   Создать
                 </Link>
               </Box>
-
+              <Link
+                  style={{
+                    margin: "0 10px",
+                    color: "black",
+                    display: "block",
+                    backgroundColor: "#FFFFFF",
+                  }}
+                  className="link"
+                  to="/newstartup"
+                  data-hover="Создать"
+                >
+                  Создать стартап
+                </Link>
               <Box sx={{ flexGrow: 0, backgroundColor: "#FFFFFF" }}>
                 <Tooltip title="Open settings">
                   <IconButton
