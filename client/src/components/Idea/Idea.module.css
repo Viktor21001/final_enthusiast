@@ -21,8 +21,8 @@
   animation: fallAnimation 0.5s ease-out forwards;
   width: 100%; /* Default width */
   align-self: center; /* Center the card in the container */
-  height: 500px;
-  width: 400px;
+  height: 400px;
+  width: 300px;
 }
 
 .cardHeader,
@@ -74,7 +74,7 @@
   margin: 6px;
 }
 
-.icon-button:hover {
+/* .icon-button:hover {
   background-color: #2a9b1c;
 }
 .likeButton  svg {
@@ -82,5 +82,33 @@
 }
 .dislikeButton svg {
   color: red; 
+} */
+/* 
+.greenButton {
+  background-color: green;
+  color: white;
 }
+
+.redButton {
+  background-color: red;
+  color: white;
+} */
+
+/* .likeButton,
+.dislikeButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 30px;
+  padding: 5px;
+}
+
+.likeButton.active {
+  color: green; 
+}
+
+.dislikeButton.active {
+  color: red; 
+} */
+
 

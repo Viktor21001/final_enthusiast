@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
       });
       this.hasMany(models.Favorite, { foreignKey: 'userId' });
+      this.hasMany(models.Vote, { foreignKey: 'userId' });
     }
   }
   User.init({
