@@ -1,11 +1,15 @@
 const startupRouter = require('express').Router();
 
-const { StartUp, Funding } = require('../../db/models');
+const { StartUp, User } = require('../../db/models');
 
 startupRouter.get('/', async (req, res) => {
   try {
     const startUps = await StartUp.findAll({
       raw: true,
+      include: {
+        model: User,
+        attributes: ['login'], // может лучше будет не логин а ФИО
+      },
     });
     res.json(startUps);
   } catch (error) {
@@ -16,7 +20,14 @@ startupRouter.get('/', async (req, res) => {
 startupRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const startUp = await StartUp.findOne({ where: { id }, raw: true });
+    const startUp = await StartUp.findOne({
+      where: { id },
+      raw: true,
+      include: {
+        model: User,
+        attributes: ['login'],
+      },
+    });
     res.json(startUp);
   } catch (error) {
     console.log(error);
@@ -55,7 +66,7 @@ startupRouter.patch('/:id', async (req, res) => {
 startupRouter.post('/funding/:id', async (req, res) => {
   const { id } = req.params;
   const { amount } = req.body; // Тут нужно на клинете передать сумму!!!
-console.log(amount);
+  console.log(amount);
   try {
     const startup = await StartUp.findByPk(id);
     if (!startup) {

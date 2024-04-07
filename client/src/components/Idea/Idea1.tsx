@@ -37,7 +37,6 @@ export default function Idea1({
       {login ? (
         <>
 
-
         <img
               // src={idea?.photo}
               src={`${import.meta.env.VITE_IMG}/${idea?.photo}`}

@@ -7,6 +7,7 @@ const userRouter = require('./user.router');
 const memberRouter = require('./members.router');
 const multerRouter = require('./multer.router');
 const multerAvatarRouter = require('./multer.avatar.router');
+const multerSpartupRouter = require('./multer.startup.router');
 
 module.exports = apiRouter
   .use('/users', userRouter)
@@ -15,4 +16,5 @@ module.exports = apiRouter
   .use('/favorites', favoriteRouter)
   .use('/members', memberRouter)
   .use('/images', multerRouter)
-  .use('/avatar', multerAvatarRouter);
+  .use('/avatar', multerAvatarRouter)
+  .use('/photos', multerSpartupRouter);

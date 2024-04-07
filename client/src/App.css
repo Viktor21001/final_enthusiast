@@ -44,17 +44,23 @@
 
 .app-container {
   display: flex;
-  height: 100%;
+  height: 100vh;
   width: 100%;
-  gap: 150px;
+  gap:150px;
+  overflow-y: scroll;
 }
+.app-container::-webkit-scrollbar {
+  display: none;
+  /* background-color: #F2F2F2; */
 
+}
 .main-content {
   margin-top: 20px;
 }
 
 .side-navbar {
   flex: 0 0 150px;
+  margin-top: 20px;
   margin-left: 50px;
 }
 

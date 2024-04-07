@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       progress: DataTypes.STRING,
       currentAmount: DataTypes.INTEGER,
       targetAmount: DataTypes.INTEGER,
+      photos: DataTypes.TEXT,
     },
     {
       sequelize,
