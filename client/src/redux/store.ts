@@ -1,35 +1,32 @@
-import { configureStore } from '@reduxjs/toolkit';
-import startUpSlice, { SliceState } from './startUpSlice';
-import ideaSlice, { ideaSliceState } from './ideaSlice';
-import favoritesSlice, { FavoritesSliceState } from './favoritesSlice';
-import memberSlice, { MemberSliceState } from './memberSlice';
-import userReducer, { UserState } from './userSlice'; // Импорт userReducer
-import peopleReducer, { PeopleState } from './peopleSlice'; // Импорт peopleReducer
-
-// Интерфейс StoreType теперь включает people слайс.
-// Этот тип обобщает структуру всего состояния Redux.
-type StoreType = {
-  startUpSlice: SliceState; // Предполагается, что SliceState уже определен в startUpSlice
-  ideaSlice: ideaSliceState; // Предполагается, что ideaSliceState уже определен в ideaSlice
-  favoritesSlice: FavoritesSliceState; // Предполагается, что FavoritesSliceState уже определен в favoritesSlice
-  memberSlice: MemberSliceState; // Предполагается, что MemberSliceState уже определен в memberSlice
-  user: UserState; // Предполагается, что UserState уже определен в userSlice
-  // Добавляем состояние для people слайса.
-  // Убедитесь, что PeopleState импортируется из файла peopleSlice, если он экспортируется из него
-  people: PeopleState;
-};
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import startUpSlice from './startUpSlice';
+import ideaSlice from './ideaSlice';
+import favoritesSlice from './favoritesSlice';
+import memberSlice from './memberSlice';
+import userReducer from './userSlice'; // Импорт userReducer
+import peopleReducer from './peopleSlice'; // Импорт peopleReducer
+import chatReducer from './chatSlice';
 
 const store = configureStore({
   reducer: {
-    startUpSlice, // Редьюсер для стартапов
-    ideaSlice, // Редьюсер для идей
-    favoritesSlice, // Редьюсер для избранного
-    memberSlice, // Редьюсер для членов команды
-    user: userReducer, // Редьюсер для пользователя
-    people: peopleReducer, // Добавляем редьюсер для списка людей
+    startUpSlice,
+    ideaSlice,
+    favoritesSlice,
+    memberSlice,
+    user: userReducer,
+    people: peopleReducer,
+    chat: chatReducer,
   },
-  // Применяем middleware, если нужно (не показано)
+  // Вы можете добавить middleware здесь, если это необходимо
 });
+
+// Определение типа AppThunk для создания Thunk-функций
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

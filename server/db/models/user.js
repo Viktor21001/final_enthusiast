@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -17,19 +15,23 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
       });
       this.hasMany(models.Favorite, { foreignKey: 'userId' });
+      this.hasMany(models.Message, { foreignKey: 'senderId' });
     }
   }
-  User.init({
-    login: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    fullName: DataTypes.STRING,
-    gender: DataTypes.BOOLEAN,
-    birthDate: DataTypes.DATE,
-    isInvestor: DataTypes.BOOLEAN,
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
+  User.init(
+    {
+      login: DataTypes.STRING,
+      email: DataTypes.STRING,
+      password: DataTypes.STRING,
+      fullName: DataTypes.STRING,
+      gender: DataTypes.BOOLEAN,
+      birthDate: DataTypes.DATE,
+      isInvestor: DataTypes.BOOLEAN,
+    },
+    {
+      sequelize,
+      modelName: 'User',
+    }
+  );
   return User;
 };

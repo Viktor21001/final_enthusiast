@@ -17,6 +17,7 @@ const socketIO = require('socket.io')(http, {
     credentials: true,
   },
 });
+const { Message } = require('../db/models/message');
 //!----------------------------
 const apiRouter = require('./routes/api.router');
 
@@ -38,31 +39,47 @@ const corsConfig = {
   origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
   credentials: true,
 };
-
+const sessionMiddleware = session(sessionConfig);
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(process.cwd(), 'public')));
 app.use(cors(corsConfig));
 app.use(session(sessionConfig));
+app.use(sessionMiddleware);
+
+const wrap = (middleware) => (socket, next) =>
+  middleware(socket.request, {}, next);
+socketIO.use(wrap(sessionMiddleware));
 
 app.use('/api/v1', apiRouter);
 //!----------------------------
 const users = [];
 
 socketIO.on('connection', (socket) => {
-  console.log(`Client connected ${socket.id}`);
-  socket.on('message', (data) => {
-    socketIO.emit('response', data);
-    // console.log('message', data);
-  });
-  socket.on('typing', (data) => socket.broadcast.emit('responseTyping', data));
-  socket.on('newUser', (data) => {
-    users.push(data);
-    socketIO.emit('responseNewUser', users);
-  });
-  socket.on('disconnect', () => {
-    console.log(`Client disconnected ${socket.id}`);
+  console.log(socket.request.session); // Выведите весь объект сессии для отладки
+  const { login } = socket.request.session;
+  console.log(`Пользователь ${login} подключен через сокет ${socket.id}`);
+
+  // Обработка отправки сообщения
+  socket.on('message', async (data) => {
+    const { text, receiverId } = data;
+
+    // Проверяем, сохранен ли id в сессии
+    const senderId = socket.request.session.id;
+    if (!senderId) {
+      return console.error('Пользователь не аутентифицирован');
+    }
+
+    // Сохранение сообщения в базе данных
+    const message = await Message.create({
+      text,
+      senderId,
+      receiverId,
+    });
+
+    // Отправка сообщения получателю
+    socketIO.to(receiverId).emit('new message', message.get({ plain: true }));
   });
 });
 //!----------------------------

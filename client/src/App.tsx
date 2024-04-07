@@ -55,15 +55,12 @@ function App() {
                   <Route path="/newidea" element={<NewIdea />} />
                   <Route path="/newstartup" element={<NewStartUp />} />
                   <Route path="/lk" element={<Lk />} />
-                  <Route
-                    path="/people"
-                    element={<PeopleList socket={socket} />}
-                  />
-                  <Route path="/chats" element={<Chat socket={socket} />} />
+                  <Route path="/people" element={<PeopleList />} />
+                  <Route path="/messages" element={<Chat socket={socket} />} />
 
                   <Route path="/idea/:id" element={<OneIdea />} />
-                  <Route path="/page404" element={<Page404/>} />
-                  <Route path="*" element={<Page404/>} />
+                  <Route path="/page404" element={<Page404 />} />
+                  <Route path="*" element={<Page404 />} />
 
                   {/* <Route path="/login" element={<Login />} /> */}
                   {/* <Route path="/registration" element={<Registration />} /> */}

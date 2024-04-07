@@ -15,6 +15,13 @@ export default function Chat({ socket }: any) {
   }, [socket, messages]);
 
   useEffect(() => {
+    socket.on('user data', (data) => {
+      console.log('Мой ID:', data.id);
+      // Здесь вы можете сохранить userId в состоянии компонента или где-то еще
+    });
+  }, [socket]);
+
+  useEffect(() => {
     socket.on('responseTyping', (data) => {
       setStatus(data);
       setTimeout(() => setStatus(''), 1000);
@@ -31,3 +38,4 @@ export default function Chat({ socket }: any) {
     </div>
   );
 }
+

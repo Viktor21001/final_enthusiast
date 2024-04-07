@@ -3,21 +3,8 @@ import styles from './Body.module.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function Body({ messages, status }: any) {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    navigate('/');
-  };
-
   return (
     <>
-      <header className={styles.header}>
-        <button className={styles.btn} onClick={handleLogout}>
-          Logout
-        </button>
-      </header>
-
       <div className={styles.container}>
         {messages.map((element: any) => {
           element.name === localStorage.getItem('user') ? (

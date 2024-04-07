@@ -22,7 +22,7 @@ const items: NavItem[] = [
   { label: 'Главная', key: '1', icon: <FaHome />, link: '/' },
   { label: 'Люди', key: '2', icon: <FaUsers />, link: '/people' },
   { label: 'Билборд идей', key: '3', icon: <FaLightbulb />, link: '/ideas' },
-  { label: 'Чаты', key: '4', icon: <FaComments />, link: '/chats' },
+  { label: 'Чаты', key: '4', icon: <FaComments />, link: '/messages' },
 ];
 
 const SideNavbar: React.FC = () => {
@@ -34,12 +34,11 @@ const SideNavbar: React.FC = () => {
   };
 
   return (
-    
     <div
-    style={{ width: collapsed ? '80px' : '256px' }}
-    className={styles.sideNavbar}
+      style={{ width: collapsed ? '80px' : '256px' }}
+      className={styles.sideNavbar}
     >
-    { login ? (
+      {login ? (
         <ul className={styles.navList}>
           {items.map((item: NavItem) => (
             <li key={item.key} className={styles.navItem}>
@@ -53,14 +52,13 @@ const SideNavbar: React.FC = () => {
             </li>
           ))}
         </ul>
-        
-        ) : (
-          <>
+      ) : (
+        <>
           <Link to="/" className={styles.navLink}>
             <FaHome /> Главная
           </Link>
-          </>
-       )}
+        </>
+      )}
     </div>
   );
 };
