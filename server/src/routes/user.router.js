@@ -119,16 +119,24 @@ router.get('/people', async (req, res) => {
         {
           model: UserProfile,
           attributes: ['interests', 'avatar'],
+          include: [
+            {
+              model: User,
+              attributes: ['login'],
+            },
+          ],
         },
       ],
     });
+    console.log(users, 'users');
     const userList = users.map((user) => ({
       id: user.id,
       fullName: user.fullName,
       interests: user['UserProfile.interests'] || 'Интересы не указаны',
       avatar: user['UserProfile.avatar'],
+      login: user['UserProfile.User.login'],
     }));
-    console.log(userList);
+    console.log(userList, 'userList');
 
     res.json(userList);
   } catch (error) {
@@ -138,6 +146,36 @@ router.get('/people', async (req, res) => {
       .json({ error: 'Ошибка сервера при получении списка пользователей' });
   }
 });
+
+// router.get('/people', async (req, res) => {
+//   try {
+//     const users = await UserProfile.findAll({
+//       raw: true,
+//       attributes: ['id', 'fullName', 'interests', 'avatar'],
+//       include: [
+//         {
+//           model: User,
+//           attributes: ['login'],
+//         },
+//       ],
+//     });
+
+//     // const userList = users.map((user) => ({
+//     //   id: user.id,
+//     //   fullName: user.fullName,
+//     //   interests: user.interests || 'Интересы не указаны',
+//     //   avatar: user.avatar,
+//     //   login: user.User.login,
+//     // }));
+
+//     console.log(users);
+
+//     res.json(users);
+//   } catch (error) {
+//     console.error('Ошибка при получении списка пользователей:', error);
+//     res.status(500).json({ error: 'Ошибка сервера при получении списка пользователей' });
+//   }
+// });
 
 router.get('/logout', (req, res) => {
   req.session.destroy(() => {

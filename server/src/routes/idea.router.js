@@ -3,15 +3,26 @@ const ideaRouter = require('express').Router();
 const { Idea, Vote, User } = require('../../db/models');
 
 ideaRouter.get('/', async (req, res) => {
+  const { userId } = req.session;
   try {
     const ideas = await Idea.findAll({
-      raw: true,
-      include: {
-        model: User,
-        attributes: ['login'], 
-      },
+      // raw: true,
+      include: [
+        {
+          model: User,
+          attributes: ['login'],
+        },
+        {
+          model: Vote,
+          where: { userId },
+          attributes: ['type'],
+          required: false
+        },
+      ],
     });
-    res.json(ideas);
+    const ideaLikes = ideas.map((el) => el.get({ plain: true }));
+    // console.log(ideaLikes);
+    res.json(ideaLikes);
   } catch (error) {
     console.log(error);
   }
@@ -68,7 +79,9 @@ ideaRouter.post('/like/:id', async (req, res) => {
       return res.status(404).json({ error: 'Idea not found' });
     }
 
-    const existingVote = await Vote.findOne({ where: { userId, ideaId: idea.id } });
+    const existingVote = await Vote.findOne({
+      where: { userId, ideaId: idea.id },
+    });
     if (existingVote) {
       console.log('User already voted for this idea');
       await existingVote.destroy();
@@ -96,7 +109,9 @@ ideaRouter.post('/dislike/:id', async (req, res) => {
       return res.status(404).json({ error: 'Idea not found' });
     }
 
-    const existingVote = await Vote.findOne({ where: { userId, ideaId: idea.id } });
+    const existingVote = await Vote.findOne({
+      where: { userId, ideaId: idea.id },
+    });
     if (existingVote) {
       console.log('User already voted for this idea');
       await existingVote.destroy();

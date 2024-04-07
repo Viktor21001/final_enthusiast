@@ -37,3 +37,21 @@ multerStartupRouter.post('/', uploadMid.single('photos'), async (req, res) => {
 });
 
 module.exports = multerStartupRouter;
+
+
+// multerRouter.post('/', uploadMid.array('photos', 5), async (req, res) => { // Предположим, что maxCount равен 5
+//     try {
+//       const { userId } = req.session;
+//       const { title, description, category } = req.body;
+//       const photos = req.files.map(file => file.originalname); // 'req.files' содержит массив файлов
+  
+//       const newIdea = await Idea.create({
+//         userId, title, description, category, photos: JSON.stringify(photos),
+//       });
+  
+//       res.json(newIdea);
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).send('Ошибка при загрузке изображений');
+//     }
+//   });
