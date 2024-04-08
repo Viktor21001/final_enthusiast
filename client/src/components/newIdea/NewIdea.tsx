@@ -49,9 +49,10 @@ export default function NewIdea(): JSX.Element {
     data.append('photo', inputs.photo)
     console.log(data);
 
-    dispatch(saveSaleBook(data))
-    navigate('/ideas');
+    // dispatch(saveSaleBook(data))
+    void dispatch(fetchAddIdea(data));
     void dispatch(fetchIdeas());
+    navigate('/ideas');
   };
 
 

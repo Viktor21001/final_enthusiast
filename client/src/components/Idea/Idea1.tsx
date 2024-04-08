@@ -23,7 +23,7 @@ export default function Idea1({
 }: StartUpComponentPropsType): JSX.Element {
   const dispatch = useAppDispatch();
   const { login } = useUser();
-  const [likeDislike, setLikeDislike] = useState(idea?.Votes[0]?.type) 
+  const [likeDislike, setLikeDislike] = useState(idea?.Votes?.at(0)?.type) 
   console.log(likeDislike)
 
   const [buttonColor, setButtonColor] = useState('');
