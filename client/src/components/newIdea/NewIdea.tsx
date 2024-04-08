@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useUser } from "../../UserContext";
 import { saveSaleBook } from "../../redux/malter";
+import styles from "./NewIdea.module.css"; 
 
 export default function NewIdea(): JSX.Element {
   const [inputs, setInputs] = useState<InputsType>({
@@ -72,36 +73,45 @@ export default function NewIdea(): JSX.Element {
       {login ? (
         <>
         {previewImage ? (
-      <img style={{ width: '150px' }} src={previewImage} alt="Предпросмотр" className="previewImage" />
+      <img style={{ width: '150px' }} src={previewImage} alt="Предпросмотр" className={styles.previewImage}  />
     ) : (
       null
     )}
         
         <br/>
-        <input type="file" name="photo" onChange={handleChange} className='inputSalon'/>
+        <h2>Create your idea!</h2>
         <input
-          onChange={changeHandler}
-          type="text"
-          name="title"
-          value={inputs.title}
-        />
-       <input
-          onChange={changeHandler}
-          type="text"
-          name="description"
-          value={inputs.description}
-        />
-          <select name="category" onChange={changeHandler} value={inputs.category}>
-          <option value="">Select a category</option>
-          <option value="technology">Technology</option>
-          <option value="business">Business</option>
-          <option value="art">Art</option>
-        </select>
-        
-        <br/>        
-      <button onClick={handleSubmit} type="button">
-         Add
-        </button> 
+            onChange={changeHandler}
+            type="text"
+            name="title"
+            value={inputs.title}
+            className={styles.inputField}
+            placeholder="Title"
+          />
+          <input
+            onChange={changeHandler}
+            type="text"
+            name="description"
+            value={inputs.description}
+            className={styles.inputField}
+            placeholder="Description"
+          />
+          <select
+            name="category"
+            onChange={changeHandler}
+            value={inputs.category}
+            className={styles.selectField}
+          >
+            <option value="">Select a category</option>
+            <option value="technology">Technology</option>
+            <option value="business">Business</option>
+            <option value="art">Art</option>
+          </select>
+          <input type="file" name="photo" onChange={handleChange} className='inputSalon'/>
+          <br/>
+          <button type="submit" className={styles.addButton}>
+            Add idea
+          </button>
         </>
       ) : (
         <>
