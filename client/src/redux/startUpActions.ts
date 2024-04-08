@@ -74,6 +74,7 @@ export const fetchAddStartUp = createAsyncThunk(
         InputsType,
         AxiosResponse<StartUpsType>
       >(`${import.meta.env.VITE_URL}/startups/new`, inputs);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);

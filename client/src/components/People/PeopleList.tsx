@@ -35,27 +35,6 @@ const PeopleList: React.FC = ({ socket }) => {
   console.log("------------------>", peopleState);
   return (
     <div className={styles.peopleList}>
-      <form className={styles.enterChat} onSubmit={handeSubmit}>
-        <h2>Вход в чат</h2>
-        <label htmlFor=""></label>
-        <input
-          type="text"
-          id="user"
-          placeholder="Ваше имя"
-          value={user}
-          onChange={(e) => setUser(e.target.value)}
-        />
-        <button
-          type="submit"
-          onClick={(e) => {
-            e.preventDefault();
-            socket.emit('join', user);
-            navigate('/chats');
-          }}
-        >
-          Войти
-        </button>
-      </form>
       {peopleState.people.map((person) => (
         <div key={person.id} className={styles.personCard}>
           <div className={styles.personImage}>
