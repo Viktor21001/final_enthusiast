@@ -128,7 +128,7 @@ router.get('/people', async (req, res) => {
         },
       ],
     });
-    console.log(users, 'users');
+    // console.log(users, 'users');
     const userList = users.map((user) => ({
       id: user.id,
       fullName: user.fullName,
@@ -136,7 +136,7 @@ router.get('/people', async (req, res) => {
       avatar: user['UserProfile.avatar'],
       login: user['UserProfile.User.login'],
     }));
-    console.log(userList, 'userList');
+    // console.log(userList, 'userList');
 
     res.json(userList);
   } catch (error) {

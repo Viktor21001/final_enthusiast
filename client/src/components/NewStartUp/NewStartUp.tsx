@@ -138,38 +138,43 @@
 // }
 
 import React, { ChangeEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../redux/hooks';
+import { NavigateFunction, useNavigate } from "react-router-dom";import { useAppDispatch } from '../../redux/hooks';
 import { saveSaleBook } from '../../redux/muterStaptup';
 import { useUser } from '../../UserContext';
 import styles from "./NewStartup.module.css"; 
+import { InputsType, fetchAddStartUp, fetchStartUps } from "../../redux/startUpActions";
 
 
-interface InputsType {
-  startUpTitle: string;
-  startUpDescription: string;
-  startUpCategory: string;
-  progress: string;
-  currentAmount: string;
-  targetAmount: string;
-  photos: FileList | null;
-}
+// interface InputsType {
+//   startUpTitle: string;
+//   startUpDescription: string;
+//   startUpCategory: string;
+//   progress: string;
+//   currentAmount: string;
+//   targetAmount: string;
+//   photos: FileList | null;
+// }
 
 export default function NewStartUp(): JSX.Element {
   const [inputs, setInputs] = useState<InputsType>({
     startUpTitle: '',
     startUpDescription: '',
     startUpCategory: '',
-    progress: '',
-    currentAmount: '',
-    targetAmount: '',
+    progress: 0,
+    currentAmount: 0,
+    targetAmount: 0,
     photos: null,
   });
 
   const [previewImages, setPreviewImages] = useState<string[]>([]);
   const { login } = useUser();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
+
+  // const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  //    };
+    
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -190,7 +195,7 @@ export default function NewStartUp(): JSX.Element {
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
     e.preventDefault();
-
+   void dispatch(fetchAddStartUp(inputs));
     const formData = new FormData();
     formData.append('startUpTitle', inputs.startUpTitle);
     formData.append('startUpDescription', inputs.startUpDescription);
@@ -217,6 +222,8 @@ export default function NewStartUp(): JSX.Element {
     });
     setPreviewImages([]);
     navigate('/');
+    void dispatch(fetchStartUps());
+
   };
 
   return (

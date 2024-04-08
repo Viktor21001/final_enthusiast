@@ -17,7 +17,7 @@ console.log(userId);
       ],
       order: [['createdAt', 'DESC']],
     });
-    console.log(startUps);
+    // console.log(startUps);
     res.json(startUps);
   } catch (error) {
     console.log(error);

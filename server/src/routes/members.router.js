@@ -52,7 +52,7 @@ memberRouter.post('/new/:startUpId', async (req, res) => {
   try {
     const { login, role } = req.body;
     const { startUpId } = req.params;
-    console.log(req.body);
+    // console.log(req.body);
     const user = await User.findOne({ where: { login } });
 
     if (!user) {
