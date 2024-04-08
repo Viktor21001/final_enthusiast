@@ -1,0 +1,42 @@
+.previewImage {
+    width: 150px;
+  }
+  
+  .inputField {
+    margin-bottom: 10px; 
+    width: 80%;
+    height: 70px;
+    padding: 8px; 
+    border: 2px solid #a7a0a0b4; 
+    border-radius: 10px; 
+    box-sizing: border-box; 
+    font-size: 15px;
+font-family: 'Courier New', Courier, monospace; 
+ }
+  
+  .selectField {
+    margin-bottom: 10px; 
+    width: 80%; 
+    padding: 8px; 
+    border: 2px solid #a7a0a0b4; 
+    border-radius: 10px; 
+    box-sizing: border-box; 
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace; 
+
+  }
+  
+  .addButton {
+    margin-top: 10px;
+    background-color: #60467d; 
+    color: #fff;
+    border: none; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    border-radius: 10px; 
+  }
+  
+  .addButton:hover {
+    background-color: #9466b5; 
+  }
+  

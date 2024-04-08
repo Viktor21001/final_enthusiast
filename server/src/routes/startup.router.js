@@ -36,7 +36,6 @@ startupRouter.get('/:id', async (req, res) => {
 
 startupRouter.post('/new', async (req, res) => {
   const { userId } = req.session;
-
   const startUpData = req.body;
   startUpData.userId = userId;
   try {
