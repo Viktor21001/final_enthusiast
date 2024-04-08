@@ -4,7 +4,7 @@ import apiService from "../service/apiService";
 // import { InputsType, StartUpsType } from "../types";
 
 export type Idea = {
-  photo: any;
+  photo?: string;
   userId: number;
   id: number;
   title: string;
@@ -56,10 +56,15 @@ export const fetchAddIdea = createAsyncThunk(
   "ideas/add",
   async (inputs: InputsType) => {
     try {
-      const response = await apiService.post<InputsType, AxiosResponse<IdeasType>>(
-        `${import.meta.env.VITE_URL}/ideas/new`,
-        inputs
-      );
+      console.log('я тутттт')
+      // const response = await apiService.post<InputsType, AxiosResponse<IdeasType>>(
+      //   `${import.meta.env.VITE_URL}/ideas/new`,
+      //   inputs
+      // );
+      const response = await axios.post(`${import.meta.env.VITE_URL}/ideas/new`,
+         inputs,
+         {withCredentials: true, headers: { 'content-type': 'multipart/form-data' },})
+      console.log(response.data)
       return response.data;
     } catch (error) {
       console.log(error);

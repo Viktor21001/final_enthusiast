@@ -1,6 +1,7 @@
 const ideaRouter = require('express').Router();
 
 const { Idea, Vote, User } = require('../../db/models');
+const uploadMid = require('../../file');
 
 ideaRouter.get('/', async (req, res) => {
   const { userId } = req.session;
@@ -16,7 +17,7 @@ ideaRouter.get('/', async (req, res) => {
           model: Vote,
           where: { userId },
           attributes: ['type'],
-          required: false
+          required: false,
         },
       ],
     });
@@ -45,14 +46,22 @@ ideaRouter.get('/:id', async (req, res) => {
   }
 });
 
-ideaRouter.post('/new', async (req, res) => {
+ideaRouter.post('/new', uploadMid.single('photo'), async (req, res) => {
   try {
     const { userId } = req.session;
     // console.log(req.session, 'это яяяяяяя');
+    console.log(req.file, '>>>>>>>>>>...REQ FILE');
+    let photo = 'sadMax.jpg';
 
+    if (req.file) {
+      photo = req.file.originalname;
+    }
     const ideaData = req.body;
+    ideaData.photo = photo;
+    console.log(req.body);
     ideaData.userId = userId;
     const idea = await Idea.create(ideaData);
+    console.log(idea, '>>>>>>>>>>>>>>>>>>>>');
     res.json(idea);
   } catch (error) {
     console.log(error);

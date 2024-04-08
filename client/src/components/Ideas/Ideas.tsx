@@ -16,6 +16,7 @@ export default function Ideas() {
     void dispatch(fetchIdeas());
   }, [dispatch]);
 
+  console.log(ideas)
   return (
     <div>
       {login ? (

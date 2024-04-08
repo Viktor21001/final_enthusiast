@@ -8,7 +8,7 @@ multerRouter.post('/', uploadMid.single('photo'), async (req, res) => {
   console.log('ЗДЕСЬ ФАЙЛ СЕРВЕР', req.file);
   try {
     if (req.file) {
-      console.log(req.file);
+      console.log(req.file, '>>>>>>>>>>...REQ FILE');
       const photo = req.file.originalname;
       const { userId } = req.session;
       const { title, description, category } = req.body;
@@ -22,6 +22,8 @@ multerRouter.post('/', uploadMid.single('photo'), async (req, res) => {
         photo,
       });
       res.json(ideaSale);
+    } else {
+      res.sendStatus(200);
     }
   } catch (error) {
     console.log(error);
