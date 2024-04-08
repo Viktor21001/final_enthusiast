@@ -32,8 +32,6 @@ export default function StartUpComponent({
     dispatch(fetchAddFavorites(startUp.id));
   };
 
-  // Десериализация JSON строки в массив
-  const photosArray = startUp.photos ? JSON.parse(startUp.photos) : [];
 
   return (
     <div className={styles.startUpContainer}>
@@ -41,14 +39,12 @@ export default function StartUpComponent({
       <h2>{startUp.startUpTitle}</h2>
       <h3>{startUp.startUpDescription}</h3>
       <div>
-        {photosArray.map((photo: string, index: number) => (
-          <img
-            key={index}
-            src={`${import.meta.env.VITE_IMG}/${photo}`}
-            alt="Startup"
-            style={{ width: '150px' }}
+      <img
+              // src={idea?.photo}
+              src={`${import.meta.env.VITE_IMG}/${startUp?.photos}`}
+              alt="avatar"
+              style={{ width: '150px' }}
           />
-        ))}
         {login && (
           <div className={styles.buttons}>
             <button type="button" onClick={() => navigate(`/${startUp.id}`)}>

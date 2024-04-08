@@ -70,10 +70,19 @@ export const fetchAddStartUp = createAsyncThunk(
   'startUps/add',
   async (inputs: InputsType) => {
     try {
-      const response = await apiService.post<
-        InputsType,
-        AxiosResponse<StartUpsType>
-      >(`${import.meta.env.VITE_URL}/startups/new`, inputs);
+      // const response = await apiService.post<
+      //   InputsType,
+      //   AxiosResponse<StartUpsType>
+      // >(`${import.meta.env.VITE_URL}/startups/new`, inputs);
+      const response = await axios.post( `${import.meta.env.VITE_URL}/startups/new`,
+        inputs,
+        {
+          withCredentials: true,
+          headers: {
+            'content-type': 'multipart/form-data',
+          }
+        }
+      )
       console.log(response.data);
       return response.data;
     } catch (error) {
