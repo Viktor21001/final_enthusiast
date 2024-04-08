@@ -1,5 +1,5 @@
 const startupRouter = require('express').Router();
-
+const uploadMid = require('../../file');
 const { StartUp, User } = require('../../db/models');
 
 startupRouter.get('/', async (req, res) => {
@@ -34,11 +34,16 @@ startupRouter.get('/:id', async (req, res) => {
   }
 });
 
-startupRouter.post('/new', async (req, res) => {
+startupRouter.post('/new', uploadMid.single('photos'), async (req, res) => {
   const { userId } = req.session;
   const startUpData = req.body;
   startUpData.userId = userId;
   try {
+    let photos = 'sadMax.jpg';
+    if (req.file) {
+      photos = req.file.originalname;
+    }
+    startUpData.photos = photos;
     const startUp = await StartUp.create(startUpData);
     res.json(startUp);
   } catch (error) {

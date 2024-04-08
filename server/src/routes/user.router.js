@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User, UserProfile } = require('../../db/models');
+const uploadMid = require('../../file');
 
 //! Функция для обновления профиля пользователя
 const updateProfile = async (userId, profileData) => {
@@ -44,11 +45,15 @@ const updateProfile = async (userId, profileData) => {
 };
 
 //! Роут для обновления профиля пользователя
-router.post('/updateProfile', async (req, res) => {
+router.post('/updateProfile', uploadMid.single('avatar'), async (req, res) => {
   const { userId } = req.session;
   const profileData = req.body;
-
   try {
+    let avatar = 'avatar.png';
+    if (req.file) {
+      avatar = req.file.originalname;
+    }
+    profileData.avatar = avatar;
     const { user, userProfile } = await updateProfile(userId, profileData);
     res.json({ user: user.toJSON(), userProfile: userProfile.toJSON() });
   } catch (error) {

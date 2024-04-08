@@ -39,7 +39,7 @@ const PeopleList: React.FC = ({ socket }) => {
         <div key={person.id} className={styles.personCard}>
           <div className={styles.personImage}>
             <img
-              src={`${import.meta.env.VITE_IMG}/${person.avatar}` || "src/assets/avatar.png"}
+              src={`${import.meta.env.VITE_IMG}/${person.avatar}`}
               alt={person.fullName}
             />
           </div>

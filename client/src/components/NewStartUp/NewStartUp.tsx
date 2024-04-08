@@ -166,7 +166,7 @@ export default function NewStartUp(): JSX.Element {
     photos: null,
   });
 
-  const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [previewImages, setPreviewImages] = useState<string | null>(null);
   const { login } = useUser();
   const dispatch = useAppDispatch();
   const navigate: NavigateFunction = useNavigate();
@@ -210,35 +210,20 @@ export default function NewStartUp(): JSX.Element {
       });
     }
 
-    await dispatch(saveSaleBook(formData));
-    setInputs({
-      startUpTitle: '',
-      startUpDescription: '',
-      startUpCategory: '',
-      progress: '',
-      currentAmount: '',
-      targetAmount: '',
-      photos: null,
-    });
-    setPreviewImages([]);
-    navigate('/');
+    void dispatch(fetchAddStartUp(formData));
     void dispatch(fetchStartUps());
-
+    navigate('/');
   };
 
   return (
     <div>
       {login ? (
         <form>
-          {previewImages.map((url, index) => (
-            <img
-              key={index}
-              src={url}
-              alt="Preview"
-              style={{ width: '100px', height: '100px' }}
-              className={styles.previewImage} 
-            />
-          ))}
+          { previewImages ? (
+      <img style={{ width: '150px' }} src={previewImages} alt="Предпросмотр" className={styles.previewImage}  />
+    ) : (
+      null
+    )}
       
                   <h2>Create your startup!</h2>
 

@@ -81,8 +81,8 @@ export const UserProfileForm: React.FC = () => {
     data.append("avatar", profile.avatar);
     console.log(data);
 
-    dispatch(saveSaleBook(data));
-    dispatch(updateUserProfile(profile));
+    // dispatch(saveSaleBook(data));
+    dispatch(updateUserProfile(data));
     // navigate('/profile');
   };
 
