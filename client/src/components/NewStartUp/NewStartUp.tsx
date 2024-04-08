@@ -142,6 +142,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/hooks';
 import { saveSaleBook } from '../../redux/muterStaptup';
 import { useUser } from '../../UserContext';
+import styles from "./NewStartup.module.css"; 
+
 
 interface InputsType {
   startUpTitle: string;
@@ -227,21 +229,19 @@ export default function NewStartUp(): JSX.Element {
               src={url}
               alt="Preview"
               style={{ width: '100px', height: '100px' }}
+              className={styles.previewImage} 
             />
           ))}
-          <input
-            type="file"
-            name="photos"
-            onChange={handleChange}
-            multiple
-            className="inputSalon"
-          />
+      
+                  <h2>Create your startup!</h2>
+
           <input
             type="text"
             name="startUpTitle"
             value={inputs.startUpTitle}
             onChange={handleChange}
             placeholder="Title"
+            className={styles.inputField}
           />
           <input
             type="text"
@@ -249,6 +249,7 @@ export default function NewStartUp(): JSX.Element {
             value={inputs.startUpDescription}
             onChange={handleChange}
             placeholder="Description"
+            className={styles.inputField}
           />
           <input
             type="text"
@@ -256,6 +257,7 @@ export default function NewStartUp(): JSX.Element {
             value={inputs.startUpCategory}
             onChange={handleChange}
             placeholder="Category"
+            className={styles.inputField}
           />
           <input
             type="text"
@@ -263,6 +265,7 @@ export default function NewStartUp(): JSX.Element {
             value={inputs.progress}
             onChange={handleChange}
             placeholder="Progress"
+            className={styles.inputField}
           />
           <input
             type="text"
@@ -270,6 +273,7 @@ export default function NewStartUp(): JSX.Element {
             value={inputs.currentAmount}
             onChange={handleChange}
             placeholder="Current Amount"
+            className={styles.inputField}
           />
           <input
             type="text"
@@ -277,8 +281,16 @@ export default function NewStartUp(): JSX.Element {
             value={inputs.targetAmount}
             onChange={handleChange}
             placeholder="Target Amount"
+            className={styles.inputField}
           />
-          <button type="button" onClick={addStartUp}>
+            <input
+            type="file"
+            name="photos"
+            onChange={handleChange}
+            multiple
+            // className={styles.inputField}
+          />
+          <button type="button" onClick={addStartUp} className={styles.addButton}>
             Add Startup
           </button>
         </form>
