@@ -56,7 +56,7 @@ const dislikeHandler = () => {
       {login ? (
         <>
 {/* <img src={idea.User.avatar} alt="avatartttt" /> */}
-        <h3> Автор: {idea.User.login}</h3>
+        <h3> Автор: {idea?.User?.login}</h3>
         <img
               // src={idea?.photo}
               src={`${import.meta.env.VITE_IMG}/${idea?.photo}`}
