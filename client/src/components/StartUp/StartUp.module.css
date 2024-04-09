@@ -5,9 +5,13 @@
 .startUpContainer {
   background-color: #ffffff; 
   border: 1px solid #dddddd; 
+  display: flex;
+justify-content:center;
+text-align: start;
   border-radius: 30px; 
   padding: 20px; 
   margin-bottom: 20px; 
+  width: 700px;
 }
 
 .startUpContainer h3 {
@@ -31,32 +35,27 @@
 
 .buttons{
   background-color: #ffffff; 
+  display: flex;
+  justify-content: center;
 }
 
-/* .likeBnt { 
-  display: inline-block;
-  position: absolute;
-  right: 70px;
-  cursor: pointer;
-  border: 1px solid black;
-  &::before {
-    font-size: 3em;
-    color: #000;
-    content: '♥';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  &::after {
-    font-size: 3em;
-    color: #ff3252;
-    content: '♥';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.2s;
-  }
-} */
+.info {
+  width: 60%; 
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between; 
+  /* gap:5px */
+}
+
+
+.photoDiv {
+  width: 40%; 
+  margin: 20px;
+}
+.photo{
+  border-radius: 20px;
+  height: auto;
+  width: 100%;
+}
+
 

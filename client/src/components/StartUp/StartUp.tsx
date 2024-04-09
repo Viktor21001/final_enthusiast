@@ -1,16 +1,16 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../redux/hooks';
-import { fetchDeleteStartUp } from '../../redux/startUpActions';
-import { fetchAddFavorites } from '../../redux/favoritesActions';
-import { useUser } from '../../UserContext';
-import { CgBookmark } from 'react-icons/cg';
-import styles from './StartUp.module.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { fetchDeleteStartUp } from "../../redux/startUpActions";
+import { fetchAddFavorites } from "../../redux/favoritesActions";
+import { useUser } from "../../UserContext";
+import { CgBookmark } from "react-icons/cg";
+import styles from "./StartUp.module.css";
 
 type StartUpComponentPropsType = {
   startUp: {
     id: number;
-    'User.login': string;
+    "User.login": string;
     startUpTitle: string;
     startUpDescription: string;
     photos: string; // Полагаем, что фотографии хранятся в виде JSON строки
@@ -32,32 +32,36 @@ export default function StartUpComponent({
     dispatch(fetchAddFavorites(startUp.id));
   };
 
-
   return (
     <div className={styles.startUpContainer}>
-      <h3>Автор: {startUp['User.login']}</h3>
-      <h2>{startUp.startUpTitle}</h2>
-      <h3>{startUp.startUpDescription}</h3>
-      <div>
-      <img
-              
-              src={`${import.meta.env.VITE_IMG}/${startUp?.photos}`}
-              alt="avatar"
-              style={{ width: '150px' }}
-          />
+      <div  className={styles.photoDiv}
+>
+        <img
+          src={`${import.meta.env.VITE_IMG}/${startUp?.photos}`}
+          alt="avatar"
+          // style={{ width: "150px" }}
+          className={styles.photo}
+        />
+      </div>
+      <div  className={styles.info}
+>
+        <h3>Автор: {startUp["User.login"]}</h3>
+        <h2>Название: {startUp.startUpTitle}</h2>
+        <h5>Описание: {startUp.startUpDescription.length > 50 ? `${startUp.startUpDescription.slice(0, 50)}...` : startUp.startUpDescription}</h5>
+
         {login && (
           <div className={styles.buttons}>
             <button type="button" onClick={() => navigate(`/${startUp.id}`)}>
-              Read more
+              Подробнее
             </button>
-            {login === startUp['User.login'] ? (
+            {login === startUp["User.login"] ? (
               <button onClick={deleteHandler} type="button">
-                Delete
+                Удалить
               </button>
             ) : (
               <button onClick={favoriteHandler} type="button">
                 <CgBookmark
-                  style={{ backgroundColor: 'white', fontSize: '2em' }}
+                  style={{ backgroundColor: "white", fontSize: "2em" }}
                 />
               </button>
             )}
