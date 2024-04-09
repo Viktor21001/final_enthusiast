@@ -7,7 +7,6 @@ ideaRouter.get('/', async (req, res) => {
   const { userId } = req.session;
   try {
     const ideas = await Idea.findAll({
-      // raw: true,
       include: [
         {
           model: User,
@@ -21,8 +20,8 @@ ideaRouter.get('/', async (req, res) => {
         },
       ],
     });
+
     const ideaLikes = ideas.map((el) => el.get({ plain: true }));
-    // console.log(ideaLikes);
     res.json(ideaLikes);
   } catch (error) {
     console.log(error);
@@ -49,19 +48,18 @@ ideaRouter.get('/:id', async (req, res) => {
 ideaRouter.post('/new', uploadMid.single('photo'), async (req, res) => {
   try {
     const { userId } = req.session;
-    // console.log(req.session, 'это яяяяяяя');
-    console.log(req.file, '>>>>>>>>>>...REQ FILE');
     let photo = 'sadMax.jpg';
 
     if (req.file) {
       photo = req.file.originalname;
     }
+
     const ideaData = req.body;
+
     ideaData.photo = photo;
-    console.log(req.body);
     ideaData.userId = userId;
+
     const idea = await Idea.create(ideaData);
-    console.log(idea, '>>>>>>>>>>>>>>>>>>>>');
     res.json(idea);
   } catch (error) {
     console.log(error);
@@ -91,6 +89,7 @@ ideaRouter.post('/like/:id', async (req, res) => {
     const existingVote = await Vote.findOne({
       where: { userId, ideaId: idea.id },
     });
+
     if (existingVote) {
       console.log('User already voted for this idea');
       await existingVote.destroy();
