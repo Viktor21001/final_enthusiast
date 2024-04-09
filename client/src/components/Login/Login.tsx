@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useUser } from '../../UserContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 export default function Login() {
@@ -52,26 +52,30 @@ export default function Login() {
         <h1>Авторизация</h1>
         <form onSubmit={handleSubmit}>
           <div className="txt_field">
+            <label>Логин</label>
             <input
               name="login"
               type="text"
               value={formData.login}
               onChange={handleChange}
               required
+              placeholder='логин'
+
             />
-            <label>Логин</label>
             <span />
           </div>
 
           <div className="txt_field">
+            <label>Пароль</label>
             <input
               name="password"
               type="password"
               value={formData.password}
               onChange={handleChange}
               required
+              placeholder='пароль'
+
             />
-            <label>Пароль</label>
             <span />
           </div>
 
@@ -79,7 +83,7 @@ export default function Login() {
 
           <div className="signup_link">
             Еще не зарегистрированы?{' '}
-            <a href="/registration">Зарегистрироваться</a>
+            <Link to="/registration">Зарегистрироваться</Link>
           </div>
         </form>
       </div>
