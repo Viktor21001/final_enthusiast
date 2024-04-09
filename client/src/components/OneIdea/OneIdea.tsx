@@ -5,6 +5,7 @@ import { fetchDeleteIdea, fetchIdeaById } from "../../redux/ideaActions";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useUser } from "../../UserContext";
 import Page404 from "../page404/Page404";
+import styles from "./OneIdea.module.css";
 
 export default function OneIdea(): React.JSX.Element {
   const { id } = useParams();
@@ -37,22 +38,24 @@ export default function OneIdea(): React.JSX.Element {
   console.log(`params id:${id} | idea id:${idea?.id}`);
 
   return (
-    <div>
+    <div className={styles.container}>
       {idea ? (
-        <>
-          <h2>Название: {idea?.title}</h2>
-          <h3>Описание: {idea?.description}</h3>
-          {/* <img>{idea.photo}</img> */}
+        <div className={styles.ideaInfo}>
+          <h2 className={styles.title}>Название: {idea?.title}</h2>
+          <h3 className={styles.description}>Описание: {idea?.description}</h3>
+          <div className={styles.photo} >
+          <img className={styles.img} src={`${import.meta.env.VITE_IMG}/${idea?.photo}`} />
+          </div>
           {login === idea["User.login"] ? (
-            <>
-            <h3>Лайки: {idea.likes}</h3>
-            <h3>Дизлайки: {idea.dislikes}</h3>
-            <button onClick={deleteHandler} type="button">
-              Удалить
-            </button>
-            </>
+            <div>
+              <h3 className={styles.likesDislikes}>Лайки: {idea.likes}</h3>
+              <h3 className={styles.likesDislikes}>Дизлайки: {idea.dislikes}</h3>
+              <button onClick={deleteHandler} className={styles.deleteButton} type="button">
+                Удалить
+              </button>
+            </div>
           ) : null}
-        </>
+        </div>
       ) : (
         <h1>
           {" "}
