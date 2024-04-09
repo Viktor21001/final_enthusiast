@@ -19,7 +19,7 @@ body {
   text-align: start;
 }
 
-input {
+.input {
   display: block;
   margin-bottom: 10px;
   width: 94%;
