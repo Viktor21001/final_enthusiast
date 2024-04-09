@@ -68,6 +68,7 @@ const Reg: React.FC = () => {
           <div className="txt_field">
             <label>Логин</label>
             <input
+              className="input"
               name="login"
               type="text"
               value={formData.login}
@@ -81,6 +82,7 @@ const Reg: React.FC = () => {
           <div className="txt_field">
             <label>Почта</label>
             <input
+              className="input"
               name="email"
               type="email"
               value={formData.email}
@@ -94,6 +96,7 @@ const Reg: React.FC = () => {
           <div className="txt_field">
             <label>Пароль</label>
             <input
+              className="input"
               name="password"
               type="password"
               value={formData.password}

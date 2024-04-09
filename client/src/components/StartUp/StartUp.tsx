@@ -43,12 +43,12 @@ export default function StartUpComponent({
           className={styles.photo}
         />
       </div>
-      <div  className={styles.info}
->
-        <h3>Автор: {startUp["User.login"]}</h3>
-        <h2>Название: {startUp.startUpTitle}</h2>
-        <h5>Описание: {startUp.startUpDescription.length > 50 ? `${startUp.startUpDescription.slice(0, 50)}...` : startUp.startUpDescription}</h5>
-
+      <div  className={styles.info}>
+        <div className={styles.text}>
+        <h4 className={styles.title}>Название: {startUp.startUpTitle}</h4>
+        <h4>Автор: {startUp["User.login"]}</h4>
+        <h4>Описание: {startUp.startUpDescription.length > 50 ? `${startUp.startUpDescription.slice(0, 50)}...` : startUp.startUpDescription}</h4>
+        </div>
         {login && (
           <div className={styles.buttons}>
             <button type="button" onClick={() => navigate(`/${startUp.id}`)}>
