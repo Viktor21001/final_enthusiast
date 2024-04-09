@@ -23,7 +23,6 @@ export const fetchPeople = createAsyncThunk('people/fetchAll', async () => {
   const response = await apiService.get(
     `${import.meta.env.VITE_URL}/users/people`
   );
-  console.log(response.data, 'peoplewwwwwww');
   return response.data;
 });
 

@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 import apiService from "../service/apiService";
-// import { InputsType, StartUpsType } from "../types";
 
 export type Idea = {
   photo?: string;
@@ -31,7 +30,6 @@ export const fetchIdeas = createAsyncThunk("ideas/all", async () => {
     const response = await apiService.get<IdeasType>(
       `${import.meta.env.VITE_URL}/ideas`
     );
-    // console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -56,15 +54,9 @@ export const fetchAddIdea = createAsyncThunk(
   "ideas/add",
   async (inputs: InputsType) => {
     try {
-      console.log('я тутттт')
-      // const response = await apiService.post<InputsType, AxiosResponse<IdeasType>>(
-      //   `${import.meta.env.VITE_URL}/ideas/new`,
-      //   inputs
-      // );
       const response = await axios.post(`${import.meta.env.VITE_URL}/ideas/new`,
          inputs,
          {withCredentials: true, headers: { 'content-type': 'multipart/form-data' },})
-      console.log(response.data)
       return response.data;
     } catch (error) {
       console.log(error);

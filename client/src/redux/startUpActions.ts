@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import apiService from '../service/apiService';
-// import { InputsType, StartUpsType } from "../types";
+
 
 export type StartUp = {
   id: number;
@@ -44,7 +44,6 @@ export const fetchStartUps = createAsyncThunk('startUps/all', async () => {
     const response = await apiService.get<StartUpsType>(
       `${import.meta.env.VITE_URL}/startups`
     );
-    console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -58,7 +57,6 @@ export const fetchStartUpById = createAsyncThunk(
       const response = await apiService.get<StartUpsType>(
         `${import.meta.env.VITE_URL}/startups/${id}`
       );
-      console.log(response);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -70,10 +68,6 @@ export const fetchAddStartUp = createAsyncThunk(
   'startUps/add',
   async (inputs: InputsType) => {
     try {
-      // const response = await apiService.post<
-      //   InputsType,
-      //   AxiosResponse<StartUpsType>
-      // >(`${import.meta.env.VITE_URL}/startups/new`, inputs);
       const response = await axios.post( `${import.meta.env.VITE_URL}/startups/new`,
         inputs,
         {
@@ -83,7 +77,6 @@ export const fetchAddStartUp = createAsyncThunk(
           }
         }
       )
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);

@@ -1,4 +1,3 @@
-// // import './App.css'
 import Navbar from './components/Navbar/Navbar';
 import SideNavbar from './components/SideNavbar/SideNavbar';
 import Registration from './components/Reg/Reg';
@@ -7,17 +6,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './App.css';
 import socketIO from 'socket.io-client';
-
-// function App() {
-
-//   return (
-//     <div>
-//       <Navbar />
-//       <SideNavbar />
-//     </div>
-//   )
-
-// import "./App.css";
 import Ideas from './components/Ideas/Ideas';
 import StartUps from './components/StartUps/StartUps';
 import store from './redux/store';

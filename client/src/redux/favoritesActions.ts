@@ -1,8 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 import { StartUpsType } from "./startUpActions";
-import apiService from "../service/apiService";
-// import { InputsType, StartUpsType } from "../types";
+import apiService from "../service/apiService";       
 
 export const fetchFavorites = createAsyncThunk("favorites/all", async () => {
   try {

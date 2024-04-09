@@ -2,7 +2,6 @@ import React, { ChangeEvent, useState } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { updateUserProfile } from "../../redux/userActions";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { saveSaleBook } from "../../redux/multerAvatar";
 import styles from "./ProfileForm.module.css";
 
 export const UserProfileForm: React.FC = () => {
@@ -56,19 +55,7 @@ export const UserProfileForm: React.FC = () => {
       reader.readAsDataURL(file);
     }
   };
-  // const handleChange = (
-  //   e: React.ChangeEvent<
-  //     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-  //   >
-  // ) => {
-  // const { name, value, type, checked } = e.target;
 
-  // if (type === 'checkbox') {
-  //   setProfile((prev) => ({ ...prev, [name]: checked }));
-  // } else {
-  //   setProfile((prev) => ({ ...prev, [name]: value }));
-  // }
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,15 +68,10 @@ export const UserProfileForm: React.FC = () => {
     data.append("avatar", profile.avatar);
     console.log(data);
 
-    // dispatch(saveSaleBook(data));
     dispatch(updateUserProfile(data));
     // navigate('/profile');
   };
 
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   // Отправляем данные формы через Redux
-  // };
 
   return (
     <form onSubmit={handleSubmit}>

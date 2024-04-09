@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import apiService from '../service/apiService';
-// import { InputsType, StartUpsType } from "../types";
 
 export type Member = {
   id: number;

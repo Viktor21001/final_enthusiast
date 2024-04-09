@@ -5,8 +5,6 @@ import {
   FaLightbulb,
   FaComments,
   FaHome,
-  FaBars,
-  FaRegWindowMinimize,
 } from 'react-icons/fa';
 import styles from './SideNavvae.module.css'; // Ensure the CSS module is imported correctly
 import { useUser } from '../../UserContext';
