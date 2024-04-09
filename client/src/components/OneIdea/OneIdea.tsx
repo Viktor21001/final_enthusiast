@@ -40,12 +40,17 @@ export default function OneIdea(): React.JSX.Element {
     <div>
       {idea ? (
         <>
-          <h2>{idea?.title}</h2>
-          <h3>{idea?.description}</h3>
+          <h2>Название: {idea?.title}</h2>
+          <h3>Описание: {idea?.description}</h3>
+          {/* <img>{idea.photo}</img> */}
           {login === idea["User.login"] ? (
+            <>
+            <h3>Лайки: {idea.likes}</h3>
+            <h3>Дизлайки: {idea.dislikes}</h3>
             <button onClick={deleteHandler} type="button">
-              delete
+              Удалить
             </button>
+            </>
           ) : null}
         </>
       ) : (

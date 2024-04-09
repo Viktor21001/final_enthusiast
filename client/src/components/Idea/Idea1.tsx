@@ -99,8 +99,8 @@ const dislikeHandler = () => {
               className={styles.photo}
               // style={{ width: '200px' }}
           />
-      <h3 className={styles.ideaTitle}>{idea?.title}</h3>
-      <p className={styles.ideaDescription}>  {idea.description.length > 32 ? `${idea.description.slice(0, 32)}...` : idea.description}</p>
+      <h3 className={styles.ideaTitle}>Название: {idea?.title}</h3>
+      <p className={styles.ideaDescription}> Описание: {idea.description.length > 32 ? `${idea.description.slice(0, 32)}...` : idea.description}</p>
       <div className={styles.cardFooter}>
       <button
   onClick={() => {
