@@ -8,7 +8,7 @@ const FileStore = require('session-file-store')(session);
 const cors = require('cors');
 
 const app = express();
-//!----------------------------
+
 const http = require('http').Server(app);
 
 const socketIO = require('socket.io')(http, {
@@ -17,8 +17,9 @@ const socketIO = require('socket.io')(http, {
     credentials: true,
   },
 });
+const db = require('../db/db');
 const { Message } = require('../db/models/message');
-//!----------------------------
+
 const apiRouter = require('./routes/api.router');
 
 const { PORT, SESSION_SECRET } = process.env;

@@ -1,25 +1,21 @@
 const memberRouter = require('express').Router();
 
-const {
-  StartUp,
-  User,
-  startUpMember,
-  UserProfile,
-} = require('../../db/models');
+const { User, startUpMember, UserProfile } = require('../../db/models');
 
 memberRouter.get('/:startUpId', async (req, res) => {
   const { startUpId } = req.params;
 
   try {
     const members = await startUpMember.findAll({
-      where: { startUpId }, //  тут типа участники отфильтрованы по startUpId
+      //  тут типа участники отфильтрованы по startUpId
+      where: { startUpId },
       include: {
         model: User,
-        attributes: ['login'], // может лучше будет не логин а ФИО
+        // может лучше будет не логин а ФИО
+        attributes: ['login'],
       },
       raw: true,
     });
-    // console.log(members);
     res.json(members);
   } catch (error) {
     console.log(error);
@@ -36,7 +32,8 @@ memberRouter.get('/:id', async (req, res) => {
       include: [
         {
           model: User,
-          include: UserProfile, // Надеюь синтаксис правильный для  UserProfile
+          // Надеюь синтаксис правильный для  UserProfile
+          include: UserProfile,
         },
       ],
       raw: true,
@@ -52,7 +49,6 @@ memberRouter.post('/new/:startUpId', async (req, res) => {
   try {
     const { login, role } = req.body;
     const { startUpId } = req.params;
-    // console.log(req.body);
     const user = await User.findOne({ where: { login } });
 
     if (!user) {

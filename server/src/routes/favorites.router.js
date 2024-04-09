@@ -4,11 +4,8 @@ const { Favorite, StartUp } = require('../../db/models');
 
 favoritesRouter.get('/', async (req, res) => {
   const { userId } = req.session;
-console.log(userId);
   try {
     const startUps = await Favorite.findAll({
-      // raw: true,
-      // raw: true добавляет вложенность по типу StartUd.и т д
       where: { userId },
       include: [
         {
@@ -17,7 +14,6 @@ console.log(userId);
       ],
       order: [['createdAt', 'DESC']],
     });
-    // console.log(startUps);
     res.json(startUps);
   } catch (error) {
     console.log(error);

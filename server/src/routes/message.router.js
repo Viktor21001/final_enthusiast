@@ -1,13 +1,14 @@
 const express = require('express');
 
 const router = express.Router();
-const { Message, User } = require('../../db/models');
+const { Message } = require('../../db/models');
 
 // Маршрут для отправки нового сообщения
 router.post('/', async (req, res) => {
   try {
     const { text, receiverId } = req.body;
-    const { userId } = req.session; // Идентификатор отправителя из сессии
+    // Идентификатор отправителя из сессии
+    const { userId } = req.session;
     console.log('userId', userId);
     // Создание нового сообщения в базе данных
     const message = await Message.create({
@@ -15,7 +16,6 @@ router.post('/', async (req, res) => {
       senderId: userId,
       receiverId,
     });
-    console.log(message);
 
     // Возвращаем созданное сообщение клиенту
     res.json(message);

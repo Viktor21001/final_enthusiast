@@ -3,7 +3,7 @@ const themeRouter = require('express').Router();
 const { Theme } = require('../../db/models');
 
 themeRouter.get('/:gameId', async (req, res) => {
-  console.log(req.params)
+  console.log(req.params);
   try {
     const themes = await Theme.findAll({
       raw: true,

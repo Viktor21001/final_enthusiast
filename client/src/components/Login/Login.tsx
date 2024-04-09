@@ -1,17 +1,17 @@
-import { useState } from "react";
-import axios from "axios";
-import { useUser } from "../../UserContext";
-import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import { useState } from 'react';
+import axios from 'axios';
+import { useUser } from '../../UserContext';
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 export default function Login() {
   const navigate = useNavigate();
   const { setRegLogin } = useUser();
 
   const [formData, setFormData] = useState({
-    login: "",
-    email: "",
-    password: "",
+    login: '',
+    email: '',
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -40,12 +40,11 @@ export default function Login() {
       const login = user.login;
 
       setRegLogin(login);
-      navigate("/");
+      navigate('/');
     } catch (error) {
-      console.error("Краказябра", error);
+      console.error('Краказябра', error);
     }
   };
-
 
   return (
     <>
@@ -76,10 +75,11 @@ export default function Login() {
             <span />
           </div>
 
-          <input type="submit" value="Войти" className="reglogButton"/>
+          <input type="submit" value="Войти" className="reglogButton" />
 
           <div className="signup_link">
-            Еще не зарегистрированы? <a href="/reg">Зарегистрироваться</a>
+            Еще не зарегистрированы?{' '}
+            <a href="/registration">Зарегистрироваться</a>
           </div>
         </form>
       </div>
