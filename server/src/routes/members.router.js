@@ -11,7 +11,9 @@ memberRouter.get('/:startUpId', async (req, res) => {
       where: { startUpId },
       include: {
         model: User,
+
         // может лучше будет не логин а ФИО
+        as: 'User',
         attributes: ['login'],
       },
       raw: true,
@@ -32,6 +34,7 @@ memberRouter.get('/:id', async (req, res) => {
       include: [
         {
           model: User,
+          as: 'User',
           // Надеюь синтаксис правильный для  UserProfile
           include: UserProfile,
         },
