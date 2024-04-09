@@ -55,7 +55,7 @@ const dislikeHandler = () => {
     <div className={styles.ideaCard}>
       {login ? (
         <>
-{/* <img src={idea.User.avatar} alt="" /> */}
+{/* <img src={idea.User.avatar} alt="avatartttt" /> */}
         <h3> Автор: {idea.User.login}</h3>
         <img
               // src={idea?.photo}
@@ -64,7 +64,7 @@ const dislikeHandler = () => {
               className={styles.photo}
               // style={{ width: '200px' }}
           />
-      <h3 className={styles.ideaTitle}>Название: {idea?.title}</h3>
+      <h3 className={styles.ideaTitle}>{idea?.title}</h3>
       <p className={styles.ideaDescription}> Описание: {idea.description.length > 32 ? `${idea.description.slice(0, 32)}...` : idea.description}</p>
       <div className={styles.cardFooter}>
       <button
