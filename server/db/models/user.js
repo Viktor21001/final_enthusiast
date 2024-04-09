@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasOne(models.UserProfile, {
         foreignKey: 'userId',
-        //! as: 'Profile',
+        as: 'Profile',
       });
       this.hasMany(models.Favorite, { foreignKey: 'userId' });
       this.hasMany(models.Message, { foreignKey: 'senderId' });

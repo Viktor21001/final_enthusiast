@@ -123,11 +123,12 @@ router.get('/people', async (req, res) => {
       include: [
         {
           model: UserProfile,
+          as: 'Profile',
           attributes: ['interests', 'avatar'],
           include: [
             {
               model: User,
-              //! as: 'User',
+              as: 'User',
               attributes: ['login'],
             },
           ],
@@ -168,40 +169,40 @@ router.get('/session', (req, res) => {
   }
 });
 
-// router.get('/profile', async (req, res) => {
-//   const { userId } = req.session;
+router.get('/profile', async (req, res) => {
+  const { userId } = req.session;
 
-//   try {
-//     const user = await User.findByPk(userId, {
-//       attributes: [
-//         'login',
-//         'email',
-//         'fullName',
-//         'gender',
-//         'birthDate',
-//         'isInvestor',
-//       ],
-//       include: [
-//         {
-//           model: UserProfile,
-//           as: 'Profile',
-//           attributes: ['userId', 'avatar', 'interests', 'activity'],
-//         },
-//       ],
-//       raw: true,
-//       nest: true,
-//     });
-//     console.log(user);
+  try {
+    const user = await User.findByPk(userId, {
+      attributes: [
+        'login',
+        'email',
+        'fullName',
+        'gender',
+        'birthDate',
+        'isInvestor',
+      ],
+      include: [
+        {
+          model: UserProfile,
+          as: 'Profile',
+          attributes: ['userId', 'avatar', 'interests', 'activity'],
+        },
+      ],
+      raw: true,
+      nest: true,
+    });
+    console.log(user);
 
-//     if (!user) {
-//       return res.status(404).json({ error: 'Пользователь не найден' });
-//     }
+    if (!user) {
+      return res.status(404).json({ error: 'Пользователь не найден' });
+    }
 
-//     return res.json({ user: user.toJSON() });
-//   } catch (error) {
-//     console.error('Ошибка при получении профиля пользователя:', error);
-//     return res.status(500).json({ error: 'Ошибка сервера' });
-//   }
-// });
+    return res.json({ user: user.toJSON() });
+  } catch (error) {
+    console.error('Ошибка при получении профиля пользователя:', error);
+    return res.status(500).json({ error: 'Ошибка сервера' });
+  }
+});
 
 module.exports = router;
