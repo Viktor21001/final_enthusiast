@@ -1,7 +1,7 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import React, {  useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { fetchDeleteIdea, fetchIdeaById, fetchIdeas } from "../../redux/ideaActions";
+import { fetchDeleteIdea, fetchIdeaById } from "../../redux/ideaActions";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useUser } from "../../UserContext";
 import Page404 from "../page404/Page404";
@@ -12,10 +12,9 @@ export default function OneIdea(): React.JSX.Element {
   console.log(ideas);
 
   const idea = ideas.find((el) => el.id === Number(id));
-  // console.log(idea);
 
   const { login } = useUser();
-  // console.log( login, idea["User.login"]);
+
 
   const navigate: NavigateFunction = useNavigate();
 

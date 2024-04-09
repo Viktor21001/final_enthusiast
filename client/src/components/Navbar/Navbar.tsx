@@ -1,69 +1,3 @@
-// import { Link, Outlet } from 'react-router-dom'
-// // import './Navbar.css'
-// import { useUser } from '../../UserContext'
-
-// const NavBar = () => {
-//   const { login } = useUser()
-
-//   return (
-//     <>
-//       <ul className="navContainer">
-//         <li>
-//           <Link className="link" to="/" data-hover="Главная">
-//             Главная
-//           </Link>
-//         </li>
-
-//         {login ? (
-//           <>
-//             <li>
-//               <Link className="link" to="/user" data-hover="Люди">
-//                 Люди
-//               </Link>
-//             </li>
-
-//             <li>
-//               <Link className="link" to="/startups" data-hover="Билборд идей">
-//                 Билборд идей
-//               </Link>
-//             </li>
-
-//             <li>
-//               <Link className="link" to="/game" data-hover="Чаты">
-//                 Чаты
-//               </Link>
-//             </li>
-
-//             <li className="loginContainer">
-//               <div className="logout">
-//                 <p>
-//                   Добро пожаловать, {login}
-//                 </p>
-//               </div>
-//             </li>
-//           </>
-//         ) : (
-//           <>
-//             <li>
-//               <Link className="link" to="/registration" data-hover="Регистрация">
-//                 Регистрация
-//               </Link>
-//             </li>
-//             <li>
-//               <Link className="link" to="/login" data-hover="Войти">
-//                 Войти
-//               </Link>
-//             </li>
-//           </>
-//         )}
-//         <Outlet />
-//       </ul>
-//     </>
-//   )
-// }
-
-// export default NavBar
-
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -74,10 +8,7 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "../../UserContext";
@@ -88,8 +19,6 @@ import InputBase from "@mui/material/InputBase";
 import { RootState } from "@reduxjs/toolkit/query";
 import { PeopleState } from "../../redux/peopleSlice";
 
-// const pages = [{ name: 'Создать', link: '/' }, { name: 'Билборд идей', link: '/startups' }];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function NavBar() {
   const { login } = useUser();
@@ -130,7 +59,6 @@ function NavBar() {
         <Toolbar disableGutters sx={{ backgroundColor: "#FFFFFF" }}>
           {login ? (
             <>
-              {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
               <Typography
                 variant="h6"
                 noWrap
@@ -146,7 +74,6 @@ function NavBar() {
                 }}
               >
                 <img
-                  // style={{ width: '100px', height: '50px' }}
                   src="/1.png"
                   alt="Logo"
                   style={{ backgroundColor: "#FFFFFF", width: "200px" }}
@@ -196,11 +123,6 @@ function NavBar() {
                     backgroundColor: "#FFFFFF",
                   }}
                 >
-                  {/* {pages.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">{page.name}</Typography>
-                </MenuItem>
-              ))} */}
                   <Link
                     className="link"
                     to="/startups"
@@ -210,7 +132,6 @@ function NavBar() {
                   </Link>
                 </Menu>
               </Box>
-              {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
               <Typography
                 variant="h5"
                 noWrap
@@ -239,15 +160,6 @@ function NavBar() {
                   backgroundColor: "#FFFFFF",
                 }}
               >
-                {/* {pages.map((page) => (
-              <Button
-              key={page.name}
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-              {page.name}
-              </Button>
-            ))} */}
                 <CircleNotificationsOutlinedIcon
                   sx={{ backgroundColor: "#FFFFFF" }}
                 />
@@ -288,10 +200,7 @@ function NavBar() {
                       alt="Remy Sharp"
                       
                        src={ `${import.meta.env.VITE_IMG}/${member?.avatar}` || "src/assets/avatar.png"}
-                      // sx={{ backgroundColor: "black" }}
                     />
-                 {/* // src="src/assets/avatar.png"
-                 // sx={{ backgroundColor: 'transparent' }}    /> */}
 
                   </IconButton>
                 </Tooltip>
@@ -311,11 +220,6 @@ function NavBar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {/* {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))} */}
                   <Link
                     style={{
                       margin: "0 10px",
@@ -335,32 +239,12 @@ function NavBar() {
             </>
           ) : (
             <>
-              {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              // display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-            >
-            LOGO
-          </Typography> */}
-
-              {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
               <Typography
                 variant="h5"
                 noWrap
                 component="a"
                 sx={{
                   mr: 2,
-                  // display: { xs: 'flex', md: 'none' },
                   flexGrow: 1,
                   fontFamily: "monospace",
                   fontWeight: 700,
@@ -381,9 +265,6 @@ function NavBar() {
                   alt="Logo"
                 />
               </Typography>
-
-              {/* <div>
-              <div> */}
               <Link
                 style={{
                   margin: "0 10px",
@@ -410,8 +291,6 @@ function NavBar() {
               >
                 Регистрация
               </Link>
-              {/* </div>
-            </div> */}
             </>
           )}
         </Toolbar>

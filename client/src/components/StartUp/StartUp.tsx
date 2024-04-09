@@ -40,7 +40,7 @@ export default function StartUpComponent({
       <h3>{startUp.startUpDescription}</h3>
       <div>
       <img
-              // src={idea?.photo}
+              
               src={`${import.meta.env.VITE_IMG}/${startUp?.photos}`}
               alt="avatar"
               style={{ width: '150px' }}

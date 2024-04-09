@@ -4,7 +4,6 @@ import {
   fetchDeleteFavorites,
   fetchFavorites,
 } from '../../redux/favoritesActions';
-import { StartUp } from '../../redux/startUpActions';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { useUser } from '../../UserContext';
 import { UserProfileForm } from '../ProfileForm/ProfileForm';
@@ -47,8 +46,6 @@ export default function Lk(): JSX.Element {
               >
                 Read more
               </button>
-
-              {/* <p>{favorite.StartUp.startUpDescription}</p> */}
             </div>
           ))}
           <UserProfileForm />

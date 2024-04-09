@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   Member,
@@ -22,9 +22,7 @@ export default function OneStartUp(): React.JSX.Element {
   const startup = startUps.find((el) => el.id === Number(id));
   const { login } = useUser();
 
-  // console.log(startup);
-  
-  // console.log( login, startup["User.login"]);
+
 
   const [memberInputs, setMemberInputs] = useState<memberInputsType>({
     login: "",
@@ -77,7 +75,7 @@ export default function OneStartUp(): React.JSX.Element {
       role: "",
     });
   };
-  // console.log(members);
+
 
   return (
     <div>
