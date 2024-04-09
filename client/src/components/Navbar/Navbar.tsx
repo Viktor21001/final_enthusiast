@@ -80,15 +80,17 @@ function NavBar() {
                 />
               </Typography>
               <div style={{ display: "flex", alignItems: "center", backgroundColor: "#FFFFFF"}}>
-                  <SearchIcon sx={{ backgroundColor: "#FFFFFF" , color:"gray"}} />
+                <SearchIcon sx={{ backgroundColor: "#FFFFFF" , color:"gray", opacity: 0.2}} />
                   <InputBase
                     placeholder="Поиск по Enthisiast"
                     inputProps={{ "aria-label": "search" }}
+                    disabled
                     sx={{ ml: 1 , backgroundColor: "#EBEFFA" , 
                     borderRadius: '10px',  
                     '&::placeholder': { // Применяем стили к тексту placeholder
                       textAlign: 'right', // Выравнивание текста по правому краю
                       color: 'gray', // Цвет текста placeholder
+                      opacity: 0, // Прозрачность
                     }, }}
                   />
                 </div>
@@ -163,33 +165,7 @@ function NavBar() {
                 <CircleNotificationsOutlinedIcon
                   sx={{ backgroundColor: "#FFFFFF" }}
                 />
-                <Link
-                  style={{
-                    margin: "0 10px",
-                    color: "black",
-                    display: "block",
-                    backgroundColor: "#FFFFFF",
-                  }}
-                  className="link"
-                  to="/newidea"
-                  data-hover="Создать"
-                >
-                  Создать
-                </Link>
               </Box>
-              <Link
-                  style={{
-                    margin: "0 10px",
-                    color: "black",
-                    display: "block",
-                    backgroundColor: "#FFFFFF",
-                  }}
-                  className="link"
-                  to="/newstartup"
-                  data-hover="Создать"
-                >
-                  Создать стартап
-                </Link>
               <Box sx={{ flexGrow: 0, backgroundColor: "#FFFFFF" }}>
                 <Tooltip title="Open settings">
                   <IconButton
