@@ -1,9 +1,13 @@
 import React, { ChangeEvent, useState } from 'react';
-import { NavigateFunction, useNavigate } from "react-router-dom";import { useAppDispatch } from '../../redux/hooks';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../redux/hooks';
 import { useUser } from '../../UserContext';
-import styles from "./NewStartup.module.css"; 
-import { InputsType, fetchAddStartUp, fetchStartUps } from "../../redux/startUpActions";
-
+import styles from './NewStartup.module.css';
+import {
+  InputsType,
+  fetchAddStartUp,
+  fetchStartUps,
+} from '../../redux/startUpActions';
 
 export default function NewStartUp(): JSX.Element {
   const [inputs, setInputs] = useState<InputsType>({
@@ -20,7 +24,6 @@ export default function NewStartUp(): JSX.Element {
   const { login } = useUser();
   const dispatch = useAppDispatch();
   const navigate: NavigateFunction = useNavigate();
-
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -41,7 +44,7 @@ export default function NewStartUp(): JSX.Element {
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
     e.preventDefault();
-   void dispatch(fetchAddStartUp(inputs));
+    void dispatch(fetchAddStartUp(inputs));
     const formData = new FormData();
     formData.append('startUpTitle', inputs.startUpTitle);
     formData.append('startUpDescription', inputs.startUpDescription);
@@ -65,12 +68,15 @@ export default function NewStartUp(): JSX.Element {
     <div>
       {login ? (
         <form>
-          { previewImages ? (
-      <img style={{ width: '150px' }} src={previewImages} alt="Предпросмотр" className={styles.previewImage}  />
-    ) : (
-      null
-    )}
-      
+          {previewImages ? (
+            <img
+              style={{ width: '150px' }}
+              src={previewImages}
+              alt="Предпросмотр"
+              className={styles.previewImage}
+            />
+          ) : null}
+
           <h2>Create your startup!</h2>
           <input
             type="text"
@@ -120,13 +126,19 @@ export default function NewStartUp(): JSX.Element {
             placeholder="Target Amount"
             className={styles.inputField}
           />
-            <input
+          <br />
+          <input
             type="file"
             name="photos"
+            className="addImg"
             onChange={handleChange}
             multiple
           />
-          <button type="button" onClick={addStartUp} className={styles.addButton}>
+          <button
+            type="button"
+            onClick={addStartUp}
+            className={styles.addButton}
+          >
             Add Startup
           </button>
         </form>
