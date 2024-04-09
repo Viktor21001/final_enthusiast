@@ -1,16 +1,16 @@
-import React, { ChangeEvent, useState } from "react";
-import { useAppDispatch } from "../../redux/hooks";
-import { updateUserProfile } from "../../redux/userActions";
-import { NavigateFunction, useNavigate } from "react-router-dom";
-import styles from "./ProfileForm.module.css";
+import React, { ChangeEvent, useState } from 'react';
+import { useAppDispatch } from '../../redux/hooks';
+import { updateUserProfile } from '../../redux/userActions';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import styles from './ProfileForm.module.css';
 
 export const UserProfileForm: React.FC = () => {
   const [profile, setProfile] = useState({
-    fullName: "",
+    fullName: '',
     gender: false,
-    birthDate: "",
-    interests: "",
-    activity: "",
+    birthDate: '',
+    interests: '',
+    activity: '',
     avatar: null,
     isInvestor: false,
   });
@@ -25,14 +25,14 @@ export const UserProfileForm: React.FC = () => {
   ): void => {
     const { name, value, type, checked, files } = e.target;
 
-    if (type === "checkbox") {
+    if (type === 'checkbox') {
       setProfile((prev) => ({ ...prev, [name]: checked }));
     } else {
       setProfile((prev) => ({ ...prev, [name]: value }));
     }
-    console.log(e.target, "zzzzzzzzzzzzzz");
+    console.log(e.target, 'zzzzzzzzzzzzzz');
 
-    if (name === "avatar") {
+    if (name === 'avatar') {
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.onload = () => {
@@ -46,7 +46,7 @@ export const UserProfileForm: React.FC = () => {
     setProfile((prev) => ({ ...prev, avatar: event.target.files[0] }));
     const { name, files } = event.target;
 
-    if (name === "avatar") {
+    if (name === 'avatar') {
       const file = event.target.files[0];
       const reader = new FileReader();
       reader.onload = () => {
@@ -56,33 +56,32 @@ export const UserProfileForm: React.FC = () => {
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("здесь файл", profile.avatar);
+    console.log('здесь файл', profile.avatar);
 
     const data = new FormData();
-    data.append("fullName", profile.fullName);
-    data.append("birthDate", profile.birthDate);
-    data.append("interests", profile.interests);
-    data.append("avatar", profile.avatar);
+    data.append('fullName', profile.fullName);
+    data.append('birthDate', profile.birthDate);
+    data.append('interests', profile.interests);
+    data.append('avatar', profile.avatar);
     console.log(data);
 
     dispatch(updateUserProfile(data));
     // navigate('/profile');
   };
 
-
   return (
     <form onSubmit={handleSubmit}>
       {previewImage ? (
         <img
-          style={{ width: "150px" }}
+          style={{ width: '150px' }}
           src={previewImage}
           alt="Предпросмотр"
           className={styles.previewImage}
         />
       ) : null}
+      <br />
       <input
         name="fullName"
         value={profile.fullName}
@@ -120,13 +119,14 @@ export const UserProfileForm: React.FC = () => {
         placeholder="Деятельность"
         className={styles.inputField}
       />
+      <br />
       <input
         type="file"
         name="avatar"
         onChange={avatarChangeHandler}
         className="inputSalon"
       />
-      <label className={styles.checkboxLabel}>
+      {/* <label className={styles.checkboxLabel}>
         Инвестор:
         <input
           name="isInvestor"
@@ -134,8 +134,9 @@ export const UserProfileForm: React.FC = () => {
           checked={profile.isInvestor}
           onChange={handleChange}
           className={styles.checkboxField}
+
         />
-      </label>
+      </label> */}
       <button type="submit" className={styles.addButton}>
         Сохранить
       </button>
