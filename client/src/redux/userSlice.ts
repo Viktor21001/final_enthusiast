@@ -65,6 +65,18 @@ export const userSlice = createSlice({
   },
 });
 
+// export const fetchUserProfile = createAsyncThunk(
+//   'user/fetchUserProfile',
+//   async (_, { getState, rejectWithValue }) => {
+//     try {
+//       const response = await apiService.get('/api/v1/users/profile');
+//       return response.data;
+//     } catch (error: any) {
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
 // Экспорт действий и редьюсера
 export const { setUser, clearUser } = userSlice.actions;
 export default userSlice.reducer;

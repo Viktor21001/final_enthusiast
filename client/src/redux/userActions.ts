@@ -15,3 +15,15 @@ export const updateUserProfile = createAsyncThunk(
     }
   }
 );
+
+// export const fetchUserProfile = createAsyncThunk(
+//   'user/fetchUserProfile',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const response = await apiService.get('/users/profile');
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.response?.data || error.message);
+//     }
+//   }
+// );
