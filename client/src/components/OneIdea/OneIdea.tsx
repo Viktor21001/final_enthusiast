@@ -29,7 +29,7 @@ export default function OneIdea(): React.JSX.Element {
   const deleteHandler = async () => {
     if (id) {
       const idAsNumber = Number(id);
-      void dispatch(fetchDeleteIdea(idAsNumber));
+      await dispatch(fetchDeleteIdea(idAsNumber));
       navigate(`/`);
     }
   };

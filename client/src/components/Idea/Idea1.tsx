@@ -24,7 +24,6 @@ export default function Idea1({
   const dispatch = useAppDispatch();
   const { login } = useUser();
   const [likeDislike, setLikeDislike] = useState(idea?.Votes?.at(0)?.type) 
-  console.log(likeDislike)
 
   const [buttonColor, setButtonColor] = useState('');
 
@@ -50,40 +49,6 @@ const dislikeHandler = () => {
     void dispatch(fetchDislikes(idea.id));
     setLikeDislike(likeDislike !== 'dislike' ? 'dislike' : ''); // Аналогично для дизлайка
 };
-
-  // const likeHandler = () => {
-  //     void dispatch(fetchLikes(idea.id));  
-  // };
-
-  // const dislikeHandler = () => {
-  //     void dispatch(fetchDislikes(idea.id));
-  // };
-
- // const [isLiked, setIsLiked] = useState(false);
-  // const [isDisliked, setIsDisliked] = useState(false);
-
-  // const likeHandler = () => {
-  //   if (!isLiked) {
-  //     void dispatch(fetchLikes(idea.id));
-  //     dispatch(fetchIdeas)
-  //     setIsLiked(true);
-  //     setIsDisliked(false); 
-  //   } else {
-  //     setIsLiked(false);
-  //   }
-  // };
-
-  // const dislikeHandler = () => {
-  //   if (!isDisliked) {
-  //     void dispatch(fetchDislikes(idea.id));
-  //     dispatch(fetchIdeas)
-  //     setIsDisliked(true);
-  //     setIsLiked(false); 
-  //   } else {
-  //     setIsDisliked(false);
-  //   }
-  // };
-
 
 
   return (
