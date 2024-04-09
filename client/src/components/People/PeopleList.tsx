@@ -51,14 +51,14 @@ const PeopleList: React.FC = ({ socket }) => {
         <button
           // onClick={}
           type="button"
-              className={styles.dislikeButton} style={{borderRadius:'60%', backgroundColor:'rgb(199, 31, 31)'}}
+              className={styles.dislikeButton} style={{borderRadius:'60%', backgroundColor:'rgb(178, 78, 78)'}}
         >
 <LuCornerUpLeft style={{ fontSize: '2em' }}/>
         </button>
         <button
           // onClick={}
           type="button"
-              className={styles.likeButton} style={{borderRadius:'60%', backgroundColor:'#2a9b1c'}}
+              className={styles.likeButton} style={{borderRadius:'60%', backgroundColor:'rgb(73, 148, 107)'}}
         >
 <LuCornerUpRight style={{ fontSize: '2em' }} />
         </button>

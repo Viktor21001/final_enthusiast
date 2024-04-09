@@ -11,36 +11,42 @@
 
 .ideaCard {
   border-radius: 20px;
-  background: #798AAE;
+  background: #798aae63;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin: 10px;
+  justify-content: space-around;
+  margin:15px;
   animation: fallAnimation 0.5s ease-out forwards;
   width: 100%; /* Default width */
   align-self: center; /* Center the card in the container */
-  height: 400px;
-  width: 300px;
+  height: 700px;
+  width: 600px;
 }
 
 .cardHeader,
 .cardBody {
   padding: 16px;
   width: 100%; /* Make width 100% instead of 50% for better mobile responsiveness */
-  background: #798AAE;
+  background-color:  transparent;
   border-radius: 30px;
   margin: 20px;
 }
+h3,h2,p{
+  background-color:  transparent;
+  
+}
 
 .cardFooter {
-  background: #798AAE;
+  background: transparent;
+  font-size: 25px;
   display: flex;
-  gap: 10px;
+  height: 80px;
+  gap: 30px;
   align-items: center;
   justify-content: center; /* Center the buttons */
-  padding-bottom: 15px;
+  color: rgb(73, 148, 107);
 }
 
 .userName {
@@ -50,14 +56,16 @@
 
 .ideaTitle {
   font-size: 1.5rem;
-  background: #798AAE;
-  color: #f0f0f0;
+  background-color:  transparent;
+  color: #1f366b;
 }
 
 .ideaDescription {
-  color: #302f2f;
-  background: #798AAE;
-  color: #f0f0f0;
+  color: #1f366b;
+  background-color:  transparent;
+  /* color: #f0f0f0; */
+  /* background: #798aae47; */
+
 }
 
 .icon-button {
@@ -72,6 +80,15 @@
   height: 40px;
   transition: background-color 0.3s;
   margin: 6px;
+  /* background-color:rgba(255, 0, 0, 0.116) !important; */
+}
+
+.photo{
+  width: 450px;
+  height: 300px;
+  margin-left:70px;
+  margin-top: 20px;
+  border-radius: 10px;
 }
 
 /* .icon-button:hover {

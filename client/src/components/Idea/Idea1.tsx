@@ -90,34 +90,36 @@ const dislikeHandler = () => {
     <div className={styles.ideaCard}>
       {login ? (
         <>
-
+{/* <img src={idea.User.avatar} alt="" /> */}
+        <h3> Автор: {idea.User.login}</h3>
         <img
               // src={idea?.photo}
               src={`${import.meta.env.VITE_IMG}/${idea?.photo}`}
               alt="avatar"
-              style={{ width: '150px' }}
+              className={styles.photo}
+              // style={{ width: '200px' }}
           />
       <h3 className={styles.ideaTitle}>{idea?.title}</h3>
-      <p className={styles.ideaDescription}>{idea?.description}</p>
+      <p className={styles.ideaDescription}>  {idea.description.length > 32 ? `${idea.description.slice(0, 32)}...` : idea.description}</p>
       <div className={styles.cardFooter}>
       <button
   onClick={() => {
     likeHandler();
   }}
   type="button"
-  style={{ backgroundColor: buttonColor === 'green' ? 'green' : 'inherit', color: 'white' }}
+  style={{  color: buttonColor === 'green' ? 'rgb(73, 148, 107)' : 'white', backgroundColor:'transparent',fontSize:'45px'}}
 >
           <FaThumbsUp />
         </button>
-        <button onClick={() => navigate(`/idea/${idea.id}`)} className={styles.iconButton}>
+        <button onClick={() => navigate(`/idea/${idea.id}`)} className={styles.iconButton} style={{ color: 'white', backgroundColor:'transparent' }}>
           <FaEllipsisV />
         </button>
         <button
           onClick={dislikeHandler}
           type="button"
-          style={{ backgroundColor: buttonColor === 'red' ? 'red' : 'inherit', color: 'white' }}
+          style={{ color: buttonColor === 'red' ? 'rgb(178, 78, 78)' : 'white', backgroundColor:'transparent', fontSize:'45px' }}
           >
-          <FaThumbsDown />
+          <FaThumbsDown/>
         </button>
       </div>
 
