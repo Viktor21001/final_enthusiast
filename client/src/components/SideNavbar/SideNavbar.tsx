@@ -6,29 +6,38 @@ import {
   FaComments,
   FaHome,
 } from 'react-icons/fa';
+import { MdAddCircle, MdOutlineNotificationAdd } from "react-icons/md";
 import styles from './SideNavvae.module.css'; // Ensure the CSS module is imported correctly
 import { useUser } from '../../UserContext';
 
-type NavItem = {
-  label: string;
-  key: string;
-  icon: JSX.Element;
-  link?: string;
-};
-
-const items: NavItem[] = [
-  { label: 'Главная', key: '1', icon: <FaHome />, link: '/' },
-  { label: 'Люди', key: '2', icon: <FaUsers />, link: '/people' },
-  { label: 'Билборд идей', key: '3', icon: <FaLightbulb />, link: '/ideas' },
-  { label: 'Чаты', key: '4', icon: <FaComments />, link: '/messages' },
-];
-
 const SideNavbar: React.FC = () => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [showAdditionalButton, setShowAdditionalButton] = useState<boolean>(false);
+  const [showAdditionalButtonIdea, setShowAdditionalButtonIdea] = useState<boolean>(false);
   const { login } = useUser();
 
-  const toggleCollapsed = (): void => {
-    setCollapsed(!collapsed);
+  const handleMouseEnter = (label: string): void => {
+    if (label === 'Главная') {
+      setShowAdditionalButton(true);
+    }
+  };
+
+  const handleMouseLeave = (label: string): void => {
+    if (label === 'Главная') {
+      setShowAdditionalButton(false);
+    }
+  };
+
+  const handleMouseEnterIdea = (label: string): void => {
+    if (label === 'Билборд идей') {
+      setShowAdditionalButtonIdea(true);
+    }
+  };
+
+  const handleMouseLeaveIdea = (label: string): void => {
+    if (label === 'Билборд идей') {
+      setShowAdditionalButtonIdea(false);
+    }
   };
 
   return (
@@ -37,25 +46,78 @@ const SideNavbar: React.FC = () => {
       className={styles.sideNavbar}
     >
       {login ? (
-        <ul className={styles.navList}>
-          {items.map((item: NavItem) => (
-            <li key={item.key} className={styles.navItem}>
-              <Link to={item.link!} className={styles.navLink}>
-                {' '}
-                {item.icon}
+        <>
+          <ul className={styles.navList}>
+            <li
+              className={styles.navItem}
+              onMouseEnter={() => handleMouseEnter('Главная')}
+              onMouseLeave={() => handleMouseLeave('Главная')}
+            >
+              <Link to="/" className={styles.navLink}>
+                <FaHome />
                 <span className={styles.navLabel}>
-                  {collapsed ? '' : item.label}
+                  {collapsed ? '' : 'Главная'}
+                </span>
+              </Link>
+              <ul>
+          {showAdditionalButton && (
+            <div className={styles.additionalButton}>
+              <Link to="/newstartup" style={{ marginTop: '10px', fontSize: '17px' }} className={styles.navLink}>
+              <MdAddCircle />
+              <span className={styles.navLabel}>
+                  {collapsed ? '' : 'Создать стартап'}
+                </span>
+              </Link>
+            </div>
+          )}
+              </ul>
+            </li>
+            
+            <li className={styles.navItem}>
+              <Link to="/people" className={styles.navLink}>
+                <FaUsers />
+                <span className={styles.navLabel}>
+                  {collapsed ? '' : 'Люди'}
                 </span>
               </Link>
             </li>
-          ))}
-        </ul>
-      ) : (
-        <>
-          <Link to="/" className={styles.navLink}>
-            <FaHome /> Главная
-          </Link>
+            <li className={styles.navItem}
+             onMouseEnter={() => handleMouseEnterIdea('Билборд идей')}
+             onMouseLeave={() => handleMouseLeaveIdea('Билборд идей')}
+            >
+              <Link to="/ideas" className={styles.navLink}>
+                <FaLightbulb />
+                <span className={styles.navLabel}>
+                  {collapsed ? '' : 'Билборд идей'}
+                </span>
+              </Link>
+              <ul>
+          {showAdditionalButtonIdea && (
+            <div className={styles.additionalButton}>
+              <Link to="/newidea" style={{ marginTop: '10px', fontSize: '17px' }} className={styles.navLink}>
+              <MdOutlineNotificationAdd />
+              <span className={styles.navLabel}>
+                  {collapsed ? '' : 'Создать идею'}
+                </span>
+              </Link>
+            </div>
+          )}
+              </ul>
+            </li>
+            <li className={styles.navItem}>
+              <Link to="/messages" className={styles.navLink}>
+                <FaComments />
+                <span className={styles.navLabel}>
+                  {collapsed ? '' : 'Чаты'}
+                </span>
+              </Link>
+            </li>
+          </ul>
         </>
+      ) : (
+        <Link to="/" className={styles.navLink}>
+          <FaHome /> Главная
+        </Link>
       )}
     </div>
   );
