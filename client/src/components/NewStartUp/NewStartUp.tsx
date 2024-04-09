@@ -44,7 +44,7 @@ export default function NewStartUp(): JSX.Element {
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
     e.preventDefault();
-    void dispatch(fetchAddStartUp(inputs));
+    
     const formData = new FormData();
     formData.append('startUpTitle', inputs.startUpTitle);
     formData.append('startUpDescription', inputs.startUpDescription);

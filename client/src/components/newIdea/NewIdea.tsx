@@ -48,8 +48,8 @@ export default function NewIdea(): JSX.Element {
     data.append('photo', inputs.photo)
     console.log(data);
 
-    void dispatch(fetchAddIdea(data));
-    void dispatch(fetchIdeas());
+    await dispatch(fetchAddIdea(data));
+    await dispatch(fetchIdeas());
     navigate('/ideas');
   };
 

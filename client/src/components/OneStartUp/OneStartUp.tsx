@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { fetchStartUpById, fetchAddFunding } from "../../redux/startUpActions";
 import { useUser } from "../../UserContext";
 import Page404 from "../page404/Page404";
+import styles from "./OneStartUp.module.css";
 
 export default function OneStartUp(): React.JSX.Element {
   const { id } = useParams();
@@ -78,53 +79,69 @@ export default function OneStartUp(): React.JSX.Element {
 
 
   return (
-    <div>
+    <div className={styles.container}>
       {startup ? (
         <>
-          <h1>StartUp</h1>
-          <h2>{startup?.startUpTitle}</h2>
-          <h3>{startup?.startUpDescription}</h3>
-          <h2>Startup progress: {startup.progress} %</h2>
-          <h3>Current amount: {startup.currentAmount}</h3>
-          <h3>Target amount: {startup.targetAmount}</h3>
+          <h1 className={styles.title}>StartUp</h1>
+          <img
+              className={styles.image}
+              src={`${import.meta.env.VITE_IMG}/${startup?.photos}`}
+              alt="avatar"
+          />
+          <h2 className={styles.title}>{startup?.startUpTitle}</h2>
+          <h3 className={styles.description}>{startup?.startUpDescription}</h3>
+          <h2 className={styles.progress}>Startup progress: {startup.progress} %</h2>
+          <h3 className={styles.amount} >Current amount: {startup.currentAmount}</h3>
+          <h3 className={styles.amount} >Target amount: {startup.targetAmount}</h3>
           <input
             onChange={handleFundingChange}
+            className={styles.amountInput}
             type="number"
             name="amount"
             value={fundingAmount}
             placeholder="Enter funding amount"
           />
-          <button onClick={handleAddFunding}>Add Funding</button>
-          <h4>Team Members</h4>
-          <ul>
-            {members.map((member: Member) => (
-              <li key={member.id}>
-                {member["User.login"]} - {member.role}
-              </li>
-            ))}
-          </ul>
+          <button className={styles.addButton} onClick={handleAddFunding}>Add Funding</button>
+          <div className={styles.members1}>
+            <h4 className={styles.header} >Team Members</h4>
+            <ul>
+              {members.map((member: Member) => (
+                <li key={member.id} className={styles.memberItem}>
+                  <div className={styles.memberInfo}>
+                    {member["User.login"]} - {member.role}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
           {login === startup["User.login"] ? (
-            <>
-            <h4>Add Team Member</h4>
-          <input
-            onChange={memberChangeHandler}
-            type="text"
-            name="login"
-            value={memberInputs.login}
-            placeholder="User login"
-          />
-          <input
-            onChange={memberChangeHandler}
-            type="text"
-            name="role"
-            value={memberInputs.role}
-            placeholder="Role"
-          />
-          <button onClick={addMember} type="button">
-            Add Member
-          </button>
-          </>
-          ):null}
+            <div className={styles.members}>
+              <h4 className={styles.header} >Add Team Member</h4>
+              <input
+                onChange={memberChangeHandler}
+                className={styles.amountInput}
+                type="text"
+                name="login"
+                value={memberInputs.login}
+                placeholder="User login"
+              />
+              <input
+                onChange={memberChangeHandler}
+                className={styles.amountInput}
+                type="text"
+                name="role"
+                value={memberInputs.role}
+                placeholder="Role"
+              />
+              <button
+                className={styles.addButton}
+                onClick={addMember}
+                type="button"
+              >
+                Add Member
+              </button>
+            </div>
+          ) : null}
         </>
       ) : (
         <Page404/>
