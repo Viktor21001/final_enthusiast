@@ -59,8 +59,8 @@ export default function NewStartUp(): JSX.Element {
       });
     }
 
-    void dispatch(fetchAddStartUp(formData));
-    void dispatch(fetchStartUps());
+    await dispatch(fetchAddStartUp(formData));
+    await dispatch(fetchStartUps());
     navigate('/');
   };
 
