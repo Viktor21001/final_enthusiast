@@ -10,7 +10,7 @@ ideaRouter.get('/', async (req, res) => {
       include: [
         {
           model: User,
-          as: 'User',
+          // as: 'User',
           attributes: ['login'],
         },
         {
@@ -37,7 +37,7 @@ ideaRouter.get('/:id', async (req, res) => {
       raw: true,
       include: {
         model: User,
-        as: 'User',
+        // as: 'User',
         attributes: ['login'],
       },
     });
