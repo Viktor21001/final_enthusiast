@@ -116,6 +116,7 @@ const SideNavbar: React.FC = () => {
                 <span className={styles.navLabel}>
                   {collapsed ? '' : 'Чаты'}
                 </span>
+                <span className={styles.badge}>В разработке</span>
               </Link>
             </li>
           </ul>

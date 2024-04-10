@@ -70,14 +70,14 @@ export default function NewIdea(): JSX.Element {
           ) : null}
 
           <br />
-          <h2>Create your idea!</h2>
+          <h2>Создай свою идею!</h2>
           <input
             onChange={changeHandler}
             type="text"
             name="title"
             value={inputs.title}
             className={styles.inputField}
-            placeholder="Title"
+            placeholder="Название"
           />
           <input
             onChange={changeHandler}
@@ -85,7 +85,7 @@ export default function NewIdea(): JSX.Element {
             name="description"
             value={inputs.description}
             className={styles.inputField}
-            placeholder="Description"
+            placeholder="Описание"
           />
           <select
             name="category"
@@ -93,10 +93,10 @@ export default function NewIdea(): JSX.Element {
             value={inputs.category}
             className={styles.selectField}
           >
-            <option value="">Select a category</option>
-            <option value="technology">Technology</option>
-            <option value="business">Business</option>
-            <option value="art">Art</option>
+            <option value="">Выбери категорию</option>
+            <option value="technology">Технологии</option>
+            <option value="business">Бизнес</option>
+            <option value="art">Искусство</option>
           </select>
           <input
             type="file"
@@ -106,7 +106,7 @@ export default function NewIdea(): JSX.Element {
           />
           <br />
           <button type="submit" className={styles.addButton}>
-            Add idea
+            Добавить
           </button>
         </>
       ) : (

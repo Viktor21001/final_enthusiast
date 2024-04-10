@@ -111,6 +111,11 @@
   margin: 10px 0;
 }
 
+.progressBar {
+  box-shadow: #333 0 0 10px;
+  border-radius: 50px;
+}
+
 .image {
   border-radius: 20px;
   height: auto;
@@ -140,18 +145,24 @@
 
 .memberItem {
   list-style: none;
-  border-bottom: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e100;
   padding: 10px 0;
 }
 
 .memberInfo {
   font-size: 16px;
+  color: #000000;
+}
+
+.hr {
+  box-shadow: #333 0 0 10px;
+  width: 200px;
 }
 
 .header {
   font-size: 20px;
   margin-bottom: 20px;
-  color: #6b747d;
+  color: #000000;
 }
 
 .amountInput {
@@ -169,5 +180,3 @@
   margin-bottom: 20px;
   width: 50%;
 }
-
-/* Добавьте дополнительные стили, если необходимо */
