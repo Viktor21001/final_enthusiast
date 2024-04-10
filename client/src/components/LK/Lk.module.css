@@ -2,6 +2,10 @@
   /* background-color: #ffffff;  */
 }
 
+.container {
+  
+}
+
 .startUpContainer {
   background-color: #ffffff;
   border: 1px solid #dddddd;
@@ -65,5 +69,7 @@
 .startUps {
   display: flex;
   flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку */
-  justify-content: center; /* Выравниваем элементы по центру по горизонтали */
+  /* justify-content: center; */
+  justify-content: end;
+  /* margin-left: 20%; */
 }

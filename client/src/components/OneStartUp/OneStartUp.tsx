@@ -16,7 +16,7 @@ import styles from './OneStartUp.module.css';
 export default function OneStartUp(): React.JSX.Element {
   const { id } = useParams();
   const startUps = useAppSelector((store) => store.startUpSlice.startUps);
-
+  const [progress, setProgress] = useState(0);
   console.log(startUps);
 
   const members = useAppSelector((state) => state.memberSlice.members);
@@ -32,6 +32,15 @@ export default function OneStartUp(): React.JSX.Element {
   const [fundingAmount, setFundingAmount] = useState<string>('');
 
   const dispatch = useAppDispatch();
+
+  const calculateProgress = (
+    currentAmount: number,
+    targetAmount: number
+  ): number => {
+    if (targetAmount === 0) return 0;
+    const progress = (currentAmount / targetAmount) * 100;
+    return parseFloat(Math.min(2000, progress).toFixed(2));
+  };
 
   const handleFundingChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFundingAmount(event.target.value);
@@ -54,6 +63,14 @@ export default function OneStartUp(): React.JSX.Element {
       dispatch(fetchStartUpById(idAsNumber));
     }
   }, [dispatch, id]);
+
+  useEffect(() => {
+    const progress = calculateProgress(
+      startup.currentAmount,
+      startup.targetAmount
+    );
+    setProgress(progress);
+  }, [startup.currentAmount, startup.targetAmount]);
 
   const memberChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setMemberInputs((prev) => ({
@@ -86,35 +103,39 @@ export default function OneStartUp(): React.JSX.Element {
           />
           <h2 className={styles.title}>{startup?.startUpTitle}</h2>
           <h3 className={styles.description}>{startup?.startUpDescription}</h3>
-          <h2 style={{ width: 100, height: 100 }}>
-            <CircularProgressbar
-              className={styles.progressBar}
-              value={startup.progress}
-              text={`${startup.progress}%`}
-              strokeWidth={5}
-              styles={{
-                path: {
-                  stroke: `#798aae`,
-                  strokeWidth: 10,
-                },
-                trail: {
-                  stroke: '#d6d6d6',
-                  strokeWidth: 10,
-                },
-                text: {
-                  fill: '#333',
-                  dominantBaseline: 'middle',
-                  textAnchor: 'middle',
-                },
-              }}
-            />
-          </h2>
-          <h3 className={styles.amount}>
-            Текущая сумма: {startup.currentAmount}
-          </h3>
-          <h3 className={styles.amount}>
-            Целевая сумма: {startup.targetAmount}
-          </h3>
+          <div className={styles.progressContainer}>
+            <div style={{ width: '100px', height: '100px' }}>
+              <CircularProgressbar
+                className="progressBar"
+                value={progress}
+                text={`${progress}%`}
+                strokeWidth={10}
+                styles={{
+                  path: {
+                    stroke: `#798aae`,
+                    strokeWidth: 7,
+                  },
+                  trail: {
+                    stroke: '#d6d6d6',
+                    strokeWidth: 10,
+                  },
+                  text: {
+                    fill: '#333',
+                    dominantBaseline: 'middle',
+                    textAnchor: 'middle',
+                  },
+                }}
+              />
+            </div>
+            <div className={styles.fundingDetails}>
+              <h3 className={styles.amount}>
+                Текущая сумма: {startup.currentAmount}
+              </h3>
+              <h3 className={styles.amount}>
+                Целевая сумма: {startup.targetAmount}
+              </h3>
+            </div>
+          </div>
           <input
             onChange={handleFundingChange}
             className={styles.amountInput}
