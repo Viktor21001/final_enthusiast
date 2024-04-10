@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const { raw } = require('express');
 const { User, UserProfile } = require('../../db/models');
 const uploadMid = require('../../file');
 
@@ -49,7 +48,6 @@ const updateProfile = async (userId, profileData) => {
 router.post('/updateProfile', uploadMid.single('avatar'), async (req, res) => {
   const { userId } = req.session;
   const profileData = req.body;
-  console.log(profileData, 'profileData');
   try {
     let avatar = 'maleAvatar.png';
     if (req.file) {
@@ -121,7 +119,6 @@ router.get('/profile', async (req, res) => {
   const { userId } = req.session;
   try {
     const rawUser = await User.findByPk(userId, {
-
       include: [
         {
           model: UserProfile,
@@ -134,7 +131,10 @@ router.get('/profile', async (req, res) => {
     const { interests, activity, avatar } = user.UserProfile;
     delete user.UserProfile;
     res.json({
-      ...user, interests, activity, avatar,
+      ...user,
+      interests,
+      activity,
+      avatar,
     });
   } catch (error) {
     console.log(error);
@@ -148,12 +148,10 @@ router.get('/people', async (req, res) => {
       include: [
         {
           model: UserProfile,
-          // as: 'Profile',
           attributes: ['interests', 'activity', 'avatar'],
           include: [
             {
               model: User,
-              // as: 'User',
               attributes: ['login'],
             },
           ],
@@ -169,7 +167,7 @@ router.get('/people', async (req, res) => {
       login: user['UserProfile.User.login'],
       activity: user['UserProfile.activity'],
     }));
-    console.log(userList);
+
     res.json(userList);
   } catch (error) {
     console.error('Ошибка при получении списка пользователей:', error);
@@ -194,41 +192,5 @@ router.get('/session', (req, res) => {
     res.json({ id: 0, login: '' });
   }
 });
-
-// router.get('/profile', async (req, res) => {
-//   const { userId } = req.session;
-
-//   try {
-//     const user = await User.findByPk(userId, {
-//       attributes: [
-//         'login',
-//         'email',
-//         'fullName',
-//         'gender',
-//         'birthDate',
-//         'isInvestor',
-//       ],
-//       include: [
-//         {
-//           model: UserProfile,
-//           // as: 'Profile',
-//           attributes: ['userId', 'avatar', 'interests', 'activity'],
-//         },
-//       ],
-//       raw: true,
-//       nest: true,
-//     });
-//     console.log(user);
-
-//     if (!user) {
-//       return res.status(404).json({ error: 'Пользователь не найден' });
-//     }
-
-//     return res.json({ user: user.toJSON() });
-//   } catch (error) {
-//     console.error('Ошибка при получении профиля пользователя:', error);
-//     return res.status(500).json({ error: 'Ошибка сервера' });
-//   }
-// });
 
 module.exports = router;
