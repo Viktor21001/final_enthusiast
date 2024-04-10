@@ -8,7 +8,11 @@ import {
   memberInputsType,
 } from '../../redux/memberActions';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { fetchStartUpById, fetchAddFunding } from '../../redux/startUpActions';
+import {
+  fetchStartUpById,
+  fetchAddFunding,
+  fetchEditstartUp,
+} from '../../redux/startUpActions';
 import { useUser } from '../../UserContext';
 import Page404 from '../page404/Page404';
 import styles from './OneStartUp.module.css';
@@ -17,11 +21,19 @@ export default function OneStartUp(): React.JSX.Element {
   const { id } = useParams();
   const startUps = useAppSelector((store) => store.startUpSlice.startUps);
   const [progress, setProgress] = useState(0);
+
   console.log(startUps);
 
   const members = useAppSelector((state) => state.memberSlice.members);
 
   const startup = startUps.find((el) => el.id === Number(id));
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedTitle, setEditedTitle] = useState(startup?.startUpTitle || '');
+  const [editedDescription, setEditedDescription] = useState(
+    startup?.startUpDescription || ''
+  );
+
   const { login } = useUser();
 
   const [memberInputs, setMemberInputs] = useState<memberInputsType>({
@@ -53,6 +65,34 @@ export default function OneStartUp(): React.JSX.Element {
       await dispatch(fetchStartUpById(Number(id)));
       setFundingAmount('');
     }
+  };
+
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEditedTitle(event.target.value);
+  };
+
+  const handleDescriptionChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setEditedDescription(event.target.value);
+  };
+
+  const saveChanges = async () => {
+    await dispatch(
+      fetchEditstartUp({
+        id: startup.id,
+        inputs: {
+          startUpTitle: editedTitle,
+          startUpDescription: editedDescription,
+        },
+      })
+    );
+    await dispatch(fetchStartUpById(Number(id))); // Обновление данных стартапа
+    setIsEditing(false); // Выход из режима редактирования
   };
 
   useEffect(() => {
@@ -101,12 +141,41 @@ export default function OneStartUp(): React.JSX.Element {
             src={`${import.meta.env.VITE_IMG}/${startup?.photos}`}
             alt="avatar"
           />
-          <h2 className={styles.title}>{startup?.startUpTitle}</h2>
-          <h3 className={styles.description}>{startup?.startUpDescription}</h3>
+          {isEditing ? (
+            <>
+              <input
+                className={styles.editInput}
+                value={editedTitle}
+                onChange={handleTitleChange}
+              />
+              <textarea
+                className={styles.editTextarea}
+                value={editedDescription}
+                onChange={handleDescriptionChange}
+              />
+              <button className={styles.saveButton} onClick={saveChanges}>
+                Сохранить
+              </button>
+              <button className={styles.cancelButton} onClick={toggleEdit}>
+                Отмена
+              </button>
+            </>
+          ) : (
+            <>
+              <h2 className={styles.title}>{startup?.startUpTitle}</h2>
+              <h3 className={styles.description}>
+                {startup?.startUpDescription}
+              </h3>
+              {login === startup['User.login'] && (
+                <button className={styles.editButton} onClick={toggleEdit}>
+                  Изменить
+                </button>
+              )}
+            </>
+          )}
           <div className={styles.progressContainer}>
             <div style={{ width: '100px', height: '100px' }}>
               <CircularProgressbar
-                className="progressBar"
                 value={progress}
                 text={`${progress}%`}
                 strokeWidth={10}

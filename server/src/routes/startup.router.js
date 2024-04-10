@@ -54,42 +54,42 @@ startupRouter.post('/new', uploadMid.single('photos'), async (req, res) => {
 });
 
 //! ручка на изменеие стартапа
-// startupRouter.put(
-//   '/update/:id',
-//   uploadMid.single('photos'),
-//   async (req, res) => {
-//     const { id } = req.params; // ID стартапа, который нужно обновить
-//     const startUpData = req.body;
+startupRouter.put(
+  '/update/:id',
+  uploadMid.single('photos'),
+  async (req, res) => {
+    const { id } = req.params; // ID стартапа, который нужно обновить
+    const startUpData = req.body;
 
-//     try {
-// Используйте имя файла по умолчанию, если фото не обновляется
-//       let photos = 'defaultPhoto.jpg';
-//       if (req.file) {
-//         photos = req.file.originalname; // Если фото обновляется, используйте новое имя файла
-//       }
-//       startUpData.photos = photos;
+    try {
+      // Используйте имя файла по умолчанию, если фото не обновляется
+      let photos = 'defaultPhoto.jpg';
+      if (req.file) {
+        photos = req.file.originalname; // Если фото обновляется, используйте новое имя файла
+      }
+      startUpData.photos = photos;
 
-// Ищем стартап по ID и обновляем его данные
-//       const [updatedRows] = await StartUp.update(startUpData, {
-//         where: { id },
-//       });
+      // Ищем стартап по ID и обновляем его данные
+      const [updatedRows] = await StartUp.update(startUpData, {
+        where: { id },
+      });
 
-// Если updatedRows равно 0, стартап не найден и не был обновлен
-//       if (updatedRows === 0) {
-//         return res
-//           .status(404)
-//           .json({ message: 'Стартап не найден или данные не были изменены.' });
-//       }
+      // Если updatedRows равно 0, стартап не найден и не был обновлен
+      if (updatedRows === 0) {
+        return res
+          .status(404)
+          .json({ message: 'Стартап не найден или данные не были изменены.' });
+      }
 
-// Если стартап успешно обновлен, возвращаем обновленные данные
-//       const updatedStartUp = await StartUp.findByPk(id);
-//       res.json(updatedStartUp);
-//     } catch (error) {
-//       console.error('Ошибка при обновлении стартапа:', error);
-//       res.status(500).json({ message: 'Ошибка при обновлении стартапа.' });
-//     }
-//   }
-// );
+      // Если стартап успешно обновлен, возвращаем обновленные данные
+      const updatedStartUp = await StartUp.findByPk(id);
+      res.json(updatedStartUp);
+    } catch (error) {
+      console.error('Ошибка при обновлении стартапа:', error);
+      res.status(500).json({ message: 'Ошибка при обновлении стартапа.' });
+    }
+  }
+);
 
 startupRouter.delete('/:id', async (req, res) => {
   const { id } = req.params;

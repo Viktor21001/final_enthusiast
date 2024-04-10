@@ -195,3 +195,29 @@
   flex-direction: column;
   align-items: flex-start;
 }
+
+.editInput {
+  margin-bottom: 10px;
+  width: 50%;
+  height: 40px;
+  padding: 8px;
+  border: 2px solid #a7a0a0b4;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 0 20px #ccc;
+}
+
+.editTextarea {
+  margin-bottom: 10px;
+  width: 600px;
+  height: 300px;
+  padding: 8px;
+  border: 2px solid #a7a0a0b4;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 0 20px #ccc;
+}
