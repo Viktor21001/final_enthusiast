@@ -1,4 +1,5 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, useEffect } from 'react';
+import axios from 'axios';
 import { useAppDispatch } from '../../redux/hooks';
 import { updateUserProfile } from '../../redux/userActions';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
@@ -14,7 +15,7 @@ export const UserProfileForm: React.FC = () => {
     gender: false,
     birthDate: '',
     interests: '',
-    activity: '',
+    activity: '', 
     avatar: null,
     isInvestor: false,
   });
@@ -22,26 +23,43 @@ export const UserProfileForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate: NavigateFunction = useNavigate();
 
-  // const { login } = useUser();
+  const { login } = useUser();
   // const peopleState = useSelector<RootState, PeopleState>(
   //   (state) => state.people
-  // );
+  // ); 
   // const member = peopleState.people.find((el) => el.login === login);
 
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ): void => {
-    const { name, value, type, checked, files } = e.target;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_URL}/users/profile`, {
+          withCredentials: true,
+        });
+        console.log(response, 'response');
+        
+        setProfile(response.data);
+      } catch (error) {
+        console.error('Ошибка получения данных:', error);
+      }
+    };
 
+    fetchData();
+  }, [setProfile])
+  
+  
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+    const { name, value, type, checked, files } = e.target;
+    console.log(e.target.name, 'zzzzzzzzzzzzzz');
+    
     if (type === 'checkbox') {
       setProfile((prev) => ({ ...prev, [name]: checked }));
     } else {
       setProfile((prev) => ({ ...prev, [name]: value }));
     }
-    console.log(e.target, 'zzzzzzzzzzzzzz');
-
+    
     if (name === 'avatar') {
       const file = e.target.files[0];
       const reader = new FileReader();
@@ -51,7 +69,9 @@ export const UserProfileForm: React.FC = () => {
       reader.readAsDataURL(file);
     }
   };
-
+  
+  console.log(profile, 'zzzzzzzzzzzzzzzzzwwwwwwwwqewqeqeqewq');
+  
   const avatarChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setProfile((prev) => ({ ...prev, avatar: event.target.files[0] }));
     const { name, files } = event.target;
@@ -74,6 +94,7 @@ export const UserProfileForm: React.FC = () => {
     data.append('fullName', profile.fullName);
     data.append('birthDate', profile.birthDate);
     data.append('interests', profile.interests);
+    data.append('activity', profile.activity);
     data.append('avatar', profile.avatar);
     console.log(data);
 
@@ -84,12 +105,12 @@ export const UserProfileForm: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        <h1>Профиль</h1>
+        <h1 style={{color: 'black'}} >Профиль</h1>
         <div className={styles.info}>
           {/* <h3>Логин: </h3>
           <h3>Почта: </h3> */}
           <h3>Имя {profile.fullName}</h3>
-          <h3>Дата рождения: {profile.birthDate}</h3>
+          <h3>Дата рождения: {profile.birthDate.slice(0, 10)}</h3>
           <h3>Интересы {profile.interests}</h3>
           <h3>Род деятельности {profile.activity}</h3>
         </div>
@@ -103,7 +124,7 @@ export const UserProfileForm: React.FC = () => {
             />
           ) : null}
           <br />
-          <p>Добавьте или измените информацию о себе</p>
+          <p style={{color: 'black'}} >Добавьте или измените информацию о себе</p>
           <input
             name="fullName"
             value={profile.fullName}
@@ -127,13 +148,17 @@ export const UserProfileForm: React.FC = () => {
             onChange={handleChange}
             className={styles.inputField}
           />
-          <textarea
+          <input
             name="interests"
             value={profile.interests}
             onChange={handleChange}
             placeholder="Интересы"
             className={styles.textAreaField}
           />
+          {/* <input
+          name='interests'
+          onChange={handleChange}
+          /> */}
           <input
             name="activity"
             value={profile.activity}
@@ -167,3 +192,4 @@ export const UserProfileForm: React.FC = () => {
     </>
   );
 };
+

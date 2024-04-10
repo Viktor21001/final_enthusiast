@@ -49,8 +49,9 @@ const updateProfile = async (userId, profileData) => {
 router.post('/updateProfile', uploadMid.single('avatar'), async (req, res) => {
   const { userId } = req.session;
   const profileData = req.body;
+  console.log(profileData, 'profileData');
   try {
-    let avatar = 'avatar.png';
+    let avatar = 'maleAvatar.png';
     if (req.file) {
       avatar = req.file.originalname;
     }
@@ -113,6 +114,30 @@ router.post('/registration', async (req, res) => {
     }
   } catch (error) {
     res.send(`Ошибка при регистрации: ${error}`);
+  }
+});
+
+router.get('/profile', async (req, res) => {
+  const { userId } = req.session;
+  try {
+    const rawUser = await User.findByPk(userId, {
+
+      include: [
+        {
+          model: UserProfile,
+          attributes: ['interests', 'activity', 'avatar'],
+        },
+      ],
+    });
+    const user = rawUser.get({ plain: true });
+    console.log(user);
+    const { interests, activity, avatar } = user.UserProfile;
+    delete user.UserProfile;
+    res.json({
+      ...user, interests, activity, avatar,
+    });
+  } catch (error) {
+    console.log(error);
   }
 });
 
