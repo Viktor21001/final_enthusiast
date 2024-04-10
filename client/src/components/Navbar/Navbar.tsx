@@ -1,24 +1,23 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useUser } from "../../UserContext";
-import LogoutButton from "../Login/LogOut";
-import CircleNotificationsOutlinedIcon from "@mui/icons-material/CircleNotificationsOutlined";
-import SearchIcon from "@mui/icons-material/Search";
-import InputBase from "@mui/material/InputBase";
-import { RootState } from "@reduxjs/toolkit/query";
-import { PeopleState } from "../../redux/peopleSlice";
-
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useUser } from '../../UserContext';
+import LogoutButton from '../Login/LogOut';
+import CircleNotificationsOutlinedIcon from '@mui/icons-material/CircleNotificationsOutlined';
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
+import { RootState } from '@reduxjs/toolkit/query';
+import { PeopleState } from '../../redux/peopleSlice';
 
 function NavBar() {
   const { login } = useUser();
@@ -26,10 +25,10 @@ function NavBar() {
   const peopleState = useSelector<RootState, PeopleState>(
     (state) => state.people
   );
-   
+
   console.log(peopleState, 'peopleState');
-  
-    const member = peopleState.people.find((el) => el.login === login);
+
+  const member = peopleState.people.find((el) => el.login === login);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -54,9 +53,9 @@ function NavBar() {
   };
 
   return (
-    <AppBar sx={{ backgroundColor: "#FFFFFF" }} position="static">
-      <Container maxWidth="xl" sx={{ backgroundColor: "#FFFFFF" }}>
-        <Toolbar disableGutters sx={{ backgroundColor: "#FFFFFF" }}>
+    <AppBar sx={{ backgroundColor: '#FFFFFF' }} position="static">
+      <Container maxWidth="xl" sx={{ backgroundColor: '#FFFFFF' }}>
+        <Toolbar disableGutters sx={{ backgroundColor: '#FFFFFF' }}>
           {login ? (
             <>
               <Typography
@@ -65,37 +64,52 @@ function NavBar() {
                 component="a"
                 sx={{
                   mr: 2,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "monospace",
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
                   fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
                 }}
               >
                 <img
                   src="/1.png"
                   alt="Logo"
-                  style={{ backgroundColor: "#FFFFFF", width: "200px" }}
+                  style={{ backgroundColor: '#FFFFFF', width: '200px' }}
                 />
               </Typography>
-              <div style={{ display: "flex", alignItems: "center", backgroundColor: "#FFFFFF"}}>
-                <SearchIcon sx={{ backgroundColor: "#FFFFFF" , color:"gray", opacity: 0.2}} />
-                  <InputBase
-                    placeholder="Поиск по Enthisiast"
-                    inputProps={{ "aria-label": "search" }}
-                    disabled
-                    sx={{ ml: 1 , backgroundColor: "#EBEFFA" , 
-                    borderRadius: '10px',  
-                    '&::placeholder': { // Применяем стили к тексту placeholder
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  backgroundColor: '#FFFFFF',
+                }}
+              >
+                <SearchIcon
+                  sx={{
+                    backgroundColor: '#FFFFFF',
+                    color: 'gray',
+                    opacity: 0.2,
+                  }}
+                />
+                <InputBase
+                  placeholder="Поиск в разработке"
+                  inputProps={{ 'aria-label': 'search' }}
+                  disabled
+                  sx={{
+                    ml: 1,
+                    backgroundColor: '#EBEFFA',
+                    borderRadius: '10px',
+                    '&::placeholder': {
+                      // Применяем стили к тексту placeholder
                       textAlign: 'right', // Выравнивание текста по правому краю
                       color: 'gray', // Цвет текста placeholder
                       opacity: 0, // Прозрачность
-                    }, }}
-                  />
-                </div>
-              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              
+                    },
+                  }}
+                />
+              </div>
+              <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
                   size="large"
                   aria-label="account of current user"
@@ -110,19 +124,19 @@ function NavBar() {
                   id="menu-appbar"
                   anchorEl={anchorElNav}
                   anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
+                    vertical: 'bottom',
+                    horizontal: 'left',
                   }}
                   keepMounted
                   transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
+                    vertical: 'top',
+                    horizontal: 'left',
                   }}
                   open={Boolean(anchorElNav)}
                   onClose={handleCloseNavMenu}
                   sx={{
-                    display: { xs: "block", md: "none" },
-                    backgroundColor: "#FFFFFF",
+                    display: { xs: 'block', md: 'none' },
+                    backgroundColor: '#FFFFFF',
                   }}
                 >
                   <Link
@@ -140,17 +154,17 @@ function NavBar() {
                 component="a"
                 sx={{
                   mr: 2,
-                  display: { xs: "flex", md: "none" },
+                  display: { xs: 'flex', md: 'none' },
                   flexGrow: 1,
-                  fontFamily: "monospace",
+                  fontFamily: 'monospace',
                   fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
                 }}
               >
                 <img
-                  style={{ width: "100px", height: "50px" }}
+                  style={{ width: '100px', height: '50px' }}
                   src="/1.png"
                   alt="Logo"
                 />
@@ -158,49 +172,50 @@ function NavBar() {
               <Box
                 sx={{
                   flexGrow: 1,
-                  display: { xs: "none", md: "flex" },
-                  backgroundColor: "#FFFFFF",
+                  display: { xs: 'none', md: 'flex' },
+                  backgroundColor: '#FFFFFF',
                 }}
               >
                 <CircleNotificationsOutlinedIcon
-                  sx={{ backgroundColor: "#FFFFFF" }}
+                  sx={{ backgroundColor: '#FFFFFF' }}
                 />
               </Box>
-              <Box sx={{ flexGrow: 0, backgroundColor: "#FFFFFF" }}>
+              <Box sx={{ flexGrow: 0, backgroundColor: '#FFFFFF' }}>
                 <Tooltip title="Open settings">
                   <IconButton
                     onClick={handleOpenUserMenu}
-                    sx={{ p: 0, backgroundColor: "black" }}
+                    sx={{ p: 0, backgroundColor: 'black' }}
                   >
                     <Avatar
                       alt="Remy Sharp"
-                      
-                       src={ `${import.meta.env.VITE_IMG}/${member?.avatar}` || "src/assets/avatar.png"}
+                      src={
+                        `${import.meta.env.VITE_IMG}/${member?.avatar}` ||
+                        'src/assets/avatar.png'
+                      }
                     />
-
                   </IconButton>
                 </Tooltip>
                 <Menu
-                  sx={{ mt: "45px" }}
+                  sx={{ mt: '45px' }}
                   id="menu-appbar"
                   anchorEl={anchorElUser}
                   anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
+                    vertical: 'top',
+                    horizontal: 'right',
                   }}
                   keepMounted
                   transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
+                    vertical: 'top',
+                    horizontal: 'right',
                   }}
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
                   <Link
                     style={{
-                      margin: "0 10px",
-                      color: "black",
-                      display: "block",
+                      margin: '0 10px',
+                      color: 'black',
+                      display: 'block',
                     }}
                     className="link"
                     to="/lk"
@@ -222,20 +237,20 @@ function NavBar() {
                 sx={{
                   mr: 2,
                   flexGrow: 1,
-                  fontFamily: "monospace",
+                  fontFamily: 'monospace',
                   fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                  backgroundColor: "#FFFF",
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                  backgroundColor: '#FFFF',
                 }}
               >
                 <img
                   style={{
-                    width: "200px",
-                    height: "50px",
-                    backgroundColor: "#FFFF",
-                    float: "left",
+                    width: '200px',
+                    height: '50px',
+                    backgroundColor: '#FFFF',
+                    float: 'left',
                   }}
                   src="/1.png"
                   alt="Logo"
@@ -243,10 +258,10 @@ function NavBar() {
               </Typography>
               <Link
                 style={{
-                  margin: "0 10px",
-                  display: "block",
-                  backgroundColor: "#FFFF",
-                  color: "black",
+                  margin: '0 10px',
+                  display: 'block',
+                  backgroundColor: '#FFFF',
+                  color: 'black',
                 }}
                 className="link"
                 to="/login"
@@ -256,10 +271,10 @@ function NavBar() {
               </Link>
               <Link
                 style={{
-                  margin: "0 10px",
-                  backgroundColor: "#FFFF",
-                  color: "black",
-                  display: "block",
+                  margin: '0 10px',
+                  backgroundColor: '#FFFF',
+                  color: 'black',
+                  display: 'block',
                 }}
                 className="link"
                 to="/registration"

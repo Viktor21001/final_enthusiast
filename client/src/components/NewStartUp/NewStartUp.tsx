@@ -14,9 +14,9 @@ export default function NewStartUp(): JSX.Element {
     startUpTitle: '',
     startUpDescription: '',
     startUpCategory: '',
-    progress: 0,
-    currentAmount: 0,
-    targetAmount: 0,
+    progress: '',
+    currentAmount: '',
+    targetAmount: '',
     photos: null,
   });
 
@@ -44,7 +44,7 @@ export default function NewStartUp(): JSX.Element {
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
     e.preventDefault();
-    
+
     const formData = new FormData();
     formData.append('startUpTitle', inputs.startUpTitle);
     formData.append('startUpDescription', inputs.startUpDescription);
@@ -67,7 +67,7 @@ export default function NewStartUp(): JSX.Element {
   return (
     <div>
       {login ? (
-        <form>
+        <form className={styles.container}>
           {previewImages ? (
             <img
               style={{ width: '150px' }}

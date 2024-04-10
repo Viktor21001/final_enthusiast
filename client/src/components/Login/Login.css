@@ -1,15 +1,21 @@
 @import url(https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap);
 body {
-  font-family: "Comfortaa", sans-serif;
+  font-family: 'Comfortaa', sans-serif;
 }
 
 .center {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 80%;
+  background-color: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  padding: 20px;
 }
 
-.txt_field label{
+.txt_field label {
   margin-left: 5px;
 }
 .txt_field {

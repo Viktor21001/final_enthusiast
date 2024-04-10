@@ -1,70 +1,73 @@
-*{
-    /* background-color: #ffffff;  */
-  
-  }
-  .startUpContainer {
-    background-color: #ffffff; 
-    border: 1px solid #dddddd; 
-    display: flex;
-  justify-content:center;
+* {
+  /* background-color: #ffffff;  */
+}
+
+.title {
+  margin-left: 50%;
+}
+
+.startUpContainer {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  display: flex;
+  justify-content: center;
   text-align: start;
-    border-radius: 30px; 
-    padding: 20px; 
-    margin-bottom: 20px; 
-    width: 700px;
-  }
-  
-  .startUpContainer h3 {
-    margin-top: 0; 
-    background-color: #ffffff; 
-  
-  }
-  
-  .startUpContainer h4 {
-    margin-top: 20px; 
-    background-color: #ffffff; 
-  }
-  
-  .startUpContainer button {
-    margin-right: 10px; 
-    margin-bottom: 10px;
-    background-color: #ffffff; 
-  }
-  
-  .title{
-    font-size: 20px;
-  }
-  .buttons{
-    background-color: #ffffff; 
-    display: flex;
-    justify-content: center;
-  }
-  
-  .info {
-    width: 60%;
-    display: flex;
-    flex-direction: column; 
-    justify-content: space-between; 
-  }
-  
-  /* .text{
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 700px;
+}
+
+.startUpContainer h3 {
+  margin-top: 0;
+  background-color: #ffffff;
+}
+
+.startUpContainer h4 {
+  margin-top: 20px;
+  background-color: #ffffff;
+}
+
+.startUpContainer button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+}
+
+.title {
+  font-size: 20px;
+}
+.buttons {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.info {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* .text{
     display: flex;
     flex-direction: column;
     align-items: start ;
   } */
-  
-  .photoDiv {
-    width: 40%; 
-    margin: 20px;
-  }
-  .photo{
-    border-radius: 20px;
-    height: auto;
-    width: 100%;
-  }
-  
-  .startUps {
-    display: flex;
-    flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку */
-    justify-content: center; /* Выравниваем элементы по центру по горизонтали */
-  }
+
+.photoDiv {
+  width: 40%;
+  margin: 20px;
+}
+.photo {
+  border-radius: 20px;
+  height: auto;
+  width: 100%;
+}
+
+.startUps {
+  display: flex;
+  flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку */
+  justify-content: center; /* Выравниваем элементы по центру по горизонтали */
+}
