@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React  from 'react';
+import { useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,15 +18,21 @@ import CircleNotificationsOutlinedIcon from '@mui/icons-material/CircleNotificat
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { RootState } from '@reduxjs/toolkit/query';
-import { PeopleState } from '../../redux/peopleSlice';
+import { PeopleState, fetchPeople } from '../../redux/peopleSlice';
 
 function NavBar() {
   const { login } = useUser();
+  const dispatch = useDispatch();
 
+  
   const peopleState = useSelector<RootState, PeopleState>(
     (state) => state.people
-  );
-
+    );
+    
+    useEffect(() => {
+      dispatch(fetchPeople());
+    }, [dispatch]);
+    
   console.log(peopleState, 'peopleState');
 
   const member = peopleState.people.find((el) => el.login === login);
