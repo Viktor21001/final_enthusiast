@@ -86,8 +86,8 @@ export const UserProfileForm: React.FC = () => {
       <div className={styles.container}>
         <h1>Профиль</h1>
         <div className={styles.info}>
-          <h3>Логин: </h3>
-          <h3>Почта: </h3>
+          {/* <h3>Логин: </h3>
+          <h3>Почта: </h3> */}
           <h3>Имя {profile.fullName}</h3>
           <h3>Дата рождения: {profile.birthDate}</h3>
           <h3>Интересы {profile.interests}</h3>

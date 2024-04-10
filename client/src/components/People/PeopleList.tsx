@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchPeople, PeopleState } from "../../redux/peopleSlice";
-import styles from "./PeopleList.module.css";
-import { RootState } from "../../redux/store";
-import { LuCornerUpRight } from "react-icons/lu";
-import { LuCornerUpLeft } from "react-icons/lu";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPeople, PeopleState } from '../../redux/peopleSlice';
+import styles from './PeopleList.module.css';
+import { RootState } from '../../redux/store';
+import { LuCornerUpRight } from 'react-icons/lu';
+import { LuCornerUpLeft } from 'react-icons/lu';
 import { useNavigate } from 'react-router-dom';
 
 const PeopleList: React.FC = ({ socket }) => {
@@ -25,14 +25,14 @@ const PeopleList: React.FC = ({ socket }) => {
   useEffect(() => {
     dispatch(fetchPeople());
   }, [dispatch]);
-  
+
   // Проверка на наличие данных и что это массив
   console.log(peopleState, 'peopleState');
   if (!Array.isArray(peopleState.people)) {
     // Здесь можно отобразить индикатор загрузки или сообщение об ошибке
     return <div>Loading...</div>;
   }
-  console.log("------------------>", peopleState);
+  console.log('------------------>', peopleState);
   return (
     <div className={styles.peopleList}>
       {peopleState.people.map((person) => (
@@ -46,23 +46,27 @@ const PeopleList: React.FC = ({ socket }) => {
           <div className={styles.personDetails}>
             <h3>{person.fullName}</h3>
             <p>Интересы: {person.interests}</p>
+            <br />
+            <p>Род деятельность: {person.activity}</p>
           </div>
           <div className={styles.cardFooter}>
-        <button
-          // onClick={}
-          type="button"
-              className={styles.dislikeButton} style={{borderRadius:'60%', }}
-        >
-<LuCornerUpLeft style={{ fontSize: '2em' }}/>
-        </button>
-        <button
-          // onClick={}
-          type="button"
-              className={styles.likeButton} style={{borderRadius:'60%', }}
-        >
-<LuCornerUpRight style={{ fontSize: '2em' }} />
-        </button>
-      </div>
+            <button
+              // onClick={}
+              type="button"
+              className={styles.dislikeButton}
+              style={{ borderRadius: '60%' }}
+            >
+              <LuCornerUpLeft style={{ fontSize: '2em' }} />
+            </button>
+            <button
+              // onClick={}
+              type="button"
+              className={styles.likeButton}
+              style={{ borderRadius: '60%' }}
+            >
+              <LuCornerUpRight style={{ fontSize: '2em' }} />
+            </button>
+          </div>
         </div>
       ))}
     </div>

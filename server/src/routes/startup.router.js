@@ -8,7 +8,7 @@ startupRouter.get('/', async (req, res) => {
       raw: true,
       include: {
         model: User,
-        as: 'User',
+        // as: 'User',
         attributes: ['login'],
       },
     });
@@ -26,7 +26,7 @@ startupRouter.get('/:id', async (req, res) => {
       raw: true,
       include: {
         model: User,
-        as: 'User',
+        // as: 'User',
         attributes: ['login'],
       },
     });
