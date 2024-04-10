@@ -13,7 +13,17 @@
   }
 }
 
+.badge {
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 0.75em;
+  z-index: 10;
+}
+
 .navItem {
+  position: relative;
   transition: transform 10.3s ease;
 }
 
