@@ -10,10 +10,10 @@ module.exports = {
       'Users',
       [
         {
-          login: 'Viktor',
-          email: 'viktor@example.com',
+          login: 'Vitalik',
+          email: 'vitalik@example.com',
           password: hashedPassword, // Reusing the hashed password for all users
-          fullName: 'Viktor',
+          fullName: 'Vitalik',
           gender: true, // Assuming true for male, adjust as needed
           birthDate: new Date(1990, 0, 1), // Year, Month (0-indexed), Day
           isInvestor: false, // Assuming not an investor, adjust as needed

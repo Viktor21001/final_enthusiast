@@ -5,7 +5,7 @@ module.exports = {
       [
         {
           userId: 1, // Assuming a user with this ID exists
-          avatar: 'viktor.png',
+          avatar: 'male.png',
           interests: 'Technology, Music, Art',
           activity: 'Active',
           createdAt: new Date(),
