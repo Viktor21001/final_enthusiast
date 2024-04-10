@@ -72,11 +72,13 @@ function NavBar() {
                   textDecoration: 'none',
                 }}
               >
-                <img
-                  src="/1.png"
-                  alt="Logo"
-                  style={{ backgroundColor: '#FFFFFF', width: '200px' }}
-                />
+                <Link to="/">
+                  <img
+                    src="/1.png"
+                    alt="Logo"
+                    style={{ backgroundColor: '#FFFFFF', width: '200px' }}
+                  />
+                </Link>
               </Typography>
               <div
                 style={{
@@ -92,6 +94,7 @@ function NavBar() {
                     opacity: 0.2,
                   }}
                 />
+
                 <InputBase
                   placeholder="Поиск в разработке"
                   inputProps={{ 'aria-label': 'search' }}
@@ -101,13 +104,25 @@ function NavBar() {
                     backgroundColor: '#EBEFFA',
                     borderRadius: '10px',
                     '&::placeholder': {
-                      // Применяем стили к тексту placeholder
-                      textAlign: 'right', // Выравнивание текста по правому краю
-                      color: 'gray', // Цвет текста placeholder
-                      opacity: 0, // Прозрачность
+                      textAlign: 'right',
+                      color: 'gray',
+                      opacity: 0,
                     },
                   }}
                 />
+                <span
+                  style={{
+                    backgroundColor: '#ff0000',
+                    color: '#ffffff',
+                    padding: '5px',
+                    borderRadius: '10px',
+                    fontSize: '0.75em',
+                    zIndex: 10,
+                    opacity: 0.5,
+                  }}
+                >
+                  В разработке
+                </span>
               </div>
               <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton

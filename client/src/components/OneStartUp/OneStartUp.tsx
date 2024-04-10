@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { CircularProgressbar } from 'react-circular-progressbar';
 import { useParams } from 'react-router-dom';
 import {
   Member,
@@ -77,7 +78,7 @@ export default function OneStartUp(): React.JSX.Element {
     <div className={styles.container}>
       {startup ? (
         <>
-          <h1 className={styles.title}>StartUp</h1>
+          <h1 className={styles.title}>Стартап</h1>
           <img
             className={styles.image}
             src={`${import.meta.env.VITE_IMG}/${startup?.photos}`}
@@ -85,14 +86,34 @@ export default function OneStartUp(): React.JSX.Element {
           />
           <h2 className={styles.title}>{startup?.startUpTitle}</h2>
           <h3 className={styles.description}>{startup?.startUpDescription}</h3>
-          <h2 className={styles.progress}>
-            Startup progress: {startup.progress} %
+          <h2 style={{ width: 100, height: 100 }}>
+            <CircularProgressbar
+              className={styles.progressBar}
+              value={startup.progress}
+              text={`${startup.progress}%`}
+              strokeWidth={5}
+              styles={{
+                path: {
+                  stroke: `#798aae`,
+                  strokeWidth: 10,
+                },
+                trail: {
+                  stroke: '#d6d6d6',
+                  strokeWidth: 10,
+                },
+                text: {
+                  fill: '#333',
+                  dominantBaseline: 'middle',
+                  textAnchor: 'middle',
+                },
+              }}
+            />
           </h2>
           <h3 className={styles.amount}>
-            Current amount: {startup.currentAmount}
+            Текущая сумма: {startup.currentAmount}
           </h3>
           <h3 className={styles.amount}>
-            Target amount: {startup.targetAmount}
+            Целевая сумма: {startup.targetAmount}
           </h3>
           <input
             onChange={handleFundingChange}
@@ -100,18 +121,19 @@ export default function OneStartUp(): React.JSX.Element {
             type="number"
             name="amount"
             value={fundingAmount}
-            placeholder="Enter funding amount"
+            placeholder="Введите сумму финансирования"
           />
           <button className={styles.addButton} onClick={handleAddFunding}>
-            Add Funding
+            Отправить
           </button>
           <div className={styles.members1}>
-            <h4 className={styles.header}>Team Members</h4>
+            <h4 className={styles.header}>Команда</h4>
             <ul>
               {members.map((member: Member) => (
                 <li key={member.id} className={styles.memberItem}>
                   <div className={styles.memberInfo}>
                     {member['User.login']} - {member.role}
+                    <hr className={styles.hr} />
                   </div>
                 </li>
               ))}
@@ -119,14 +141,14 @@ export default function OneStartUp(): React.JSX.Element {
           </div>
           {login === startup['User.login'] ? (
             <div className={styles.members}>
-              <h4 className={styles.header}>Add Team Member</h4>
+              <h4 className={styles.header}>Добавить в команду</h4>
               <input
                 onChange={memberChangeHandler}
                 className={styles.userInput}
                 type="text"
                 name="login"
                 value={memberInputs.login}
-                placeholder="User login"
+                placeholder="Логин пользователя"
               />
               <input
                 onChange={memberChangeHandler}
@@ -134,7 +156,7 @@ export default function OneStartUp(): React.JSX.Element {
                 type="text"
                 name="role"
                 value={memberInputs.role}
-                placeholder="Role"
+                placeholder="Роль в команде"
               />
               <br />
               <button
@@ -142,7 +164,7 @@ export default function OneStartUp(): React.JSX.Element {
                 onClick={addMember}
                 type="button"
               >
-                Add Member
+                Добавить
               </button>
             </div>
           ) : null}
