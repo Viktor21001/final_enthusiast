@@ -106,7 +106,7 @@ function NavBar() {
                     '&::placeholder': {
                       textAlign: 'right',
                       color: 'gray',
-                      opacity: 0,
+                      opacity: 0.2,
                     },
                   }}
                 />
