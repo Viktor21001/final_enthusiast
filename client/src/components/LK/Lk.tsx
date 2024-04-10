@@ -11,7 +11,6 @@ import styles from './Lk.module.css';
 
 export default function Lk(): JSX.Element {
   const favorites = useAppSelector((store) => store.favoritesSlice.favorites);
-  console.log(favorites);
   const dispatch = useAppDispatch();
   const navigate: NavigateFunction = useNavigate();
 
@@ -19,7 +18,6 @@ export default function Lk(): JSX.Element {
 
   useEffect(() => {
     void dispatch(fetchFavorites());
-    console.log('------------------->Lk');
   }, [dispatch]);
 
   const favorite = favorites.find((el) => el.id);

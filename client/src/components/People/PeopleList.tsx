@@ -6,6 +6,8 @@ import { RootState } from '../../redux/store';
 import { LuCornerUpRight } from 'react-icons/lu';
 import { LuCornerUpLeft } from 'react-icons/lu';
 import { useNavigate } from 'react-router-dom';
+import { RxCross2 } from 'react-icons/rx';
+import { FiCheck } from 'react-icons/fi';
 
 const PeopleList: React.FC = ({ socket }) => {
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ const PeopleList: React.FC = ({ socket }) => {
             <h3>{person.fullName}</h3>
             <p>Интересы: {person.interests}</p>
             <br />
-            <p>Род деятельность: {person.activity}</p>
+            <p>Род деятельности: {person.activity}</p>
           </div>
           <div className={styles.cardFooter}>
             <button
@@ -56,7 +58,7 @@ const PeopleList: React.FC = ({ socket }) => {
               className={styles.dislikeButton}
               style={{ borderRadius: '60%' }}
             >
-              <LuCornerUpLeft style={{ fontSize: '2em' }} />
+              <RxCross2 style={{ fontSize: '2em' }} />
             </button>
             <button
               // onClick={}
@@ -64,7 +66,7 @@ const PeopleList: React.FC = ({ socket }) => {
               className={styles.likeButton}
               style={{ borderRadius: '60%' }}
             >
-              <LuCornerUpRight style={{ fontSize: '2em' }} />
+              <FiCheck style={{ fontSize: '2em' }} />
             </button>
           </div>
         </div>
