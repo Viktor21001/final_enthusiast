@@ -1,16 +1,16 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   Member,
   fetchAddMember,
   fetchMembers,
   memberInputsType,
-} from "../../redux/memberActions";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { fetchStartUpById, fetchAddFunding } from "../../redux/startUpActions";
-import { useUser } from "../../UserContext";
-import Page404 from "../page404/Page404";
-import styles from "./OneStartUp.module.css";
+} from '../../redux/memberActions';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { fetchStartUpById, fetchAddFunding } from '../../redux/startUpActions';
+import { useUser } from '../../UserContext';
+import Page404 from '../page404/Page404';
+import styles from './OneStartUp.module.css';
 
 export default function OneStartUp(): React.JSX.Element {
   const { id } = useParams();
@@ -23,11 +23,9 @@ export default function OneStartUp(): React.JSX.Element {
   const startup = startUps.find((el) => el.id === Number(id));
   const { login } = useUser();
 
-
-
   const [memberInputs, setMemberInputs] = useState<memberInputsType>({
-    login: "",
-    role: "",
+    login: '',
+    role: '',
   });
 
   const [fundingAmount, setFundingAmount] = useState<string>('');
@@ -39,13 +37,11 @@ export default function OneStartUp(): React.JSX.Element {
   };
 
   const handleAddFunding = async () => {
-    const amount = Number(fundingAmount); 
+    const amount = Number(fundingAmount);
     if (amount > 0) {
-      await dispatch(
-        fetchAddFunding({ amount: amount, id: Number(id) })
-      );
+      await dispatch(fetchAddFunding({ amount: amount, id: Number(id) }));
       await dispatch(fetchStartUpById(Number(id)));
-      setFundingAmount(''); 
+      setFundingAmount('');
     }
   };
 
@@ -70,13 +66,12 @@ export default function OneStartUp(): React.JSX.Element {
 
     await dispatch(fetchAddMember({ inputs: memberInputs, id: idAsNumber }));
     dispatch(fetchMembers(idAsNumber));
-    console.log("Adding member:", memberInputs);
+    console.log('Adding member:', memberInputs);
     setMemberInputs({
-      login: "",
-      role: "",
+      login: '',
+      role: '',
     });
   };
-
 
   return (
     <div className={styles.container}>
@@ -84,15 +79,21 @@ export default function OneStartUp(): React.JSX.Element {
         <>
           <h1 className={styles.title}>StartUp</h1>
           <img
-              className={styles.image}
-              src={`${import.meta.env.VITE_IMG}/${startup?.photos}`}
-              alt="avatar"
+            className={styles.image}
+            src={`${import.meta.env.VITE_IMG}/${startup?.photos}`}
+            alt="avatar"
           />
           <h2 className={styles.title}>{startup?.startUpTitle}</h2>
           <h3 className={styles.description}>{startup?.startUpDescription}</h3>
-          <h2 className={styles.progress}>Startup progress: {startup.progress} %</h2>
-          <h3 className={styles.amount} >Current amount: {startup.currentAmount}</h3>
-          <h3 className={styles.amount} >Target amount: {startup.targetAmount}</h3>
+          <h2 className={styles.progress}>
+            Startup progress: {startup.progress} %
+          </h2>
+          <h3 className={styles.amount}>
+            Current amount: {startup.currentAmount}
+          </h3>
+          <h3 className={styles.amount}>
+            Target amount: {startup.targetAmount}
+          </h3>
           <input
             onChange={handleFundingChange}
             className={styles.amountInput}
@@ -101,25 +102,27 @@ export default function OneStartUp(): React.JSX.Element {
             value={fundingAmount}
             placeholder="Enter funding amount"
           />
-          <button className={styles.addButton} onClick={handleAddFunding}>Add Funding</button>
+          <button className={styles.addButton} onClick={handleAddFunding}>
+            Add Funding
+          </button>
           <div className={styles.members1}>
-            <h4 className={styles.header} >Team Members</h4>
+            <h4 className={styles.header}>Team Members</h4>
             <ul>
               {members.map((member: Member) => (
                 <li key={member.id} className={styles.memberItem}>
                   <div className={styles.memberInfo}>
-                    {member["User.login"]} - {member.role}
+                    {member['User.login']} - {member.role}
                   </div>
                 </li>
               ))}
             </ul>
           </div>
-          {login === startup["User.login"] ? (
+          {login === startup['User.login'] ? (
             <div className={styles.members}>
-              <h4 className={styles.header} >Add Team Member</h4>
+              <h4 className={styles.header}>Add Team Member</h4>
               <input
                 onChange={memberChangeHandler}
-                className={styles.amountInput}
+                className={styles.userInput}
                 type="text"
                 name="login"
                 value={memberInputs.login}
@@ -127,12 +130,13 @@ export default function OneStartUp(): React.JSX.Element {
               />
               <input
                 onChange={memberChangeHandler}
-                className={styles.amountInput}
+                className={styles.userInput}
                 type="text"
                 name="role"
                 value={memberInputs.role}
                 placeholder="Role"
               />
+              <br />
               <button
                 className={styles.addButton}
                 onClick={addMember}
@@ -144,7 +148,7 @@ export default function OneStartUp(): React.JSX.Element {
           ) : null}
         </>
       ) : (
-        <Page404/>
+        <Page404 />
       )}
     </div>
   );

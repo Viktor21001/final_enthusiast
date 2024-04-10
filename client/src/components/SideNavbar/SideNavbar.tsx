@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  FaUsers,
-  FaLightbulb,
-  FaComments,
-  FaHome,
-} from 'react-icons/fa';
-import { MdAddCircle, MdOutlineNotificationAdd } from "react-icons/md";
+import { FaUsers, FaLightbulb, FaComments, FaHome } from 'react-icons/fa';
+import { MdAddCircle, MdOutlineNotificationAdd } from 'react-icons/md';
 import styles from './SideNavvae.module.css'; // Ensure the CSS module is imported correctly
 import { useUser } from '../../UserContext';
 
 const SideNavbar: React.FC = () => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
-  const [showAdditionalButton, setShowAdditionalButton] = useState<boolean>(false);
-  const [showAdditionalButtonIdea, setShowAdditionalButtonIdea] = useState<boolean>(false);
+  const [showAdditionalButton, setShowAdditionalButton] =
+    useState<boolean>(false);
+  const [showAdditionalButtonIdea, setShowAdditionalButtonIdea] =
+    useState<boolean>(false);
   const { login } = useUser();
 
   const handleMouseEnter = (label: string): void => {
@@ -60,19 +57,23 @@ const SideNavbar: React.FC = () => {
                 </span>
               </Link>
               <ul>
-          {showAdditionalButton && (
-            <div className={styles.additionalButton}>
-              <Link to="/newstartup" style={{ marginTop: '10px', fontSize: '17px' }} className={styles.navLink}>
-              <MdAddCircle />
-              <span className={styles.navLabel}>
-                  {collapsed ? '' : 'Создать стартап'}
-                </span>
-              </Link>
-            </div>
-          )}
+                {showAdditionalButton && (
+                  <div className={styles.additionalButton}>
+                    <Link
+                      to="/newstartup"
+                      style={{ marginTop: '10px', fontSize: '17px' }}
+                      className={styles.navLink}
+                    >
+                      <MdAddCircle />
+                      <span className={styles.navLabel}>
+                        {collapsed ? '' : 'Создать стартап'}
+                      </span>
+                    </Link>
+                  </div>
+                )}
               </ul>
             </li>
-            
+
             <li className={styles.navItem}>
               <Link to="/people" className={styles.navLink}>
                 <FaUsers />
@@ -81,9 +82,10 @@ const SideNavbar: React.FC = () => {
                 </span>
               </Link>
             </li>
-            <li className={styles.navItem}
-             onMouseEnter={() => handleMouseEnterIdea('Билборд идей')}
-             onMouseLeave={() => handleMouseLeaveIdea('Билборд идей')}
+            <li
+              className={styles.navItem}
+              onMouseEnter={() => handleMouseEnterIdea('Билборд идей')}
+              onMouseLeave={() => handleMouseLeaveIdea('Билборд идей')}
             >
               <Link to="/ideas" className={styles.navLink}>
                 <FaLightbulb />
@@ -92,19 +94,23 @@ const SideNavbar: React.FC = () => {
                 </span>
               </Link>
               <ul>
-          {showAdditionalButtonIdea && (
-            <div className={styles.additionalButton}>
-              <Link to="/newidea" style={{ marginTop: '10px', fontSize: '17px' }} className={styles.navLink}>
-              <MdOutlineNotificationAdd />
-              <span className={styles.navLabel}>
-                  {collapsed ? '' : 'Создать идею'}
-                </span>
-              </Link>
-            </div>
-          )}
+                {showAdditionalButtonIdea && (
+                  <div className={styles.additionalButton}>
+                    <Link
+                      to="/newidea"
+                      style={{ marginTop: '10px', fontSize: '17px' }}
+                      className={styles.navLink}
+                    >
+                      <MdOutlineNotificationAdd />
+                      <span className={styles.navLabel}>
+                        {collapsed ? '' : 'Создать идею'}
+                      </span>
+                    </Link>
+                  </div>
+                )}
               </ul>
             </li>
-            <li className={styles.navItem}>
+            <li className={(styles.navItem, styles.isDesabled)}>
               <Link to="/messages" className={styles.navLink}>
                 <FaComments />
                 <span className={styles.navLabel}>

@@ -1,3 +1,36 @@
+.sideNavbar {
+  position: absolute;
+}
+
+@keyframes fallAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navItem {
+  transition: transform 10.3s ease;
+}
+
+.navLabel {
+  transition: transform 1.3s ease;
+}
+
+.additionalButton {
+  animation: fallAnimation 0.5s ease-out forwards;
+  transition: transform 1.3s ease;
+}
+
+.isDesabled {
+  opacity: 0.5;
+  pointer-events: none;
+  color: #ccc;
+}
 
 ul {
   list-style: none;
@@ -25,6 +58,6 @@ button {
 }
 
 .navLink {
-  color: #8997B5;
+  color: #8997b5;
   font-size: 20px;
 }

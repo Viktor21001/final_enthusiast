@@ -9,7 +9,7 @@
   }
 }
 
-.ideaCard {
+/* .ideaCard {
   border-radius: 20px;
   background: #798aae63;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -19,8 +19,8 @@
   justify-content: space-around;
   margin:15px;
   animation: fallAnimation 0.5s ease-out forwards;
-  width: 100%; /* Default width */
-  align-self: center; /* Center the card in the container */
+  width: 100%; 
+  align-self: center; 
   height: 700px;
   width: 600px;
 }
@@ -28,7 +28,7 @@
 .cardHeader,
 .cardBody {
   padding: 16px;
-  width: 100%; /* Make width 100% instead of 50% for better mobile responsiveness */
+  width: 100%;
   background-color:  transparent;
   border-radius: 30px;
   margin: 20px;
@@ -45,7 +45,7 @@ h3,h2,p{
   height: 80px;
   gap: 30px;
   align-items: center;
-  justify-content: center; /* Center the buttons */
+  justify-content: center;
   color: rgb(73, 148, 107);
 }
 
@@ -63,9 +63,6 @@ h3,h2,p{
 .ideaDescription {
   color: #1f366b;
   background-color:  transparent;
-  /* color: #f0f0f0; */
-  /* background: #798aae47; */
-
 }
 
 .icon-button {
@@ -80,8 +77,7 @@ h3,h2,p{
   height: 40px;
   transition: background-color 0.3s;
   margin: 6px;
-  /* background-color:rgba(255, 0, 0, 0.116) !important; */
-}
+ 
 
 .photo{
   width: 450px;
@@ -89,7 +85,7 @@ h3,h2,p{
   margin-left:70px;
   margin-top: 20px;
   border-radius: 10px;
-}
+} */
 
 /* .icon-button:hover {
   background-color: #2a9b1c;
@@ -128,4 +124,55 @@ h3,h2,p{
   color: red; 
 } */
 
+.ideaCard {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 20px auto;
+  width: 700px; /* Adjust width as per your layout */
+  animation: fallAnimation 0.5s ease-out forwards;
+  margin-left: 26%;
+}
 
+.ideaTitle {
+  color: #333;
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+.ideaDescription {
+  color: #666;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.photo {
+  border-radius: 20px;
+  width: 100%;
+  max-width: 450px; /* Adjust the max-width as needed */
+  margin-bottom: 20px;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.cardFooter {
+  background: transparent;
+  font-size: 25px;
+  display: flex;
+  height: 80px;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  color: rgb(73, 148, 107);
+}

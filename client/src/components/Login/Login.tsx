@@ -1,17 +1,17 @@
-import { useState } from "react";
-import axios from "axios";
-import { useUser } from "../../UserContext";
-import { Link, useNavigate } from "react-router-dom";
-import "./Login.css";
+import { useState } from 'react';
+import axios from 'axios';
+import { useUser } from '../../UserContext';
+import { Link, useNavigate } from 'react-router-dom';
+import './Login.css';
 
 export default function Login() {
   const navigate = useNavigate();
   const { setRegLogin } = useUser();
 
   const [formData, setFormData] = useState({
-    login: "",
-    email: "",
-    password: "",
+    login: '',
+    email: '',
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -40,15 +40,15 @@ export default function Login() {
       const login = user.login;
 
       setRegLogin(login);
-      navigate("/");
+      navigate('/');
     } catch (error) {
-      console.error("Краказябра", error);
+      console.error('Краказябра', error);
     }
   };
 
   return (
     <>
-      <div className="center">
+      <div className="center main-content">
         <h1>Авторизация</h1>
         <form onSubmit={handleSubmit}>
           <div className="txt_field">
@@ -82,7 +82,7 @@ export default function Login() {
           <input type="submit" value="Войти" className="reglogButton" />
 
           <div className="signup_link">
-            Еще не зарегистрированы?{" "}
+            Еще не зарегистрированы?{' '}
             <Link to="/registration">Зарегистрироваться</Link>
           </div>
         </form>
