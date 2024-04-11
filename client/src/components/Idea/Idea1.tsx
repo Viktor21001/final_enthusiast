@@ -2,9 +2,7 @@ import { JSX } from 'react/jsx-runtime';
 import { useAppDispatch } from '../../redux/hooks';
 import {
   Idea,
-  fetchDeleteIdea,
   fetchDislikes,
-  fetchIdeas,
   fetchLikes,
 } from '../../redux/ideaActions';
 import { FaThumbsUp, FaThumbsDown, FaEllipsisV } from 'react-icons/fa';
@@ -52,14 +50,11 @@ export default function Idea1({
     <div className={styles.ideaCard}>
       {login ? (
         <>
-          {/* <img src={idea.User.avatar} alt="avatartttt" /> */}
           <h3> Автор: {idea?.User?.login}</h3>
           <img
-            // src={idea?.photo}
             src={`${import.meta.env.VITE_IMG}/${idea?.photo}`}
             alt="avatar"
             className={styles.photo}
-            // style={{ width: '200px' }}
           />
           <h3 className={styles.ideaTitle}>{idea?.title}</h3>
           <p className={styles.ideaDescription}>

@@ -22,7 +22,6 @@ export const chatSlice = createSlice({
     addMessage: (state, action: PayloadAction<Message>) => {
       state.messages.push(action.payload);
     },
-    // Добавьте другие редюсеры по мере необходимости
   },
 });
 

@@ -8,7 +8,6 @@ startupRouter.get('/', async (req, res) => {
       raw: true,
       include: {
         model: User,
-        // as: 'User',
         attributes: ['login'],
       },
     });
@@ -26,7 +25,6 @@ startupRouter.get('/:id', async (req, res) => {
       raw: true,
       include: {
         model: User,
-        // as: 'User',
         attributes: ['login'],
       },
     });
@@ -62,10 +60,10 @@ startupRouter.put(
     const startUpData = req.body;
 
     try {
-      // Используйте имя файла по умолчанию, если фото не обновляется
+      // Имя файла по умолчанию, если фото не обновляется
       let photos = 'defaultPhoto.jpg';
       if (req.file) {
-        photos = req.file.originalname; // Если фото обновляется, используйте новое имя файла
+        photos = req.file.originalname; // Если фото обновляется, использует новое имя файла
       }
       startUpData.photos = photos;
 

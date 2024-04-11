@@ -6,7 +6,7 @@ import styles from './SideNavvae.module.css'; // Ensure the CSS module is import
 import { useUser } from '../../UserContext';
 
 const SideNavbar: React.FC = () => {
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [collapsed] = useState<boolean>(false);
   const [showAdditionalButton, setShowAdditionalButton] =
     useState<boolean>(false);
   const [showAdditionalButtonIdea, setShowAdditionalButtonIdea] =

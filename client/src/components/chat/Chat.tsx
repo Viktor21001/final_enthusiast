@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 import Body from './components/Body/Body';
 import MessageBlock from './components/MessageBlock/MessageBlock';
@@ -17,7 +17,6 @@ export default function Chat({ socket }: any) {
   useEffect(() => {
     socket.on('user data', (data) => {
       console.log('Мой ID:', data.id);
-      // Здесь вы можете сохранить userId в состоянии компонента или где-то еще
     });
   }, [socket]);
 

@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPeople, PeopleState } from '../../redux/peopleSlice';
 import styles from './PeopleList.module.css';
 import { RootState } from '../../redux/store';
-import { LuCornerUpRight } from 'react-icons/lu';
-import { LuCornerUpLeft } from 'react-icons/lu';
 import { useNavigate } from 'react-router-dom';
 import { RxCross2 } from 'react-icons/rx';
 import { FiCheck } from 'react-icons/fi';
@@ -31,7 +29,6 @@ const PeopleList: React.FC = ({ socket }) => {
   // Проверка на наличие данных и что это массив
   console.log(peopleState, 'peopleState');
   if (!Array.isArray(peopleState.people)) {
-    // Здесь можно отобразить индикатор загрузки или сообщение об ошибке
     return <div>Loading...</div>;
   }
   console.log('------------------>', peopleState);
@@ -53,7 +50,6 @@ const PeopleList: React.FC = ({ socket }) => {
           </div>
           <div className={styles.cardFooter}>
             <button
-              // onClick={}
               type="button"
               className={styles.dislikeButton}
               style={{ borderRadius: '60%' }}
@@ -61,7 +57,6 @@ const PeopleList: React.FC = ({ socket }) => {
               <RxCross2 style={{ fontSize: '2em' }} />
             </button>
             <button
-              // onClick={}
               type="button"
               className={styles.likeButton}
               style={{ borderRadius: '60%' }}
