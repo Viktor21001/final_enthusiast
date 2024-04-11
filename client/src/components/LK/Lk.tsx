@@ -35,8 +35,8 @@ export default function Lk(): JSX.Element {
       {login ? (
         <>
           <UserProfileForm />
-          <div className="favContainer">
-            <h3 className={styles.title}>Избранные стартапы</h3>
+          <div className={styles.favContainer}>
+            <h3 className={styles.titlefav}>Избранные стартапы</h3>
 
             {favorites.length > 0 ? (
               <div className={styles.startUps}>
@@ -74,7 +74,7 @@ export default function Lk(): JSX.Element {
                 ))}
               </div>
             ) : (
-              <p className={styles.title}>
+              <p className={styles.titlefav}>
                 Пока что Вы еще не добавили стартапы в избранное
               </p>
             )}

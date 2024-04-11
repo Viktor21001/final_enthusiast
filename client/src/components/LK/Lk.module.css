@@ -2,10 +2,14 @@
 }
 
 .container {
-  
 }
 
-.startUpContainer {
+.favContainer {
+  justify-content: center;
+  margin-left: 25%;
+}
+
+.startUps {
   background-color: #ffffff;
   border: 1px solid #dddddd;
   display: flex;
@@ -17,9 +21,26 @@
   width: 700px;
 }
 
+.startUpContainer {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  display: flex;
+  text-align: start;
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 700px;
+}
+
 .startUpContainer h3 {
   margin-top: 0;
   background-color: #ffffff;
+  margin-left: 30%;
+}
+
+.titlefav {
+  text-align: center;
+  margin-left: 25%;
 }
 
 .startUpContainer h4 {
@@ -33,9 +54,9 @@
   background-color: #ffffff;
 }
 
-.title {
+/* .title {
   font-size: 20px;
-}
+} */
 .buttons {
   background-color: #ffffff;
   display: flex;
