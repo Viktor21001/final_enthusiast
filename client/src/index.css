@@ -12,9 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-* {
-  /* background-color: #F2F2F2; */
-}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -25,11 +23,8 @@ a:hover {
 }
 
 body {
-    background-color: #F2F2F2;
-  /* max-height: 100%;
-  max-width: 100%; */
+  background-color: #f2f2f2;
   margin: 0;
-  /* display: flex; */
   place-items: center;
   align-items: flex-start;
 }

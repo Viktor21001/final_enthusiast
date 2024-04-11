@@ -3,8 +3,8 @@ import startUpSlice from './startUpSlice';
 import ideaSlice from './ideaSlice';
 import favoritesSlice from './favoritesSlice';
 import memberSlice from './memberSlice';
-import userReducer from './userSlice'; // Импорт userReducer
-import peopleReducer from './peopleSlice'; // Импорт peopleReducer
+import userReducer from './userSlice';
+import peopleReducer from './peopleSlice'; 
 import chatReducer from './chatSlice';
 
 const store = configureStore({
@@ -17,7 +17,6 @@ const store = configureStore({
     people: peopleReducer,
     chat: chatReducer,
   },
-  // Вы можете добавить middleware здесь, если это необходимо
 });
 
 // Определение типа AppThunk для создания Thunk-функций

@@ -105,7 +105,6 @@ const Profile = ({ isOpen, onClose }) => {
             required
           >
             <option value="">Выберите ваш род деятельности</option>
-            {/* Добавьте опции для выбора рода деятельности */}
           </select>
 
           <label>

@@ -51,7 +51,6 @@
 }
 .app-container::-webkit-scrollbar {
   display: none;
-  /* background-color: #F2F2F2; */
 
 }
 .main-content {
@@ -63,7 +62,3 @@
   margin-top: 20px;
   margin-left: 50px;
 }
-
-/* .right-sidebar {
-  flex: 0 0 200px;
-} */

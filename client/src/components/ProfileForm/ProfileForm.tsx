@@ -21,13 +21,6 @@ export const UserProfileForm: React.FC = () => {
   });
 
   const dispatch = useAppDispatch();
-  const navigate: NavigateFunction = useNavigate();
-
-  const { login } = useUser();
-  // const peopleState = useSelector<RootState, PeopleState>(
-  //   (state) => state.people
-  // ); 
-  // const member = peopleState.people.find((el) => el.login === login);
 
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
@@ -51,7 +44,7 @@ export const UserProfileForm: React.FC = () => {
   
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
-    const { name, value, type, checked, files } = e.target;
+    const { name, value, type, checked } = e.target;
     console.log(e.target.name, 'zzzzzzzzzzzzzz');
     
     if (type === 'checkbox') {
@@ -155,10 +148,6 @@ export const UserProfileForm: React.FC = () => {
             placeholder="Интересы"
             className={styles.textAreaField}
           />
-          {/* <input
-          name='interests'
-          onChange={handleChange}
-          /> */}
           <input
             name="activity"
             value={profile.activity}
@@ -173,17 +162,6 @@ export const UserProfileForm: React.FC = () => {
             onChange={avatarChangeHandler}
             className="inputSalon"
           />
-          {/* <label className={styles.checkboxLabel}>
-        Инвестор:
-        <input
-          name="isInvestor"
-          type="checkbox"
-          checked={profile.isInvestor}
-          onChange={handleChange}
-          className={styles.checkboxField}
-
-        />
-      </label> */}
           <button type="submit" className={styles.addButton}>
             Сохранить
           </button>

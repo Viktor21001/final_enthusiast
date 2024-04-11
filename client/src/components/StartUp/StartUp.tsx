@@ -13,7 +13,7 @@ type StartUpComponentPropsType = {
     "User.login": string;
     startUpTitle: string;
     startUpDescription: string;
-    photos: string; // Полагаем, что фотографии хранятся в виде JSON строки
+    photos: string;
   };
 };
 
@@ -39,7 +39,6 @@ export default function StartUpComponent({
         <img
           src={`${import.meta.env.VITE_IMG}/${startUp?.photos}`}
           alt="avatar"
-          // style={{ width: "150px" }}
           className={styles.photo}
         />
       </div>
