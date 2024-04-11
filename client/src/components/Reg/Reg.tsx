@@ -56,6 +56,10 @@ const Reg: React.FC = () => {
           setErrorMessage("Пользователь уже существует");
         } else {
           console.error("Регистрация не удалась", error);
+        }  
+        if (axios.isAxiosError(error) && error.response?.status === 401) {
+          console.error("Регистрация не удалась - Пароль должен содержать не менее 8 символов");
+          setErrorMessage("Пароль должен содержать не менее 8 символов");
         }
       }
     }

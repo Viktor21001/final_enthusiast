@@ -35,37 +35,43 @@ const PeopleList: React.FC = ({ socket }) => {
   return (
     <div className={styles.peopleList}>
       {peopleState.people.map((person) => (
-        <div key={person.id} className={styles.personCard}>
+      <>
+        { person.fullName ? (
+          <div key={person.id} className={styles.personCard}>
           <div className={styles.personImage}>
-            <img
-              src={`${import.meta.env.VITE_IMG}/${person.avatar}`}
-              alt={person.fullName}
-            />
+          <img
+          src={`${import.meta.env.VITE_IMG}/${person.avatar}`}
+          alt={person.fullName}
+          />
           </div>
           <div className={styles.personDetails}>
-            <h3>{person.fullName}</h3>
-            <p>Интересы: {person.interests}</p>
-            <br />
-            <p>Род деятельности: {person.activity}</p>
+          <h3>{person.fullName}</h3>
+          <p>Интересы: {person.interests}</p>
+          <br />
+          <p>Род деятельности: {person.activity}</p>
           </div>
           <div className={styles.cardFooter}>
-            <button
-              type="button"
-              className={styles.dislikeButton}
-              style={{ borderRadius: '60%' }}
-            >
-              <RxCross2 style={{ fontSize: '2em' }} />
-            </button>
-            <button
-              type="button"
-              className={styles.likeButton}
-              style={{ borderRadius: '60%' }}
-            >
-              <FiCheck style={{ fontSize: '2em' }} />
-            </button>
+          <button
+          type="button"
+          className={styles.dislikeButton}
+          style={{ borderRadius: '60%' }}
+          >
+          <RxCross2 style={{ fontSize: '2em' }} />
+          </button>
+          <button
+          type="button"
+          className={styles.likeButton}
+          style={{ borderRadius: '60%' }}
+          >
+          <FiCheck style={{ fontSize: '2em' }} />
+          </button>
           </div>
-        </div>
-      ))}
+          </div>
+          ) : (
+            null
+            )}
+            </>
+            ))}
     </div>
   );
 };

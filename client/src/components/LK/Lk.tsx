@@ -56,7 +56,8 @@ export default function Lk(): JSX.Element {
                         <h4 className={styles.title}>
                           {favorite.StartUp?.startUpTitle}
                         </h4>
-                        <h4>{favorite.StartUp?.startUpDescription}</h4>
+                        
+                        <h4>{favorite.StartUp?.startUpDescription.length > 50 ? `${favorite.StartUp?.startUpDescription.slice(0, 50)}...` : favorite.StartUp?.startUpDescription}</h4>
                       </div>
                       <div className={styles.buttons}>
                         <button onClick={deleteHandler}>

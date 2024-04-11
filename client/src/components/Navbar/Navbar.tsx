@@ -103,7 +103,7 @@ function NavBar() {
                 />
 
                 <InputBase
-                  placeholder="Поиск в разработке"
+                  placeholder=" Поиск в разработке"
                   inputProps={{ 'aria-label': 'search' }}
                   disabled
                   sx={{
@@ -125,7 +125,8 @@ function NavBar() {
                     borderRadius: '10px',
                     fontSize: '0.75em',
                     zIndex: 10,
-                    opacity: 0.5,
+                    opacity: 0.3,
+                    marginLeft: '5px',
                   }}
                 >
                   В разработке
