@@ -77,13 +77,13 @@ export default function NewStartUp(): JSX.Element {
             />
           ) : null}
 
-          <h2>Create your startup!</h2>
+          <h2>Создайте свой стартап!</h2>
           <input
             type="text"
             name="startUpTitle"
             value={inputs.startUpTitle}
             onChange={handleChange}
-            placeholder="Title"
+            placeholder="Название стартапа"
             className={styles.inputField}
           />
           <input
@@ -91,7 +91,7 @@ export default function NewStartUp(): JSX.Element {
             name="startUpDescription"
             value={inputs.startUpDescription}
             onChange={handleChange}
-            placeholder="Description"
+            placeholder="Описание стартапа"
             className={styles.inputField}
           />
           <input
@@ -99,7 +99,7 @@ export default function NewStartUp(): JSX.Element {
             name="startUpCategory"
             value={inputs.startUpCategory}
             onChange={handleChange}
-            placeholder="Category"
+            placeholder="Категория"
             className={styles.inputField}
           />
           <input
@@ -107,7 +107,7 @@ export default function NewStartUp(): JSX.Element {
             name="progress"
             value={inputs.progress}
             onChange={handleChange}
-            placeholder="Progress"
+            placeholder="Прогресс"
             className={styles.inputField}
           />
           <input
@@ -115,7 +115,7 @@ export default function NewStartUp(): JSX.Element {
             name="currentAmount"
             value={inputs.currentAmount}
             onChange={handleChange}
-            placeholder="Current Amount"
+            placeholder="Текущая сумма в рублях"
             className={styles.inputField}
           />
           <input
@@ -123,7 +123,7 @@ export default function NewStartUp(): JSX.Element {
             name="targetAmount"
             value={inputs.targetAmount}
             onChange={handleChange}
-            placeholder="Target Amount"
+            placeholder="Целевая сумма в рублях"
             className={styles.inputField}
           />
           <br />
@@ -139,11 +139,11 @@ export default function NewStartUp(): JSX.Element {
             onClick={addStartUp}
             className={styles.addButton}
           >
-            Add Startup
+            Добавить стартап
           </button>
         </form>
       ) : (
-        <p>Please log in to add a startup.</p>
+        <p>Пожалуйста войдите в приложение прежде чем создать свой стартап.</p>
       )}
     </div>
   );

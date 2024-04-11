@@ -198,10 +198,10 @@ export default function OneStartUp(): React.JSX.Element {
             </div>
             <div className={styles.fundingDetails}>
               <h3 className={styles.amount}>
-                Текущая сумма: {startup.currentAmount}
+                Текущая сумма: {startup.currentAmount} рублей
               </h3>
               <h3 className={styles.amount}>
-                Целевая сумма: {startup.targetAmount}
+                Целевая сумма: {startup.targetAmount} рублей
               </h3>
             </div>
           </div>
@@ -211,7 +211,7 @@ export default function OneStartUp(): React.JSX.Element {
             type="number"
             name="amount"
             value={fundingAmount}
-            placeholder="Введите сумму финансирования"
+            placeholder="Введите сумму финансирования в рублях"
           />
           <button className={styles.addButton} onClick={handleAddFunding}>
             Отправить
