@@ -6,7 +6,7 @@ module.exports = {
         {
           userId: 1, // Assuming a user with this ID exists
           avatar: 'maleAvatar.png',
-          interests: 'Technology, Music, Art',
+          interests: 'Технологии,музыка,искусство',
           activity: 'Инженер',
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -14,15 +14,15 @@ module.exports = {
         {
           userId: 2,
           avatar: 'dali.png',
-          interests: 'Gaming, Reading, Hiking',
-          activity: 'Frontend Developer',
+          interests: 'Игры, чтение, иностранные языки',
+          activity: 'Frontend разработчик',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           userId: 3,
           avatar: 'andrey.png',
-          interests: 'Cooking, Traveling, Photography',
+          interests: 'Готовка, путешествия, фотография',
           activity: 'Fullstack Developer',
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -30,7 +30,7 @@ module.exports = {
         {
           userId: 4,
           avatar: 'vika.png',
-          interests: 'Fitness, Yoga, Meditation',
+          interests: 'Фитнесс, йога, медитация',
           activity: 'Психолог',
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -38,7 +38,7 @@ module.exports = {
         {
           userId: 5,
           avatar: 'max.png',
-          interests: 'Writing, Blogging, Designing',
+          interests: 'Дизай, блоггинг, спорт',
           activity: 'Senior Web Developer',
           createdAt: new Date(),
           updatedAt: new Date(),
