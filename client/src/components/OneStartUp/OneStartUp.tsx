@@ -174,19 +174,19 @@ export default function OneStartUp(): React.JSX.Element {
             </>
           )}
           <div className={styles.progressContainer}>
-            <div style={{ width: '100px', height: '100px' }}>
+            <div style={{ width: '150px', height: '150px' }}>
               <CircularProgressbar
                 value={progress}
                 text={`${progress}%`}
-                strokeWidth={10}
+                strokeWidth={14}
                 styles={{
                   path: {
                     stroke: `#798aae`,
-                    strokeWidth: 7,
+                    strokeWidth: 14,
                   },
                   trail: {
                     stroke: '#d6d6d6',
-                    strokeWidth: 10,
+                    strokeWidth: 14,
                   },
                   text: {
                     fill: '#333',

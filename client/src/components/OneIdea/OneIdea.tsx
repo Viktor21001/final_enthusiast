@@ -30,7 +30,7 @@ export default function OneIdea(): React.JSX.Element {
     if (id) {
       const idAsNumber = Number(id);
       await dispatch(fetchDeleteIdea(idAsNumber));
-      navigate(`/`);
+      navigate(`/ideas`);
     }
   };
 
