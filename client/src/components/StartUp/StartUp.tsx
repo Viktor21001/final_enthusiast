@@ -50,15 +50,15 @@ export default function StartUpComponent({
         </div>
         {login && (
           <div className={styles.buttons}>
-            <button type="button" onClick={() => navigate(`/${startUp.id}`)}>
+            <button style={{color: "black"}} type="button" onClick={() => navigate(`/${startUp.id}`)}>
               Подробнее
             </button>
             {login === startUp["User.login"] ? (
-              <button onClick={deleteHandler} type="button">
+              <button style={{color: "black"}} onClick={deleteHandler} type="button">
                 Удалить
               </button>
             ) : (
-              <button onClick={favoriteHandler} type="button">
+              <button style={{color: "black"}} onClick={favoriteHandler} type="button">
                 <CgBookmark
                   style={{ backgroundColor: "white", fontSize: "2em" }}
                 />

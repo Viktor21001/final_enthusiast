@@ -93,6 +93,11 @@ router.post('/registration', async (req, res) => {
     if (user) {
       res.status(400).json({ err: `Такой ${email} уже существует!` });
     } else {
+      if (password.length < 8) {
+        return res.status(401).json({
+          err: 'Пароль должен содержать не менее 8 символов',
+        });
+      }
       const hash = await bcrypt.hash(password, 10);
       const newUser = await User.create({
         login,

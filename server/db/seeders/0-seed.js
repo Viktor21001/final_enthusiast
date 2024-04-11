@@ -13,7 +13,7 @@ module.exports = {
           login: 'Vitalik',
           email: 'vitalik@example.com',
           password: hashedPassword, // Reusing the hashed password for all users
-          fullName: 'Vitalik',
+          fullName: 'Виктор Константинов',
           gender: true, // Assuming true for male, adjust as needed
           birthDate: new Date(1990, 0, 1), // Year, Month (0-indexed), Day
           isInvestor: false, // Assuming not an investor, adjust as needed
@@ -24,7 +24,7 @@ module.exports = {
           login: 'Dali',
           email: 'dali@example.com',
           password: hashedPassword,
-          fullName: 'Dali',
+          fullName: 'Дали Хашиева',
           gender: false, // Adjust according to your needs
           birthDate: new Date(1992, 5, 15),
           isInvestor: true, // Example
@@ -35,7 +35,7 @@ module.exports = {
           login: 'Andrey',
           email: 'andrey@example.com',
           password: hashedPassword,
-          fullName: 'Andrey',
+          fullName: 'Андрей Минасян',
           gender: true,
           birthDate: new Date(1988, 10, 23),
           isInvestor: false,
@@ -46,7 +46,7 @@ module.exports = {
           login: 'Viktorya',
           email: 'viktorya@example.com',
           password: hashedPassword,
-          fullName: 'Viktorya',
+          fullName: 'Виктория Дмитриева',
           gender: false,
           birthDate: new Date(1995, 3, 8),
           isInvestor: true,
@@ -57,7 +57,7 @@ module.exports = {
           login: 'Maxim',
           email: 'maxim@example.com',
           password: hashedPassword,
-          fullName: 'Maxim',
+          fullName: 'Максим Кошеутов',
           gender: true,
           birthDate: new Date(1985, 7, 30),
           isInvestor: false,
