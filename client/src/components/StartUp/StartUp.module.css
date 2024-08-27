@@ -1,0 +1,70 @@
+* {
+}
+
+@keyframes fallAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.startUpContainer {
+  animation: fallAnimation 0.5s ease-out forwards;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  display: flex;
+  justify-content: center;
+  text-align: start;
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 700px;
+  margin-left: 30%;
+}
+
+.startUpContainer h3 {
+  margin-top: 0;
+  background-color: #ffffff;
+}
+
+.startUpContainer h4 {
+  margin-top: 20px;
+  background-color: #ffffff;
+}
+
+.startUpContainer button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+}
+
+.title {
+  font-size: 20px;
+}
+.buttons {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.info {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: black;
+}
+
+.photoDiv {
+  width: 40%;
+  margin: 20px;
+}
+.photo {
+  border-radius: 20px;
+  height: auto;
+  width: 100%;
+}

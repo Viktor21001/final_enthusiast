@@ -1,0 +1,95 @@
+@keyframes fallAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.peopleList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-left: 70%;
+}
+
+.personCard {
+  animation: fallAnimation 0.5s ease-out forwards;
+  background-color: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 10px 0;
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 700px;
+  width: 600px;
+}
+
+.personImage {
+  margin-top: 20px;
+  background: transparent;
+}
+
+.personImage img {
+  width: 370px;
+  height: 370px;
+  object-fit: cover;
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.personDetails {
+  background: transparent;
+  padding: 20px;
+  text-align: center;
+  color: #333;
+  z-index: 1;
+}
+
+.personDetails h3 {
+  color: #333;
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.personDetails p {
+  color: #666;
+  font-size: 16px;
+  margin: 0;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.likeButton,
+.dislikeButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.likeButton svg,
+.dislikeButton svg {
+  color: #798aae;
+}
+
+.likeButton:hover svg {
+  color: #4a76a8;
+}
+
+.dislikeButton:hover svg {
+  color: #a71d2a;
+}

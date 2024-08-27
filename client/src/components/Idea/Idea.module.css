@@ -1,0 +1,63 @@
+@keyframes fallAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ideaCard {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 20px auto;
+  width: 700px; /* Adjust width as per your layout */
+  animation: fallAnimation 0.5s ease-out forwards;
+  margin-left: 26%;
+}
+
+.ideaTitle {
+  color: #333;
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+.ideaDescription {
+  color: #666;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.photo {
+  border-radius: 20px;
+  width: 100%;
+  max-width: 450px;
+  margin-bottom: 20px;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.cardFooter {
+  background: transparent;
+  font-size: 25px;
+  display: flex;
+  height: 80px;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  color: rgb(73, 148, 107);
+}
